@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">TweetStat</string>
+    <string name="error_request">Ops! Something\'s wrong!</string>
+    <string name="error_tweet">Tweet information not found</string>
+    <string name="error_no_title">No title available</string>
+    <string name="error_no_description">No description available</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="title_mytweets">My Tweets</string>
+    <string name="title_timeline">Timeline</string>
+    <string name="title_search">Search</string>
+    <string name="title_hashtags">Hashtags</string>
+
+
+
+</resources>
