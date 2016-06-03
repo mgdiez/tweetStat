@@ -49,6 +49,8 @@ import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.models.User;
 
 import butterknife.ButterKnife;
+import executor.RxBus;
+import executor.events.StatisticsRequestEvent;
 
 public class MainActivity extends BaseActivity implements
         NavigationView.OnNavigationItemSelectedListener {
@@ -67,11 +69,13 @@ public class MainActivity extends BaseActivity implements
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
+    private RxBus rxBus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
+
 
         setContentView(R.layout.activity_main);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -99,6 +103,8 @@ public class MainActivity extends BaseActivity implements
         ButterKnife.bind(this);
         initializeDrawerLayout();
         initializeUserProfile();
+        //init rxBus
+        rxBus = new RxBus();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -225,8 +231,7 @@ public class MainActivity extends BaseActivity implements
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Not implemented!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                rxBus.send(new StatisticsRequestEvent());
             }
         });
 

@@ -47,6 +47,7 @@ public class UsertimeLineFragment extends BaseFragment {
 
     private UsertimeLinePresenter usertimeLinePresenter;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.usertimeline_fragment, container, false);
@@ -62,7 +63,12 @@ public class UsertimeLineFragment extends BaseFragment {
             }
         });
         usertimeLinePresenter.getTimeline(ApiConstants.USERNAME, true);
+        initializeSubscriptions();
         return v;
+    }
+
+    private void initializeSubscriptions() {
+       // subscriptions.add(rxBus.toObservable()-> ());
     }
 
     public static UsertimeLineFragment newInstance() {

@@ -56,7 +56,7 @@ public class LocalTweetDatastore implements TweetDatastore {
 
     @Override
     public Observable<List<TweetBo>> getTweetsHometimeline() {
-            RealmResults<TweetVo> tweetVos = realm.where(TweetVo.class).findAll();
+            RealmResults<TweetVo> tweetVos = realm.where(TweetVo.class).isNull(TweetVo.USERNAME).findAll();
             List<TweetBo> tweetBos = TweetVoMapper.toBo(tweetVos);
 
             if (tweetBos != null && !tweetBos.isEmpty()) {
