@@ -29,7 +29,7 @@ public interface TweetDatastore {
 
     Observable<List<TweetBo>> getTweetsUsertimeline(String userName);
 
-    Observable<List<TweetBo>> getTweetsHometimeline();
+    Observable<List<TweetBo>> getTweetsHometimeline(String userName);
 
     Observable<List<HashtagBo>> getHashtags();
 

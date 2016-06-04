@@ -17,6 +17,7 @@ package net;
 
 import com.mgdiez.data.bean.dto.HashtagDto;
 import com.mgdiez.data.bean.dto.TrendsList;
+import com.mgdiez.data.bean.dto.tweet.mapper.UserDtoMapper;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
@@ -24,8 +25,10 @@ import com.twitter.sdk.android.core.Session;
 import com.twitter.sdk.android.core.TwitterApiClient;
 import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.models.Search;
 import com.twitter.sdk.android.core.models.Tweet;
+import com.twitter.sdk.android.core.models.User;
 
 import java.util.Collection;
 import java.util.List;
@@ -44,6 +47,25 @@ public class TwitterApiService extends TwitterApiClient {
         twitterApiClient = TwitterCore.getInstance().getApiClient(session);
 
 
+    }
+
+    public Observable<User> getUserData() {
+        return Observable.create(subscriber -> {
+            TwitterSession session =
+                    Twitter.getSessionManager().getActiveSession();
+            Twitter.getApiClient(session).getAccountService()
+                    .verifyCredentials(true, false, new Callback<User>() {
+                        @Override
+                        public void success(Result<User> result) {
+                            subscriber.onNext(result.data);
+                        }
+
+                        @Override
+                        public void failure(TwitterException e) {
+                            subscriber.onError(e);
+                        }
+                    });
+        });
     }
 
     public Observable<List<Tweet>> getTweetsHometimeline() {

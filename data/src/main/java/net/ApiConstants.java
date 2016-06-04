@@ -26,7 +26,6 @@ public final class ApiConstants {
     public static final String QUERY_PARAM_API_KEY = "apikey";
 
     public static final String QUERY_PARAM_HASH = "hash";
-    public static final String USERNAME = "marcgdiez";
 
     private ApiConstants() {
     }

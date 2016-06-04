@@ -34,7 +34,7 @@ public interface TweetsRepository {
 
     Observable<List<HashtagBo>> getHashtags(boolean refresh);
 
-    Observable<List<TweetBo>> getTweetsHometimeline(boolean refresh);
+    Observable<List<TweetBo>> getTweetsHometimeline(String userName, boolean refresh);
 
     Observable<List<TweetBo>> getTweetsTimeline(boolean refresh, String userName);
 

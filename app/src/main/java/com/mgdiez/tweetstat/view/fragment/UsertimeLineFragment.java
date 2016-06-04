@@ -62,13 +62,8 @@ public class UsertimeLineFragment extends BaseFragment {
                 usertimeLinePresenter.getTimeline(userName, true);
             }
         });
-        usertimeLinePresenter.getTimeline(ApiConstants.USERNAME, true);
-        initializeSubscriptions();
+        usertimeLinePresenter.getTimeline(userName, true);
         return v;
-    }
-
-    private void initializeSubscriptions() {
-       // subscriptions.add(rxBus.toObservable()-> ());
     }
 
     public static UsertimeLineFragment newInstance() {

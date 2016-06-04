@@ -81,12 +81,12 @@ public class TweetsRepositoryImpl implements TweetsRepository {
     }
 
     @Override
-    public Observable<List<TweetBo>> getTweetsHometimeline(boolean refresh) {
+    public Observable<List<TweetBo>> getTweetsHometimeline(String userName, boolean refresh) {
         CloudTweetDatastore cloudTweetDatastore = new CloudTweetDatastore(context);
         if (NetworkUtil.isNetworkAvailable(context) && refresh) {
-            return cloudTweetDatastore.getTweetsHometimeline();
+            return cloudTweetDatastore.getTweetsHometimeline(userName);
         } else {
-            return Observable.concat(new LocalTweetDatastore(context).getTweetsHometimeline(), cloudTweetDatastore.getTweetsHometimeline()
+            return Observable.concat(new LocalTweetDatastore(context).getTweetsHometimeline(userName), cloudTweetDatastore.getTweetsHometimeline(userName)
                     ).first();
         }
     }

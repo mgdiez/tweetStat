@@ -19,6 +19,7 @@
     <string name="full_graph_activity_title">Graph</string>
     <string name="statistics_history_activity_title">Statistics History</string>
     <string name="no_connection">No connection aviable</string>
+    <string name="username">username</string>
 
 
 

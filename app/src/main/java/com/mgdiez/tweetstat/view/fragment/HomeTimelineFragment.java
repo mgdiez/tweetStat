@@ -15,6 +15,7 @@
  */
 package com.mgdiez.tweetstat.view.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -42,24 +43,31 @@ public class HomeTimelineFragment extends BaseFragment {
     @Bind(R.id.my_recycler_view)
     RecyclerView recyclerView;
 
+    private String userName;
+
     private HomeTimelinePresenter homeTimelinePresenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.hometimeline_fragment, container, false);
         ButterKnife.bind(this, v);
+        getUserName();
         homeTimelinePresenter = new HomeTimelinePresenter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         swipeRefreshLayout.setColorSchemeColors(R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                homeTimelinePresenter.getHometimeline(true);
+                homeTimelinePresenter.getHometimeline(userName, true);
 
             }
         });
-        homeTimelinePresenter.getHometimeline(true);
+        homeTimelinePresenter.getHometimeline(userName, true);
         return v;
+    }
+
+    private void getUserName() {
+        userName = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString(getString(R.string.username), "");
     }
 
     public static HomeTimelineFragment newInstance() {

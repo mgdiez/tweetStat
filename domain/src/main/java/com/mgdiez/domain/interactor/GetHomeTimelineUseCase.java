@@ -29,6 +29,7 @@ public class GetHomeTimelineUseCase extends UseCase{
     private final TweetsRepository tweetsRepository;
 
     private boolean refresh;
+    private String userName;
 
     @Inject
     public GetHomeTimelineUseCase (ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread,
@@ -37,7 +38,8 @@ public class GetHomeTimelineUseCase extends UseCase{
         this.tweetsRepository = tweetsRepository;
     }
 
-    public void execute(boolean refresh, Subscriber useCaseSubscriber) {
+    public void execute(String userName, boolean refresh, Subscriber useCaseSubscriber) {
+        this.userName = userName;
         this.refresh = refresh;
         super.execute(useCaseSubscriber);
 
@@ -48,6 +50,6 @@ public class GetHomeTimelineUseCase extends UseCase{
      */
     @Override
     protected Observable buildUseCaseObservable() {
-        return tweetsRepository.getTweetsHometimeline(refresh);
+        return tweetsRepository.getTweetsHometimeline(userName, refresh);
     }
 }

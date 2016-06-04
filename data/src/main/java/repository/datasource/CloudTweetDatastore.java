@@ -62,7 +62,7 @@ public class CloudTweetDatastore implements TweetDatastore {
     }
 
     @Override
-    public Observable<List<TweetBo>> getTweetsHometimeline() {
+    public Observable<List<TweetBo>> getTweetsHometimeline(String userName) {
         return twitterApiService.getTweetsHometimeline().doOnNext(new TweetsActionPersist()).map(TweetsDtoMapper::toBo);
     }
 

@@ -19,6 +19,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -45,6 +46,8 @@ import android.widget.Toast;
 
 import com.mgdiez.tweetstat.R;
 import com.mgdiez.tweetstat.TweetStatConstants;
+import com.mgdiez.tweetstat.model.UserModel;
+import com.mgdiez.tweetstat.presenter.MainPresenter;
 import com.mgdiez.tweetstat.view.CircleTransformation;
 import com.mgdiez.tweetstat.view.adapter.TweetStatPagerAdapter;
 import com.mgdiez.tweetstat.view.fragment.HashtagsFragment;
@@ -63,6 +66,7 @@ import executor.RxBus;
 import executor.events.ConnectionEvent;
 import executor.events.NoConnectionEvent;
 import executor.events.StatisticsRequestEvent;
+import repository.NetworkUtil;
 
 public class MainActivity extends BaseActivity implements
         NavigationView.OnNavigationItemSelectedListener {
@@ -74,14 +78,12 @@ public class MainActivity extends BaseActivity implements
     private TextView txtFollowing;
     private TextView txtFollowers;
     private LinearLayout relativeLayout;
-
     public String usernameTxt;
-
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
     private ViewPager viewPager;
 
     private RxBus rxBus;
+
+    private MainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,36 +93,14 @@ public class MainActivity extends BaseActivity implements
                 new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         setContentView(R.layout.activity_main);
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        View headerView =  navigationView.getHeaderView(0);
-        relativeLayout = (LinearLayout) headerView.findViewById(R.id.parentLayout_header);
-        userProfilePicture = (ImageView) headerView.findViewById(R.id.imageView_userProfile);
-        username = (TextView) headerView.findViewById(R.id.textView_userName);
-        userPublicName = (TextView) headerView.findViewById(R.id.textView_userPublicName);
-
-        txtTweets = (TextView) headerView.findViewById(R.id.txtTweets);
-        txtFollowers = (TextView) headerView.findViewById(R.id.txtFollowers);
-        txtFollowing = (TextView) headerView.findViewById(R.id.txtFollowing);
-
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setAdapter(new TweetStatPagerAdapter(getApplicationContext(), getSupportFragmentManager()));
-        viewPager.setOffscreenPageLimit(3);
-
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-
+        findViews();
         ButterKnife.bind(this);
         initializeDrawerLayout();
-        initializeUserProfile();
-        //init rxBus
         rxBus = RxBus.getInstance();
+        mainPresenter = new MainPresenter(this);
+        mainPresenter.getUserData(NetworkUtil.isNetworkAvailable(this));
     }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -180,63 +160,6 @@ public class MainActivity extends BaseActivity implements
         } else {
             super.onBackPressed();
         }
-    }
-
-    private void initializeUserProfile() {
-        TwitterSession session =
-                Twitter.getSessionManager().getActiveSession();
-        Twitter.getApiClient(session).getAccountService()
-                .verifyCredentials(true, false, new Callback<User>() {
-                    @Override
-                    public void success(Result<User> userResult) {
-
-                        User user = userResult.data;
-                        usernameTxt = user.screenName;
-                        String twitterImage = user.profileImageUrl.replace(TweetStatConstants.NORMAL_SIZE, "");
-                        String userpublicName = user.name;
-                        String backgroundImage = user.profileBannerUrl;
-                        int followers = user.followersCount;
-                        int following = user.friendsCount;
-                        int ntweets = user.statusesCount;
-
-                        // Profile Image
-                        Picasso.with(getApplicationContext())
-                                .load(twitterImage)
-                                .error(R.drawable.logo)
-                                .placeholder(R.drawable.logo)
-                                .transform(new CircleTransformation())
-                                .resizeDimen(R.dimen.list_detail_image_size, R.dimen.list_detail_image_size)
-                                .centerCrop()
-                                .into(userProfilePicture);
-                        username.setText("@" + usernameTxt);
-                        userPublicName.setText(userpublicName);
-                        txtFollowing.setText(String.valueOf(following));
-                        txtFollowers.setText(String.valueOf(followers));
-                        txtTweets.setText(String.valueOf(ntweets));
-
-                        // Background Image
-                        Picasso.with(getApplicationContext()).load(backgroundImage + TweetStatConstants.MOBILE_SIZE).resizeDimen(R.dimen.nav_header_width_picasso, R.dimen.nav_header_height).centerCrop().into(new Target() {
-                            @Override
-                            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                                relativeLayout.setBackground(new BitmapDrawable(getApplicationContext().getResources(), bitmap));
-                            }
-
-                            @Override
-                            public void onBitmapFailed(Drawable errorDrawable) {
-
-                            }
-
-                            @Override
-                            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void failure(TwitterException e) {
-                    }
-                });
     }
 
     private void initializeDrawerLayout() {
@@ -314,4 +237,81 @@ public class MainActivity extends BaseActivity implements
         }
     };
 
+    private void findViews() {
+        Toolbar toolbar;
+        TabLayout tabLayout;
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        View headerView =  navigationView.getHeaderView(0);
+        relativeLayout = (LinearLayout) headerView.findViewById(R.id.parentLayout_header);
+        userProfilePicture = (ImageView) headerView.findViewById(R.id.imageView_userProfile);
+        username = (TextView) headerView.findViewById(R.id.textView_userName);
+        userPublicName = (TextView) headerView.findViewById(R.id.textView_userPublicName);
+
+        txtTweets = (TextView) headerView.findViewById(R.id.txtTweets);
+        txtFollowers = (TextView) headerView.findViewById(R.id.txtFollowers);
+        txtFollowing = (TextView) headerView.findViewById(R.id.txtFollowing);
+
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager.setAdapter(new TweetStatPagerAdapter(getApplicationContext(), getSupportFragmentManager()));
+        viewPager.setOffscreenPageLimit(3);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    public void setUser(UserModel userModel) {
+        usernameTxt = userModel.getUserName();
+
+        SharedPreferences.Editor editor = getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit();
+        editor.putString(getString(R.string.username), usernameTxt);
+        editor.apply();
+
+
+        String twitterImage = userModel.getTwitterImage();
+        String userpublicName = userModel.getUserPublicName();
+        String backgroundImage = userModel.getBackgroundImage();
+        int followers = userModel.getFollowers();
+        int following = userModel.getFollowing();
+        int ntweets = userModel.getNTweets();
+
+        // Profile Image
+        Picasso.with(getApplicationContext())
+                .load(twitterImage)
+                .error(R.drawable.logo)
+                .placeholder(R.drawable.logo)
+                .transform(new CircleTransformation())
+                .resizeDimen(R.dimen.list_detail_image_size, R.dimen.list_detail_image_size)
+                .centerCrop()
+                .into(userProfilePicture);
+        username.setText("@" + usernameTxt);
+        userPublicName.setText(userpublicName);
+        txtFollowing.setText(String.valueOf(following));
+        txtFollowers.setText(String.valueOf(followers));
+        txtTweets.setText(String.valueOf(ntweets));
+
+        // Background Image
+        Picasso.with(getApplicationContext()).load(backgroundImage).resizeDimen(R.dimen.nav_header_width_picasso, R.dimen.nav_header_height).centerCrop().into(new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                relativeLayout.setBackground(new BitmapDrawable(getApplicationContext().getResources(), bitmap));
+            }
+
+            @Override
+            public void onBitmapFailed(Drawable errorDrawable) {
+
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+            }
+        });
+    }
 }

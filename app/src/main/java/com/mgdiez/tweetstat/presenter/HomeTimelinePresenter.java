@@ -99,9 +99,9 @@ public class HomeTimelinePresenter implements Presenter {
     }
 
 
-    public void getHometimeline(boolean refresh) {
+    public void getHometimeline(String userName, boolean refresh) {
         startRefresh();
-        getHomeTimelineUseCase.execute(refresh, new GetTimelineSubscriber());
+        getHomeTimelineUseCase.execute(userName, refresh, new GetTimelineSubscriber());
     }
 
     private class GetTimelineSubscriber extends Subscriber<List<TweetBo>> {
