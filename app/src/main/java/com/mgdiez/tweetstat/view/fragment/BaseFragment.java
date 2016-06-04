@@ -18,6 +18,7 @@ package com.mgdiez.tweetstat.view.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
+import executor.RxBus;
 import rx.subscriptions.CompositeSubscription;
 
 
@@ -28,10 +29,13 @@ public abstract class BaseFragment extends Fragment {
 
     protected CompositeSubscription subscriptions;
 
+    protected RxBus rxBus;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         subscriptions = new CompositeSubscription();
+        rxBus = RxBus.getInstance();
     }
 }

@@ -24,6 +24,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -37,8 +38,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mgdiez.tweetstat.R;
-import com.mgdiez.tweetstat.view.RoundedTransformation;
+import com.mgdiez.tweetstat.TweetStatConstants;
+import com.mgdiez.tweetstat.view.CircleTransformation;
 import com.mgdiez.tweetstat.view.adapter.TweetStatPagerAdapter;
+import com.mgdiez.tweetstat.view.fragment.HashtagsFragment;
+import com.mgdiez.tweetstat.view.fragment.SearchFragment;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.twitter.sdk.android.Twitter;
@@ -78,6 +82,7 @@ public class MainActivity extends BaseActivity implements
 
 
         setContentView(R.layout.activity_main);
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView =  navigationView.getHeaderView(0);
@@ -100,11 +105,12 @@ public class MainActivity extends BaseActivity implements
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
         ButterKnife.bind(this);
         initializeDrawerLayout();
         initializeUserProfile();
         //init rxBus
-        rxBus = new RxBus();
+        rxBus = RxBus.getInstance();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -177,7 +183,7 @@ public class MainActivity extends BaseActivity implements
 
                         User user = userResult.data;
                         usernameTxt = user.screenName;
-                        String twitterImage = user.profileImageUrl;
+                        String twitterImage = user.profileImageUrl.replace(TweetStatConstants.NORMAL_SIZE, "");
                         String userpublicName = user.name;
                         String backgroundImage = user.profileBannerUrl;
                         int followers = user.followersCount;
@@ -188,7 +194,8 @@ public class MainActivity extends BaseActivity implements
                         Picasso.with(getApplicationContext())
                                 .load(twitterImage)
                                 .error(R.drawable.logo)
-                                .transform(new RoundedTransformation(50, 4))
+                                .placeholder(R.drawable.logo)
+                                .transform(new CircleTransformation())
                                 .resizeDimen(R.dimen.list_detail_image_size, R.dimen.list_detail_image_size)
                                 .centerCrop()
                                 .into(userProfilePicture);
@@ -199,7 +206,7 @@ public class MainActivity extends BaseActivity implements
                         txtTweets.setText(String.valueOf(ntweets));
 
                         // Background Image
-                        Picasso.with(getApplicationContext()).load(backgroundImage).into(new Target() {
+                        Picasso.with(getApplicationContext()).load(backgroundImage + TweetStatConstants.MOBILE_SIZE).resizeDimen(R.dimen.nav_header_width_picasso, R.dimen.nav_header_height).centerCrop().into(new Target() {
                             @Override
                             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                                 relativeLayout.setBackground(new BitmapDrawable(getApplicationContext().getResources(), bitmap));
@@ -232,6 +239,38 @@ public class MainActivity extends BaseActivity implements
             @Override
             public void onClick(View view) {
                 rxBus.send(new StatisticsRequestEvent());
+                int currentItem =  viewPager.getCurrentItem();
+                Intent intent = new Intent(MainActivity.this, FullGraphActivity.class);
+                switch (currentItem) {
+
+                    case 0:
+                        intent.putExtra(TweetStatConstants.MY_TWEETS, "");
+                        startActivity(intent);
+
+                        break;
+
+                    case 1:
+                        intent.putExtra(TweetStatConstants.TIMELINE, "");
+                        startActivity(intent);
+
+                        break;
+
+                    case 2:
+                        Fragment searchFragment = getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.viewpager + ":" + viewPager.getCurrentItem());
+                        String query = ((SearchFragment) searchFragment).getQuery();
+                        if (!query.isEmpty()) {
+                            intent.putExtra(TweetStatConstants.SEARCH, query);
+                            startActivity(intent);
+                        }
+                        break;
+
+                    case 3:
+                        Fragment hashtagFragment = getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.viewpager + ":" + viewPager.getCurrentItem());
+                        intent.putExtra(TweetStatConstants.HASHTAGS, ((HashtagsFragment) hashtagFragment).getHashtagQuery());
+                        startActivity(intent);
+
+                        break;
+                }
             }
         });
 

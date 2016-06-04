@@ -20,7 +20,18 @@ import rx.subjects.Subject;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-public class RxBus {
+public class
+        RxBus {
+
+    private static RxBus RXBUS_INSTANCE;
+
+    public static RxBus getInstance(){
+        if (RXBUS_INSTANCE == null){
+            RXBUS_INSTANCE = new RxBus();
+        }
+        return RXBUS_INSTANCE;
+    }
+
     private final Subject<Object, Object> bus = new SerializedSubject<>(PublishSubject.create());
 
     public void send(Object o) {

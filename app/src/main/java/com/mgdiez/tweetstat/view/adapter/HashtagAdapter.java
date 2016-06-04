@@ -80,6 +80,10 @@ public class HashtagAdapter extends RecyclerView.Adapter<HashtagAdapter.HashtagV
         return selectedItem;
     }
 
+    public String getHashtagSelectedQuery() {
+        return items.get(selectedItem).getQueryName();
+    }
+
     public class HashtagViewHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.hashtagName)

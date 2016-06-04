@@ -13,6 +13,12 @@
     <string name="title_search">Search</string>
     <string name="title_hashtags">Hashtags</string>
 
+    <string name="preference_file_key">tweetstatpreferences</string>
+    <string name="welcome_screen_flag">welcome_screen_flag</string>
+
+    <string name="full_graph_activity_title">Graph</string>
+    <string name="statistics_history_activity_title">Statistics History</string>
+
 
 
 </resources>

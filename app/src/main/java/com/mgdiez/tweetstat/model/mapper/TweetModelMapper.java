@@ -31,7 +31,7 @@ public class TweetModelMapper {
 
             model.setId(bo.getId());
             model.setTweet(bo.getDescription());
-            model.setThumbnailUrl(bo.getThumbnailUrl());
+            model.setThumbnailUrl(bo.getThumbnailUrl().replace("_normal", ""));
 
         }
 

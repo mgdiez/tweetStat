@@ -22,6 +22,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.mgdiez.tweetstat.R;
 import com.mgdiez.tweetstat.model.HashtagModel;
@@ -32,6 +33,8 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import executor.events.StatisticsRequestEvent;
+import rx.functions.Action1;
 
 public class HashtagsFragment extends BaseFragment {
 
@@ -42,6 +45,8 @@ public class HashtagsFragment extends BaseFragment {
     RecyclerView recyclerView;
 
     private HashtagsPresenter hashtagsPresenter;
+
+    private HashtagAdapter hashtagAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,7 +63,38 @@ public class HashtagsFragment extends BaseFragment {
             }
         });
         hashtagsPresenter.getHashtags();
+        subscribeToBus();
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        subscribeToBus();
+    }
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        subscriptions.unsubscribe();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        subscriptions.unsubscribe();
+    }
+
+    private void subscribeToBus() {
+        subscriptions.add(rxBus.toObservable().subscribe(new Action1<Object>() {
+            @Override
+            public void call(Object o) {
+                if (o instanceof StatisticsRequestEvent) {
+                  //  Toast.makeText(getContext(), "HASHTAGS", Toast.LENGTH_SHORT);
+                }
+            }
+        }));
     }
 
     public static HashtagsFragment newInstance() {
@@ -67,7 +103,7 @@ public class HashtagsFragment extends BaseFragment {
 
 
     public void setItems(List<HashtagModel> models) {
-        HashtagAdapter hashtagAdapter = new HashtagAdapter(models);
+        hashtagAdapter = new HashtagAdapter(models);
         recyclerView.setAdapter(hashtagAdapter);
     }
 
@@ -83,5 +119,9 @@ public class HashtagsFragment extends BaseFragment {
             swipeRefreshLayout.setRefreshing(true);
             swipeRefreshLayout.setEnabled(false);
         }
+    }
+
+    public String getHashtagQuery() {
+        return hashtagAdapter.getHashtagSelectedQuery();
     }
 }

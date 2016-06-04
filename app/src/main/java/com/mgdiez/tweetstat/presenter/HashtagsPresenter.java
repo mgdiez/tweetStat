@@ -99,6 +99,10 @@ public class HashtagsPresenter implements Presenter {
         getHashtagsUseCase.unsubscribe();
     }
 
+    public String getHashtagSelectedQuery() {
+        return null;
+    }
+
 
     private class GetHashtagsSubscriber extends Subscriber<List<HashtagBo>> {
         @Override

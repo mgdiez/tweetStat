@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.mgdiez.tweetstat.R;
 import com.mgdiez.tweetstat.model.TweetModel;
@@ -101,9 +102,9 @@ public class SearchFragment extends BaseFragment {
 
 
     public void setItems(List<TweetModel> models) {
-        TweetsAdapter tweetsAdapter = new TweetsAdapter(getContext(), models);
-        recyclerView.setAdapter(tweetsAdapter);
-        recyclerView.setVisibility(View.VISIBLE);
+            TweetsAdapter tweetsAdapter = new TweetsAdapter(getContext(), models);
+            recyclerView.setAdapter(tweetsAdapter);
+            recyclerView.setVisibility(View.VISIBLE);
     }
 
     public void stopRefresh() {
@@ -122,5 +123,12 @@ public class SearchFragment extends BaseFragment {
 
     public void showMessage(String message) {
         Snackbar.make(recyclerView, message, Snackbar.LENGTH_SHORT).show();
+    }
+
+    public String getQuery() {
+        if (query.isEmpty()) {
+            showMessage("Can not perform statistic without a query");
+        }
+        return query;
     }
 }

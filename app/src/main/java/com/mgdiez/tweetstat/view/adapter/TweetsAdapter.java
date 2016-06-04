@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.mgdiez.tweetstat.R;
 import com.mgdiez.tweetstat.model.TweetModel;
+import com.mgdiez.tweetstat.view.CircleTransformation;
 import com.mgdiez.tweetstat.view.RoundedTransformation;
 import com.squareup.picasso.Picasso;
 
@@ -63,9 +64,10 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.TweetViewH
         Picasso.with(context)
                 .load(model.getThumbnailUrl())
                 .error(R.drawable.logo)
-                .transform(new RoundedTransformation(50, 1))
-                .resizeDimen(R.dimen.list_tweets_adapter, R.dimen.list_tweets_adapter)
+                .placeholder(R.drawable.logo)
+                .transform(new CircleTransformation())
                 .centerCrop()
+                .fit()
                 .into(holder.thumbnail);
     }
 

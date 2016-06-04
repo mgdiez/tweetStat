@@ -23,36 +23,38 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.mgdiez.tweetstat.R;
+import com.mgdiez.tweetstat.view.adapter.HistoryStatisticsAdapter;
+import com.mgdiez.tweetstat.view.adapter.TweetStatPagerAdapter;
 import com.mgdiez.tweetstat.view.fragment.SearchFragment;
 import com.mgdiez.tweetstat.view.fragment.UsertimeLineFragment;
 
 public class HistoryStatisticsActivity extends BaseActivity {
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history_statistics_activity);
+
+        TabLayout tabLayout;
+        ViewPager viewPager;
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if (actionBar != null && toolbar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            toolbar.setTitle(getString(R.string.statistics_history_activity_title));
+        }
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        viewPager.setAdapter(new HistoryStatisticsAdapter(getApplicationContext(), getSupportFragmentManager()));
+        viewPager.setOffscreenPageLimit(3);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        /*ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new SearchFragment(),"MY TWEETS");
-        adapter.addFragment(new SearchFragment(), "HASHTAGS");
-        adapter.addFragment(new UsertimeLineFragment(), "TIMELINE");
-        adapter.addFragment(new SearchFragment(), "SEARCH");
-        viewPager.setAdapter(adapter);*/
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

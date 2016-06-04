@@ -36,8 +36,6 @@ import io.fabric.sdk.android.Fabric;
 
 public class LoginActivity extends BaseActivity {
 
-    public static final String CONSUMER_KEY = "yHSC0yxATVQUszUfGsW7P3Lyv";
-    public static final String CONSUMER_SECRET = "LrUHGfZAQjLXdO7vzopmuv5MWXH4y6MQFjZrqN45Q6W4X3dRwN";
 
     @Bind(R.id.twitter_login_button)
     TwitterLoginButton loginButton;
@@ -46,8 +44,6 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TwitterAuthConfig authConfig =  new TwitterAuthConfig(CONSUMER_KEY, CONSUMER_SECRET);
-        Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_login_screen);
 
         new DrawerBuilder()
@@ -63,15 +59,10 @@ public class LoginActivity extends BaseActivity {
                 // The TwitterSession is also available through:
                 // Twitter.getInstance().core.getSessionManager().getActiveSession()
                 TwitterSession session = result.data;
-                // TODO: Remove toast and use the TwitterSession's userID
-                // with your app's user model
-                String msg = "@" + session.getUserName() + " logged in! (#" + session.getUserId() + ")";
-                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void failure(TwitterException exception) {
-                Log.d("TwitterKit", "Login with Twitter failure", exception);
             }
         });
 
@@ -80,6 +71,7 @@ public class LoginActivity extends BaseActivity {
         if (session!=null){
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
+            finish();
         }
     }
 
@@ -89,11 +81,21 @@ public class LoginActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         // Make sure that the loginButton hears the result from any
         // Activity that it triggered.
-        loginButton.onActivityResult(requestCode, resultCode, data);
-        Intent intent = new Intent(this,MainActivity.class);
-        intent.putExtra("SERIALIZED_SESSION",serializedSession);
-        startActivity(intent);
+        if (data != null) {
+            loginButton.onActivityResult(requestCode, resultCode, data);
+            Intent intent = new Intent(this,MainActivity.class);
+            intent.putExtra("SERIALIZED_SESSION",serializedSession);
+            startActivity(intent);
+            finish();
+        } else {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
-
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

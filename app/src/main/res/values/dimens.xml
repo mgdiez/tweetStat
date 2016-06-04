@@ -11,4 +11,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="list_detail_image_size">50dp</dimen>
     <dimen name="list_tweets_adapter">50dp</dimen>
+    <dimen name="nav_header_width_picasso">300dp</dimen>
+
 </resources>

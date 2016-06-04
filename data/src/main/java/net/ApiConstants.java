@@ -30,4 +30,7 @@ public final class ApiConstants {
 
     private ApiConstants() {
     }
+
+    public static final String CONSUMER_KEY = "yHSC0yxATVQUszUfGsW7P3Lyv";
+    public static final String CONSUMER_SECRET = "LrUHGfZAQjLXdO7vzopmuv5MWXH4y6MQFjZrqN45Q6W4X3dRwN";
 }
