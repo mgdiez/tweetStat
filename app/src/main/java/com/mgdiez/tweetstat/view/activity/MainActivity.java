@@ -15,10 +15,15 @@
  */
 package com.mgdiez.tweetstat.view.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -36,6 +41,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mgdiez.tweetstat.R;
 import com.mgdiez.tweetstat.TweetStatConstants;
@@ -54,6 +60,8 @@ import com.twitter.sdk.android.core.models.User;
 
 import butterknife.ButterKnife;
 import executor.RxBus;
+import executor.events.ConnectionEvent;
+import executor.events.NoConnectionEvent;
 import executor.events.StatisticsRequestEvent;
 
 public class MainActivity extends BaseActivity implements
@@ -79,7 +87,8 @@ public class MainActivity extends BaseActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
-
+        this.registerReceiver(this.mConnReceiver,
+                new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         setContentView(R.layout.activity_main);
 
@@ -287,5 +296,22 @@ public class MainActivity extends BaseActivity implements
     public String getUsernameTxt(){
         return usernameTxt;
     }
+
+    private BroadcastReceiver mConnReceiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            boolean noConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
+            String reason = intent.getStringExtra(ConnectivityManager.EXTRA_REASON);
+            boolean isFailover = intent.getBooleanExtra(ConnectivityManager.EXTRA_IS_FAILOVER, false);
+
+            NetworkInfo currentNetworkInfo = (NetworkInfo) intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
+            NetworkInfo otherNetworkInfo = (NetworkInfo) intent.getParcelableExtra(ConnectivityManager.EXTRA_OTHER_NETWORK_INFO);
+
+            if(currentNetworkInfo.isConnected()){
+                rxBus.send(new ConnectionEvent());
+            }else{
+                rxBus.send(new NoConnectionEvent());
+            }
+        }
+    };
 
 }

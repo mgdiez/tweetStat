@@ -86,6 +86,20 @@ public class HomeTimelineFragment extends BaseFragment {
         }
     }
 
+    @Override
+    protected void dismissSnackbar() {
+        if (snackbar != null){
+            snackbar.dismiss();
+        }
+    }
+
+    @Override
+    protected void showMessageConnection() {
+        snackbar = Snackbar.make(recyclerView, message, Snackbar.LENGTH_INDEFINITE);
+        snackbar.getView().setBackgroundColor(getContext().getResources().getColor(R.color.md_red_900));
+        snackbar.show();
+    }
+
     public void showMessage(String message) {
         Snackbar.make(recyclerView, message, Snackbar.LENGTH_SHORT).show();
     }

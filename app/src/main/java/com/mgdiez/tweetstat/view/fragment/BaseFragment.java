@@ -15,10 +15,22 @@
  */
 package com.mgdiez.tweetstat.view.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 
+import com.mgdiez.tweetstat.R;
+
 import executor.RxBus;
+import executor.events.ConnectionEvent;
+import executor.events.NoConnectionEvent;
+import executor.events.StatisticsRequestEvent;
+import rx.functions.Action1;
 import rx.subscriptions.CompositeSubscription;
 
 
@@ -31,11 +43,37 @@ public abstract class BaseFragment extends Fragment {
 
     protected RxBus rxBus;
 
+    protected String message;
+
+    protected Snackbar snackbar;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        message = getString(R.string.no_connection);
         subscriptions = new CompositeSubscription();
         rxBus = RxBus.getInstance();
+        initSubscriptions();
     }
+
+    private void initSubscriptions() {
+        subscriptions.add(rxBus.toObservable().subscribe(new Action1<Object>() {
+            @Override
+            public void call(Object o) {
+                if (o instanceof ConnectionEvent) {
+                    dismissSnackbar();
+                }
+
+                if (o instanceof NoConnectionEvent) {
+                    showMessageConnection();
+                }
+            }
+        }));
+    }
+
+    protected abstract void dismissSnackbar();
+
+    abstract protected void showMessageConnection();
+
 }

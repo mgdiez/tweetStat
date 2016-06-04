@@ -131,4 +131,18 @@ public class SearchFragment extends BaseFragment {
         }
         return query;
     }
+    @Override
+    protected void dismissSnackbar() {
+        if (snackbar != null){
+            snackbar.dismiss();
+        }
+    }
+
+    @Override
+    protected void showMessageConnection() {
+        snackbar = Snackbar.make(recyclerView, message, Snackbar.LENGTH_INDEFINITE);
+        snackbar.getView().setBackgroundColor(getContext().getResources().getColor(R.color.md_red_900));
+        snackbar.show();
+    }
+
 }

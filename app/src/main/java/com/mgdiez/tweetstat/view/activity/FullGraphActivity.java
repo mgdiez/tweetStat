@@ -1,8 +1,6 @@
 package com.mgdiez.tweetstat.view.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -10,7 +8,6 @@ import android.widget.Toast;
 
 import com.mgdiez.tweetstat.R;
 import com.mgdiez.tweetstat.TweetStatConstants;
-import com.mgdiez.tweetstat.view.adapter.HistoryStatisticsAdapter;
 
 
 public class FullGraphActivity extends BaseActivity {
@@ -21,24 +18,16 @@ public class FullGraphActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.history_statistics_activity);
+        setContentView(R.layout.full_graph_activity);
         getExtras();
-        TabLayout tabLayout;
-        ViewPager viewPager;
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null && toolbar != null) {
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+        } if (toolbar != null) {
             toolbar.setTitle(getString(R.string.full_graph_activity_title));
         }
-
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setAdapter(new HistoryStatisticsAdapter(getApplicationContext(), getSupportFragmentManager()));
-        viewPager.setOffscreenPageLimit(3);
-
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
     }
 
     private void getExtras() {

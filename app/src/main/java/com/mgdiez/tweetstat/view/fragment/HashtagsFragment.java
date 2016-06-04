@@ -16,6 +16,7 @@
 package com.mgdiez.tweetstat.view.fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -63,38 +64,7 @@ public class HashtagsFragment extends BaseFragment {
             }
         });
         hashtagsPresenter.getHashtags();
-        subscribeToBus();
         return v;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        subscribeToBus();
-    }
-
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        subscriptions.unsubscribe();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        subscriptions.unsubscribe();
-    }
-
-    private void subscribeToBus() {
-        subscriptions.add(rxBus.toObservable().subscribe(new Action1<Object>() {
-            @Override
-            public void call(Object o) {
-                if (o instanceof StatisticsRequestEvent) {
-                  //  Toast.makeText(getContext(), "HASHTAGS", Toast.LENGTH_SHORT);
-                }
-            }
-        }));
     }
 
     public static HashtagsFragment newInstance() {
@@ -123,5 +93,19 @@ public class HashtagsFragment extends BaseFragment {
 
     public String getHashtagQuery() {
         return hashtagAdapter.getHashtagSelectedQuery();
+    }
+
+    @Override
+    protected void dismissSnackbar() {
+        if (snackbar != null){
+            snackbar.dismiss();
+        }
+    }
+
+    @Override
+    protected void showMessageConnection() {
+        snackbar = Snackbar.make(recyclerView, message, Snackbar.LENGTH_INDEFINITE);
+        snackbar.getView().setBackgroundColor(getContext().getResources().getColor(R.color.md_red_900));
+        snackbar.show();
     }
 }
