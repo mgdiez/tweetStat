@@ -32,7 +32,6 @@ public class LauncherActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initShared();
-        initTwitterSDK();
 
         if (showWelcomeScreen) {
             welcomeScreen = new WelcomeScreenHelper(this, WelcomeActivity.class);
@@ -49,11 +48,6 @@ public class LauncherActivity extends BaseActivity{
             startActivity(intent);
             finish();
         }
-    }
-
-    private void initTwitterSDK() {
-        TwitterAuthConfig authConfig =  new TwitterAuthConfig(ApiConstants.CONSUMER_KEY, ApiConstants.CONSUMER_SECRET);
-        Fabric.with(this, new Twitter(authConfig));
     }
 
     private void initShared() {

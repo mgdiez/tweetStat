@@ -19,6 +19,12 @@ import android.app.Application;
 
 import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+
+import net.ApiConstants;
+
+import io.fabric.sdk.android.Fabric;
 
 public class TweetStattApplication extends Application {
 
@@ -26,8 +32,13 @@ public class TweetStattApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Picasso.Builder builder = new Picasso.Builder(this);
-        builder.downloader(new OkHttpDownloader(this,Integer.MAX_VALUE));
+        builder.downloader(new OkHttpDownloader(this, Integer.MAX_VALUE));
         Picasso built = builder.build();
         Picasso.setSingletonInstance(built);
+        initTwitterSDK();
+    }
+    private void initTwitterSDK() {
+        TwitterAuthConfig authConfig =  new TwitterAuthConfig(ApiConstants.CONSUMER_KEY, ApiConstants.CONSUMER_SECRET);
+        Fabric.with(this, new Twitter(authConfig));
     }
 }

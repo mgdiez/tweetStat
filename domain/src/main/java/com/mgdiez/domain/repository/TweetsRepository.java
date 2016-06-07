@@ -26,6 +26,7 @@ import rx.Subscriber;
 /**
  * Interface for retrieving tweets data.
  */
+
 public interface TweetsRepository {
 
     Observable<List<TweetBo>> getTweetsBySearch(String query, boolean refresh);

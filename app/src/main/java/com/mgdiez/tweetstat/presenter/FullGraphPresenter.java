@@ -3,25 +3,28 @@ package com.mgdiez.tweetstat.presenter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.mgdiez.domain.bean.StatisticBo;
 import com.mgdiez.domain.bean.TweetBo;
 import com.mgdiez.domain.executor.PostExecutionThread;
-import com.mgdiez.domain.interactor.GetHashtagsUseCase;
 import com.mgdiez.domain.interactor.GetHomeTimelineUseCase;
 import com.mgdiez.domain.interactor.GetSearchUseCase;
 import com.mgdiez.domain.interactor.GetTimelineUseCase;
 import com.mgdiez.domain.interactor.GetTweetsByHashtagUseCase;
+import com.mgdiez.domain.interactor.PersistStatisticUseCase;
+import com.mgdiez.domain.repository.StatisticsRepository;
 import com.mgdiez.domain.repository.TweetsRepository;
 import com.mgdiez.tweetstat.R;
 import com.mgdiez.tweetstat.UIThread;
 import com.mgdiez.tweetstat.view.activity.FullGraphActivity;
-import com.mgdiez.tweetstat.view.fragment.HashtagsFragment;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import executor.JobExecutor;
+import repository.StatisticsRepositoryImpl;
 import repository.TweetsRepositoryImpl;
 import rx.Subscriber;
 
@@ -33,21 +36,18 @@ public class FullGraphPresenter implements Presenter {
     private final String extra_type;
 
     private HashMap<String, Integer> data;
+    int nTweets = 0;
     private List<TweetBo> boList;
 
     String selectedOption = "DAY";
 
-    public FullGraphPresenter(FullGraphActivity fullGraphActivity, String TYPE, String EXTRA_TYPE) {
+    public FullGraphPresenter(FullGraphActivity fullGraphActivity, String TYPE, String EXTRA_TYPE, String selectedOption) {
         view = fullGraphActivity;
         type = TYPE;
         extra_type = EXTRA_TYPE;
         retrieveData();
-        selectedOption = getSelectedOption();
+        this.selectedOption = selectedOption;
         //ge = new GetHashtagsUseCase(jobExecutor, postExecutionThread, tweetsRepository);
-    }
-
-    private String getSelectedOption() {
-        return "DAY";
     }
 
     private void retrieveData() {
@@ -102,7 +102,6 @@ public class FullGraphPresenter implements Presenter {
 
     private void generateData() {
         data = new HashMap<>();
-        int nTweets = 0;
 
         //about Country
         if ("COUNTRY".equals(selectedOption)) {
@@ -147,6 +146,43 @@ public class FullGraphPresenter implements Presenter {
             }
         }
         setStatisticsData(nTweets);
+    }
+
+    public void persistStatistic() {
+        JobExecutor jobExecutor = JobExecutor.getInstance();
+        PostExecutionThread postExecutionThread = UIThread.getInstance();
+        StatisticsRepository statisticsRepository = new StatisticsRepositoryImpl(view);
+
+        PersistStatisticUseCase persistStatisticUseCase = new PersistStatisticUseCase(jobExecutor, postExecutionThread, statisticsRepository);
+        StatisticBo bo = generateBoFromData();
+
+        persistStatisticUseCase.execute(bo, new Subscriber() {
+            @Override
+            public void onCompleted() {
+                //TODO
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                //TODO
+            }
+
+            @Override
+            public void onNext(Object o) {
+                Toast.makeText(view, "Saved Succesfully", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private StatisticBo generateBoFromData() {
+        StatisticBo bo = new StatisticBo();
+        bo.setStatisticsData(data);
+        bo.setNTweets(nTweets);
+        bo.setType(type);
+        bo.setSubType(extra_type);
+        bo.setDateGenerated(new Date().toString());
+
+        return bo;
     }
 
     private class GetTweetsStatisticsSubscriber extends Subscriber<List<TweetBo>> {

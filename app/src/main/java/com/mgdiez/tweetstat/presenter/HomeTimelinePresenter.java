@@ -21,12 +21,11 @@ import android.util.Log;
 import com.mgdiez.domain.bean.TweetBo;
 import com.mgdiez.domain.executor.PostExecutionThread;
 import com.mgdiez.domain.interactor.GetHomeTimelineUseCase;
-import com.mgdiez.domain.interactor.GetTimelineUseCase;
 import com.mgdiez.domain.repository.TweetsRepository;
 import com.mgdiez.tweetstat.UIThread;
 import com.mgdiez.tweetstat.model.TweetModel;
 import com.mgdiez.tweetstat.model.mapper.TweetModelMapper;
-import com.mgdiez.tweetstat.view.fragment.HomeTimelineFragment;
+import com.mgdiez.tweetstat.view.fragment.HomeTimelineTweetsFragment;
 
 import java.util.List;
 
@@ -38,21 +37,21 @@ public class HomeTimelinePresenter implements Presenter {
 
     private static final String TAG = HomeTimelinePresenter.class.getName();
 
-    private HomeTimelineFragment view;
+    private HomeTimelineTweetsFragment view;
     private GetHomeTimelineUseCase getHomeTimelineUseCase;
     private List<TweetModel> models;
 
 
-    public HomeTimelinePresenter(HomeTimelineFragment homeTimelineFragment) {
-        view = homeTimelineFragment;
+    public HomeTimelinePresenter(HomeTimelineTweetsFragment homeTimelineTweetsFragment) {
+        view = homeTimelineTweetsFragment;
         JobExecutor jobExecutor = JobExecutor.getInstance();
         PostExecutionThread postExecutionThread = UIThread.getInstance();
         TweetsRepository tweetsRepository = new TweetsRepositoryImpl(view.getContext());
         getHomeTimelineUseCase = new GetHomeTimelineUseCase(jobExecutor, postExecutionThread, tweetsRepository);
     }
 
-    public void setView(@NonNull HomeTimelineFragment homeTimelineFragment) {
-        this.view = homeTimelineFragment;
+    public void setView(@NonNull HomeTimelineTweetsFragment homeTimelineTweetsFragment) {
+        this.view = homeTimelineTweetsFragment;
     }
 
     private void setModels() {

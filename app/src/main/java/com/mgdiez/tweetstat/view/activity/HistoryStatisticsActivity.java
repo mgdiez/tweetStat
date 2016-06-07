@@ -23,10 +23,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.mgdiez.tweetstat.R;
-import com.mgdiez.tweetstat.view.adapter.HistoryStatisticsAdapter;
-import com.mgdiez.tweetstat.view.adapter.TweetStatPagerAdapter;
-import com.mgdiez.tweetstat.view.fragment.SearchFragment;
-import com.mgdiez.tweetstat.view.fragment.UsertimeLineFragment;
+import com.mgdiez.tweetstat.view.adapter.HistoryStatisticsPagerAdapter;
 
 public class HistoryStatisticsActivity extends BaseActivity {
 
@@ -48,7 +45,7 @@ public class HistoryStatisticsActivity extends BaseActivity {
         }
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setAdapter(new HistoryStatisticsAdapter(getApplicationContext(), getSupportFragmentManager()));
+        viewPager.setAdapter(new HistoryStatisticsPagerAdapter(getApplicationContext(), getSupportFragmentManager()));
         viewPager.setOffscreenPageLimit(3);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);

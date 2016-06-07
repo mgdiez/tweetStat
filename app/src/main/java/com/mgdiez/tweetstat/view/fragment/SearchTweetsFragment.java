@@ -25,7 +25,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.mgdiez.tweetstat.R;
 import com.mgdiez.tweetstat.model.TweetModel;
@@ -38,7 +37,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class SearchFragment extends BaseFragment {
+public class SearchTweetsFragment extends BaseFragment {
 
     @Bind(R.id.swipe_layout)
     SwipeRefreshLayout swipeRefreshLayout;
@@ -96,8 +95,8 @@ public class SearchFragment extends BaseFragment {
         return v;
     }
 
-    public static SearchFragment newInstance() {
-        return new SearchFragment();
+    public static SearchTweetsFragment newInstance() {
+        return new SearchTweetsFragment();
     }
 
 

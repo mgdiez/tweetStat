@@ -26,7 +26,7 @@ import com.mgdiez.domain.repository.TweetsRepository;
 import com.mgdiez.tweetstat.UIThread;
 import com.mgdiez.tweetstat.model.HashtagModel;
 import com.mgdiez.tweetstat.model.mapper.HashtagModelMapper;
-import com.mgdiez.tweetstat.view.fragment.HashtagsFragment;
+import com.mgdiez.tweetstat.view.fragment.HashtagsTweetsFragment;
 
 import java.util.List;
 
@@ -38,21 +38,21 @@ public class HashtagsPresenter implements Presenter {
 
     private static final String TAG = HomeTimelinePresenter.class.getName();
 
-    private HashtagsFragment view;
+    private HashtagsTweetsFragment view;
     private GetHashtagsUseCase getHashtagsUseCase;
     private List<HashtagModel> models;
 
 
-    public HashtagsPresenter(HashtagsFragment hashtagsFragment) {
-        view = hashtagsFragment;
+    public HashtagsPresenter(HashtagsTweetsFragment hashtagsTweetsFragment) {
+        view = hashtagsTweetsFragment;
         JobExecutor jobExecutor = JobExecutor.getInstance();
         PostExecutionThread postExecutionThread = UIThread.getInstance();
         TweetsRepository tweetsRepository = new TweetsRepositoryImpl(view.getContext());
         getHashtagsUseCase = new GetHashtagsUseCase(jobExecutor, postExecutionThread, tweetsRepository);
     }
 
-    public void setView(@NonNull HashtagsFragment hashtagsFragment) {
-        this.view = hashtagsFragment;
+    public void setView(@NonNull HashtagsTweetsFragment hashtagsTweetsFragment) {
+        this.view = hashtagsTweetsFragment;
     }
 
     private void setModels() {

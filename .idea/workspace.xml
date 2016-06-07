@@ -10,45 +10,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90bc6cea-446b-408d-9bc5-86183bc68044" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/statistics_icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/DateHelper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/FullGraphPresenter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/MPAndroidChart_v2_2_5.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout-w900dp/fragment_comic_detail.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_comic_detail.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_comic_detail.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/domain/src/main/AndroidManifest.xml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_logo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_logo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_logo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_logo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_logo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data/src/main/res/mipmap-hdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/data/src/main/res/mipmap-hdpi/ic_logo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data/src/main/res/mipmap-mdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/data/src/main/res/mipmap-mdpi/ic_logo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data/src/main/res/mipmap-xhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/data/src/main/res/mipmap-xhdpi/ic_logo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/data/src/main/res/mipmap-xxhdpi/ic_logo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/data/src/main/res/mipmap-xxxhdpi/ic_logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/backstats.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/interactor/GetHomeTimelineStatisticsUseCase.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/HomeTimelineStatisticsPresenter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/vo/tweet/IntegerVo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/src/main/java/repository/datasource/LocalStatisticDatastore.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/interactor/PersistStatisticUseCase.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/adapter/StatisticAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/bean/StatisticBo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/src/main/java/repository/datasource/StatisticDatastore.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/model/StatisticModel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/model/mapper/StatisticModelMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/vo/tweet/StatisticVo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/vo/tweet/mapper/StatisticVoMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/repository/StatisticsRepository.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/src/main/java/repository/StatisticsRepositoryImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/vo/tweet/StringVo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/hometimeline_statistics_fragment.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/statistic_adapter.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/adapter/HistoryStatisticsAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/adapter/HistoryStatisticsPagerAdapter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HashtagsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HashtagsTweetsFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HistoryStatisticsHomeFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HomeTimelineStatisticsFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HomeTimelineFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HomeTimelineTweetsFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/SearchFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/SearchTweetsFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/UsertimeLineFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/UserTimelineTweetsFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/data/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/src/main/java/repository/datasource/CloudTweetDatastore.java" afterPath="$PROJECT_DIR$/data/src/main/java/repository/datasource/CloudTweetDatastore.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/FullGraphActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/FullGraphActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/FullGraphPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/FullGraphPresenter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/HashtagsPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/HashtagsPresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/HistoryStatisticsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/HistoryStatisticsActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/HomeTimelinePresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/HomeTimelinePresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/LauncherActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/LauncherActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/SearchPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/SearchPresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/adapter/TweetStatPagerAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/adapter/TweetStatPagerAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/TweetStattApplication.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/TweetStattApplication.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/repository/TweetsRepository.java" afterPath="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/repository/TweetsRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/src/main/java/repository/TweetsRepositoryImpl.java" afterPath="$PROJECT_DIR$/data/src/main/java/repository/TweetsRepositoryImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/UsertimeLineFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/UsertimeLineFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/WelcomeActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/WelcomeActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_tweet_detail.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_tweet_detail.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/build.gradle" afterPath="$PROJECT_DIR$/data/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/data.iml" afterPath="$PROJECT_DIR$/data/data.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_tweet_detail.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_tweet_detail.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout-w900dp/fragment_tweet_detail.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout-w900dp/fragment_tweet_detail.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/repository/UserRepository.java" afterPath="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/repository/UserRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/UsertimeLinePresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/UsertimeLinePresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/full_graph_activity.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/full_graph_activity.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_list_content.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_list_content.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/data/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/tweet_adapter.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/tweet_adapter.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/history_statistics_activity.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/history_statistics_activity.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tweetStat.iws" />
@@ -70,12 +72,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TwitterApiService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/src/main/java/net/TwitterApiService.java">
+      <file leaf-file-name="HomeTimelineStatisticsPresenter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/HomeTimelineStatisticsPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="88" column="35" selection-start-line="88" selection-start-column="35" selection-end-line="88" selection-end-column="35" />
+              <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1820#1821#0" expanded="true" />
+                <element signature="e#1857#1858#0" expanded="true" />
+                <element signature="e#1905#1906#0" expanded="true" />
+                <element signature="e#1946#1947#0" expanded="true" />
+                <element signature="e#2096#2097#0" expanded="true" />
+                <element signature="e#2131#2132#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatisticModelMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/model/mapper/StatisticModelMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HomeTimelineStatisticsFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HomeTimelineStatisticsFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.42307693">
+              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1407#1408#0" expanded="true" />
+                <element signature="e#1466#1467#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -84,125 +118,82 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/FullGraphActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="199" column="28" selection-start-line="199" selection-start-column="28" selection-end-line="199" selection-end-column="28" />
+              <caret line="98" column="47" selection-start-line="98" selection-start-column="47" selection-end-line="98" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1988#2138#0" expanded="true" />
-                <element signature="e#2137#2138#0" expanded="true" />
-                <element signature="e#2182#2183#0" expanded="true" />
-                <element signature="e#2244#2245#0" expanded="true" />
-                <element signature="e#2539#2584#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="full_graph_activity.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/full_graph_activity.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.206897">
-              <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
-              <folding>
-                <element signature="e#898#931#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Entry.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v2.2.5/dc7941fe902e331288402a093ede7775391eccc6/MPAndroidChart-v2.2.5-sources.jar!/com/github/mikephil/charting/data/Entry.java">
+      <file leaf-file-name="LocalStatisticDatastore.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/src/main/java/repository/datasource/LocalStatisticDatastore.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+              <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatisticsRepositoryImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/src/main/java/repository/StatisticsRepositoryImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="51" column="1" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UseCase.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/interactor/UseCase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArrayList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/java/util/ArrayList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="113" column="29" selection-start-line="113" selection-start-column="29" selection-end-line="113" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#21990#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#3143#3144#0" expanded="false" />
-                <element signature="e#3184#3185#0" expanded="false" />
-                <element signature="e#11210#11211#0" expanded="false" />
-                <element signature="e#11237#11238#0" expanded="false" />
-                <element signature="e#11279#11280#0" expanded="false" />
-                <element signature="e#11311#11312#0" expanded="false" />
-                <element signature="e#18297#18298#0" expanded="false" />
-                <element signature="e#18343#18344#0" expanded="false" />
-                <element signature="e#18755#18756#0" expanded="false" />
-                <element signature="e#18800#18801#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TweetBo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/bean/TweetBo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FullGraphPresenter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FullGraphPresenter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/FullGraphPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.6907895">
-              <caret line="83" column="13" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="182" column="49" selection-start-line="182" selection-start-column="49" selection-end-line="182" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1680#1681#0" expanded="true" />
-                <element signature="e#1708#1709#0" expanded="true" />
-                <element signature="e#2008#2052#0" expanded="true" />
-                <element signature="e#2086#2119#0" expanded="true" />
-                <element signature="e#3172#3173#0" expanded="true" />
-                <element signature="e#3225#3226#0" expanded="true" />
-                <element signature="e#5222#5223#0" expanded="true" />
-                <element signature="e#5260#5261#0" expanded="true" />
-                <element signature="e#5322#5323#0" expanded="true" />
-                <element signature="e#5372#5373#0" expanded="true" />
+                <element signature="e#3265#3266#0" expanded="true" />
+                <element signature="e#3318#3319#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DateHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/DateHelper.java">
+      <file leaf-file-name="GetHomeTimelineStatisticsUseCase.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/interactor/GetHomeTimelineStatisticsUseCase.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
-              <folding />
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GetTimelineUseCase.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/interactor/GetTimelineUseCase.java">
+      <file leaf-file-name="StatisticsRepository.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/repository/StatisticsRepository.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="11" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UsertimeLineFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/UsertimeLineFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="55" column="174" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="174" />
-              <folding />
+              <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -212,9 +203,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="layoutResourceFile_vertical" />
-        <option value="Interface" />
         <option value="valueResourceFile" />
+        <option value="Interface" />
+        <option value="layoutResourceFile_vertical" />
         <option value="Class" />
       </list>
     </option>
@@ -3213,45 +3204,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/build/generated/source/r/debug/com/mgdiez/tweetstat/R.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/HistoryStatisticsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HistoryStatisticsHomeFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/BaseFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HashtagsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/SearchFragment.java" />
-        <option value="$PROJECT_DIR$/data/src/main/java/repository/datasource/UserDatastore.java" />
-        <option value="$PROJECT_DIR$/data/src/main/java/repository/datasource/LocalUserDatastore.java" />
-        <option value="$PROJECT_DIR$/data/src/main/java/net/TwitterApiService.java" />
-        <option value="$PROJECT_DIR$/data/src/main/java/repository/datasource/CloudUserDatastore.java" />
-        <option value="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/repository/UserRepository.java" />
-        <option value="$PROJECT_DIR$/data/src/main/java/repository/UserRepositoryImpl.java" />
-        <option value="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/interactor/GetUserDataUseCase.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/model/UserModel.java" />
-        <option value="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/bean/UserBo.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/model/mapper/UserModelMapper.java" />
-        <option value="$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/vo/tweet/UserVo.java" />
-        <option value="$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/dto/tweet/mapper/UserDtoMapper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/MainPresenter.java" />
-        <option value="$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/vo/tweet/mapper/UserVoMapper.java" />
-        <option value="$PROJECT_DIR$/data/src/main/java/net/ApiConstants.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/data/src/main/java/repository/datasource/LocalTweetDatastore.java" />
-        <option value="$PROJECT_DIR$/data/src/main/java/repository/datasource/TweetDatastore.java" />
         <option value="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/interactor/GetHomeTimelineUseCase.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/HomeTimelinePresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HomeTimelineFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/TweetStattApplication.java" />
         <option value="$PROJECT_DIR$/data/src/main/res/values/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/data/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/UsertimeLineFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml" />
         <option value="$PROJECT_DIR$/data/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/data/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/WelcomeActivity.java" />
         <option value="$PROJECT_DIR$/data/src/main/java/repository/TweetsRepositoryImpl.java" />
-        <option value="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/repository/TweetsRepository.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_tweet_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_tweet_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_list_content.xml" />
@@ -3261,9 +3224,37 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/HashtagsPresenter.java" />
         <option value="$PROJECT_DIR$/data/src/main/java/repository/datasource/CloudTweetDatastore.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/DateHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/FullGraphPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/history_statistics_activity.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/full_graph_activity.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/repository/TweetsRepository.java" />
+        <option value="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/repository/UserRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/LauncherActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/TweetStattApplication.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/adapter/HistoryStatisticsPagerAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/statistic_adapter.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/adapter/StatisticAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/SearchTweetsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/hometimeline_statistics_fragment.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/FullGraphActivity.java" />
+        <option value="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/repository/StatisticsRepository.java" />
+        <option value="$PROJECT_DIR$/data/src/main/java/repository/datasource/StatisticDatastore.java" />
+        <option value="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/interactor/PersistStatisticUseCase.java" />
+        <option value="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/interactor/GetHomeTimelineStatisticsUseCase.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/model/StatisticModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/model/mapper/StatisticModelMapper.java" />
+        <option value="$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/bean/StatisticBo.java" />
+        <option value="$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/vo/tweet/mapper/StatisticVoMapper.java" />
+        <option value="$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/vo/tweet/StatisticVo.java" />
+        <option value="$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/vo/tweet/IntegerVo.java" />
+        <option value="$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/vo/tweet/StringVo.java" />
+        <option value="$PROJECT_DIR$/data/src/main/java/repository/StatisticsRepositoryImpl.java" />
+        <option value="$PROJECT_DIR$/data/src/main/java/repository/datasource/LocalStatisticDatastore.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/HomeTimelineStatisticsPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/FullGraphPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HomeTimelineStatisticsFragment.java" />
       </list>
     </option>
   </component>
@@ -3304,8 +3295,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -3529,6 +3518,7 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -4195,11 +4185,181 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tweetStat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tweetStat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drawable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tweetStat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tweetStat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="tweetstat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tweetStat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tweetStat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tweetstat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tweetStat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tweetStat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tweetstat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fragment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tweetStat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tweetStat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tweetstat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="adapter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -4311,6 +4471,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -4319,7 +4480,7 @@
     <property name="recentsLimit" value="5" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="5feb32c7" />
     <property name="FullScreen" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="fullg&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/presenter/FullGraphPresenter.java&#10;TB&#9;PSI&#9;JAVA://com.mgdiez.domain.bean.TweetBo&#10;twitterap&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/net/TwitterApiService.java&#10;hashtag&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/presenter/HashtagsPresenter.java&#10;ful&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/view/activity/FullGraphActivity.java&#10;reposi&#9;FILE&#9;file:///Users/Marc/tweetStat/domain/src/main/java/com/mgdiez/domain/repository/TweetsRepository.java&#10;hometi&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HomeTimelineFragment.java&#10;twi&#9;PSI&#9;JAVA://net.TwitterApiService&#10;hashtaf&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.view.fragment.HashtagsFragment&#10;hashtagada&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.view.adapter.HashtagAdapter&#10;tweet_a&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/res/layout/tweet_adapter.xml&#10;adtweet&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.view.adapter.TweetsAdapter$TweetViewHolder$$ViewBinder&#10;Component&#9;PSI&#9;JAVA://dagger.Component&#10;welcome&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.view.activity.WelcomeActivity&#10;full&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.view.activity.FullGraphActivity&#10;build.gradle&#9;FILE&#9;file:///Users/Marc/tweetStat/data/build.gradle&#10;cloudtw&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/datasource/CloudTweetDatastore.java&#10;strings&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/res/values/strings.xml&#10;cloud&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/datasource/CloudTweetDatastore.java&#10;mainac&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/view/activity/MainActivity.java&#10;pagea&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.view.adapter.TweetStatPagerAdapter&#10;home&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HomeTimelineFragment.java&#10;usertime&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/view/fragment/UsertimeLineFragment.java&#10;android&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/AndroidManifest.xml&#10;androidmani&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/AndroidManifest.xml&#10;usermm&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/model/mapper/UserModelMapper.java&#10;userdtoma&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/com/mgdiez/data/bean/dto/tweet/mapper/UserDtoMapper.java&#10;tweetvoma&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/com/mgdiez/data/bean/vo/tweet/mapper/TweetVoMapper.java&#10;localtw&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/datasource/LocalTweetDatastore.java&#10;hometime&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HomeTimelineFragment.java&#10;laun&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/view/activity/LauncherActivity.java&#10;tweetsrepo&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/TweetsRepositoryImpl.java&#10;getho&#9;FILE&#9;file:///Users/Marc/tweetStat/domain/src/main/java/com/mgdiez/domain/interactor/GetHomeTimelineUseCase.java&#10;tweetda&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/datasource/TweetDatastore.java&#10;userti&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/view/fragment/UsertimeLineFragment.java&#10;strings.xml&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/res/values/strings.xml&#10;launch&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.view.activity.LauncherActivity&#10;local&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/datasource/LocalUserDatastore.java&#10;usert&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/view/fragment/UsertimeLineFragment.java&#10;localus&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/datasource/LocalUserDatastore.java&#10;LOCAL&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/datasource/LocalTweetDatastore.java&#10;uservo&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/com/mgdiez/data/bean/vo/tweet/UserVo.java&#10;tweetvo&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/com/mgdiez/data/bean/vo/tweet/TweetVo.java&#10;umm&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/model/mapper/UserModelMapper.java&#10;usermode&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/model/UserModel.java&#10;UserDto&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/com/mgdiez/data/bean/dto/tweet/mapper/UserDtoMapper.java&#10;UserModel&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/model/UserModel.java&#10;uSERb&#9;FILE&#9;file:///Users/Marc/tweetStat/domain/src/main/java/com/mgdiez/domain/bean/UserBo.java&#10;TMM&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.model.mapper.TweetModelMapper&#10;TWEETMODE&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.model.TweetModel" />
+    <property name="SearchEverywhereHistoryKey" value="HOMES&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/presenter/HomeTimelineStatisticsPresenter.java&#10;localstat&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/datasource/LocalStatisticDatastore.java&#10;StringV&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/com/mgdiez/data/bean/vo/tweet/StringVo.java&#10;Inte&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/com/mgdiez/data/bean/vo/tweet/IntegerVo.java&#10;statisvom&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/com/mgdiez/data/bean/vo/tweet/mapper/StatisticVoMapper.java&#10;home&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/presenter/HomeTimelinePresenter.java&#10;usecase&#9;FILE&#9;file:///Users/Marc/tweetStat/domain/src/main/java/com/mgdiez/domain/interactor/PersistStatisticUseCase.java&#10;hometi&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/presenter/HomeTimelineStatisticsPresenter.java&#10;FGA&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/view/activity/FullGraphActivity.java&#10;FGP&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/presenter/FullGraphPresenter.java&#10;localtw&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/datasource/LocalTweetDatastore.java&#10;local&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/datasource/LocalStatisticDatastore.java&#10;stati&#9;FILE&#9;file:///Users/Marc/tweetStat/domain/src/main/java/com/mgdiez/domain/bean/StatisticBo.java&#10;LOCAL&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/datasource/LocalStatisticDatastore.java&#10;tweet&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/com/mgdiez/data/bean/vo/tweet/TweetVo.java&#10;fgp&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/presenter/FullGraphPresenter.java&#10;fga&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/view/activity/FullGraphActivity.java&#10;Statisv&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/com/mgdiez/data/bean/vo/tweet/mapper/StatisticVoMapper.java&#10;Statist&#9;FILE&#9;file:///Users/Marc/tweetStat/domain/src/main/java/com/mgdiez/domain/bean/StatisticBo.java&#10;fullgrap&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/view/activity/FullGraphActivity.java&#10;statisb&#9;FILE&#9;file:///Users/Marc/tweetStat/domain/src/main/java/com/mgdiez/domain/bean/StatisticBo.java&#10;tweetvo&#9;PSI&#9;JAVA://com.mgdiez.data.bean.vo.tweet.TweetVo&#10;tweetdatas&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/datasource/CloudTweetDatastore.java&#10;fullgra&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/view/activity/FullGraphActivity.java&#10;twrepo&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/TweetsRepositoryImpl.java&#10;hometimelinepre&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.presenter.HomeTimelinePresenter&#10;search&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.view.fragment.SearchFragment&#10;tweet_ada&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/res/layout/tweet_adapter.xml&#10;TweetAda&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.view.adapter.TweetsAdapter&#10;statida&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/datasource/StatisticDatastore.java&#10;tweets&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/TweetStattApplication.java&#10;launch&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.view.activity.LauncherActivity&#10;loginac&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.view.activity.LoginActivity&#10;mainac&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/view/activity/MainActivity.java&#10;TweetStat&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.TweetStattApplication&#10;twere&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/repository/TweetsRepositoryImpl.java&#10;reposit&#9;FILE&#9;file:///Users/Marc/tweetStat/domain/src/main/java/com/mgdiez/domain/repository/TweetsRepository.java&#10;androidman&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/AndroidManifest.xml&#10;statistic&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.view.activity.HistoryStatisticsActivity&#10;fullg&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/presenter/FullGraphPresenter.java&#10;TB&#9;PSI&#9;JAVA://com.mgdiez.domain.bean.TweetBo&#10;twitterap&#9;FILE&#9;file:///Users/Marc/tweetStat/data/src/main/java/net/TwitterApiService.java&#10;hashtag&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/presenter/HashtagsPresenter.java&#10;ful&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/java/com/mgdiez/tweetstat/view/activity/FullGraphActivity.java&#10;reposi&#9;FILE&#9;file:///Users/Marc/tweetStat/domain/src/main/java/com/mgdiez/domain/repository/TweetsRepository.java&#10;twi&#9;PSI&#9;JAVA://net.TwitterApiService&#10;hashtaf&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.view.fragment.HashtagsFragment&#10;hashtagada&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.view.adapter.HashtagAdapter&#10;tweet_a&#9;FILE&#9;file:///Users/Marc/tweetStat/app/src/main/res/layout/tweet_adapter.xml&#10;adtweet&#9;PSI&#9;JAVA://com.mgdiez.tweetstat.view.adapter.TweetsAdapter$TweetViewHolder$$ViewBinder" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/data/src/main/java" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
@@ -4512,7 +4673,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287841" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -4522,7 +4683,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2878412" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2878412" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29404467" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -4531,7 +4692,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1595136" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3018598" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287841" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -4647,338 +4808,114 @@
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/UsertimeLineFragment.java</url>
-          <line>55</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/UserTimelineTweetsFragment.java</url>
+          <line>52</line>
           <properties />
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/FullGraphActivity.java</url>
-          <line>203</line>
+          <url>file://$PROJECT_DIR$/data/src/main/java/repository/datasource/LocalStatisticDatastore.java</url>
+          <line>85</line>
           <properties />
-          <option name="timeStamp" value="30" />
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/FullGraphPresenter.java</url>
-          <line>83</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/HomeTimelineStatisticsPresenter.java</url>
+          <line>71</line>
           <properties />
-          <option name="timeStamp" value="31" />
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/FullGraphPresenter.java</url>
-          <line>40</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/HomeTimelineStatisticsPresenter.java</url>
+          <line>82</line>
           <properties />
-          <option name="timeStamp" value="32" />
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/model/mapper/StatisticModelMapper.java</url>
+          <line>13</line>
+          <properties />
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/model/mapper/StatisticModelMapper.java</url>
+          <line>27</line>
+          <properties />
+          <option name="timeStamp" value="40" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="33" />
+      <option name="time" value="41" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Remote">
         <watch expression="model.getThumbnailUrl()" language="JAVA" custom="" />
         <watch expression="model.getThumbnailUrl().replace(&quot;_normal&quot;, &quot;&quot;);" language="JAVA" custom="" />
         <watch expression="boList.get(2).getCreatedAt().substring(0,3)" language="JAVA" custom="" />
+        <watch expression="((int) (realm.where(StatisticVo.class).max(StatisticVo.ID)))+1" />
+        <watch expression="realm.where(StatisticVo.class).max(&quot;id&quot;)" language="JAVA" custom="" />
+        <watch expression="realm.where(StatisticVo.class).findAll()" language="JAVA" custom="" />
+        <watch expression="models" language="JAVA" custom="" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/dto/tweet/mapper/UserDtoMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/src/main/ic_launcher-web.png">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/acad.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/src/main/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="e#213#231#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="-6.6896553">
+          <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build/generated/source/apt/debug/com/mgdiez/tweetstat/view/activity/FullGraphActivity$$ViewBinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35067436">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/src/main/res/drawable/mipmap-xhdpi/ic_launcher.png">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/history_statistics_activity.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.862069">
+          <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/build/intermediates/exploded-aar/com.twitter.sdk.android/twitter-core/1.6.4/res/drawable-hdpi/tw__share_email_header.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/src/main/res/mipmap-hdpi/ic_logo.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/MainPresenter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/full_graph_activity.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+        <state vertical-scroll-proportion="-9.827586">
+          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1899#1932#0" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/src/main/java/repository/UserRepositoryImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/src/main/java/repository/datasource/LocalTweetDatastore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="37" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/adapter/TweetStatPagerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="42" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.137931">
-          <caret line="40" column="57" selection-start-line="40" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-        </state>
-      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.333333">
-          <caret line="15" column="59" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.8888888">
-          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/src/main/java/executor/RxBus.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/logo.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/WelcomeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43956044">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger/2.0.2/d838907b82a0688de22a36cf0a764b36ce2716f6/dagger-2.0.2-sources.jar!/dagger/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="208" column="18" selection-start-line="208" selection-start-column="18" selection-end-line="208" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-w900dp/fragment_tweet_detail.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8994197">
-          <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_list_content.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7253385">
-          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_tweet_detail.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63829786">
-          <caret line="22" column="15" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_tweet_detail.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10058027">
-          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/generated/source/apt/debug/com/mgdiez/tweetstat/view/adapter/TweetsAdapter$TweetViewHolder$$ViewBinder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14450867">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/tweet_adapter.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6518375">
-          <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3021978">
-          <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/adapter/HashtagAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13736264">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.0/d4a0c3bc36ac0ece84cdf7aa08b18c344b467238/rxjava-1.1.0-sources.jar!/rx/Subscription.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.0/d4a0c3bc36ac0ece84cdf7aa08b18c344b467238/rxjava-1.1.0-sources.jar!/rx/subscriptions/CompositeSubscription.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/HomeTimelinePresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5012854">
-          <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
-          <folding>
-            <element signature="e#2222#2223#0" expanded="true" />
-            <element signature="e#2259#2260#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/data/build/intermediates/exploded-aar/com.twitter.sdk.android/twitter-core/1.6.4/jars/classes.jar!/com/twitter/sdk/android/core/TwitterApiClient.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.138482">
-          <caret line="85" column="20" selection-start-line="85" selection-start-column="20" selection-end-line="85" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/dto/TrendsList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23136246">
-          <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/dto/HashtagDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="34" selection-start-line="31" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/BaseFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6529563">
-          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HashtagsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6748072">
-          <caret line="74" column="16" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HomeTimelineFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="32" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#634#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#2662#2663#0" expanded="false" />
-            <element signature="e#2711#2712#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#637#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/HashtagsPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2197802">
-          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-          <folding>
-            <element signature="e#2115#2116#0" expanded="true" />
-            <element signature="e#2152#2153#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/TweetStatConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -4986,63 +4923,7 @@
     <entry file="file://$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/repository/TweetsRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/src/main/java/repository/datasource/CloudTweetDatastore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="50" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/src/main/java/repository/TweetsRepositoryImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="97" column="51" selection-start-line="97" selection-start-column="51" selection-end-line="97" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/UsertimeLinePresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="102" column="24" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/UsertimeLineFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="174" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="174" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/interactor/GetTimelineUseCase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="11" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/src/main/java/net/TwitterApiService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="88" column="35" selection-start-line="88" selection-start-column="35" selection-end-line="88" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/DateHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="82" />
           <folding />
         </state>
       </provider>
@@ -5055,44 +4936,348 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/java/util/ArrayList.java">
+    <entry file="file://$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/repository/UserRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="113" column="29" selection-start-line="113" selection-start-column="29" selection-end-line="113" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#21990#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#3143#3144#0" expanded="false" />
-            <element signature="e#3184#3185#0" expanded="false" />
-            <element signature="e#11210#11211#0" expanded="false" />
-            <element signature="e#11237#11238#0" expanded="false" />
-            <element signature="e#11279#11280#0" expanded="false" />
-            <element signature="e#11311#11312#0" expanded="false" />
-            <element signature="e#18297#18298#0" expanded="false" />
-            <element signature="e#18343#18344#0" expanded="false" />
-            <element signature="e#18755#18756#0" expanded="false" />
-            <element signature="e#18800#18801#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v2.2.5/dc7941fe902e331288402a093ede7775391eccc6/MPAndroidChart-v2.2.5-sources.jar!/com/github/mikephil/charting/data/Entry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.10989011">
+          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/full_graph_activity.xml">
+    <entry file="file://$PROJECT_DIR$/data/src/main/java/net/TwitterApiService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="51" selection-start-line="56" selection-start-column="51" selection-end-line="56" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="195" column="38" selection-start-line="195" selection-start-column="38" selection-end-line="195" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/LauncherActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/TweetStattApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/adapter/HistoryStatisticsPagerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/tweet_adapter.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="41" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/statistic_adapter.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.206897">
-          <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+        <state vertical-scroll-proportion="-8.275862">
+          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/adapter/StatisticAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="9" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
           <folding>
-            <element signature="e#898#931#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/adapter/TweetsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="41" selection-start-line="45" selection-start-column="41" selection-end-line="45" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/SearchTweetsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HashtagsTweetsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="74" column="5" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/hometimeline_fragment.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.7586207">
+          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+          <folding>
+            <element signature="e#326#361#0" expanded="true" />
+            <element signature="e#387#422#0" expanded="true" />
+            <element signature="e#447#487#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/hometimeline_statistics_fragment.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.793103">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="e#326#361#0" expanded="true" />
+            <element signature="e#387#422#0" expanded="true" />
+            <element signature="e#447#487#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/src/main/java/repository/TweetsRepositoryImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="e#1244#1245#0" expanded="true" />
+            <element signature="e#1282#1283#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/interactor/GetSearchUseCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="53" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/src/main/java/repository/datasource/CloudTweetDatastore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="94" column="26" selection-start-line="94" selection-start-column="26" selection-end-line="94" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/java/util/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/vo/tweet/TweetVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2747253">
+          <caret line="34" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/src/main/java/repository/datasource/LocalTweetDatastore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="64" selection-end-column="34" />
+          <folding>
+            <element signature="e#1379#1380#0" expanded="true" />
+            <element signature="e#1440#1441#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/src/main/java/repository/datasource/StatisticDatastore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/interactor/PersistStatisticUseCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="37" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/model/StatisticModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/bean/StatisticBo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/vo/tweet/StatisticVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="38" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1595#1596#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/vo/tweet/mapper/StatisticVoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/HomeTimelinePresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="69" column="21" selection-start-line="68" selection-start-column="0" selection-end-line="70" selection-end-column="5" />
+          <folding>
+            <element signature="e#2214#2215#0" expanded="true" />
+            <element signature="e#2251#2252#0" expanded="true" />
+            <element signature="e#2437#2438#0" expanded="true" />
+            <element signature="e#2478#2479#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HomeTimelineTweetsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="112" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/vo/tweet/IntegerVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#253#254#0" expanded="true" />
+            <element signature="e#284#285#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/src/main/java/com/mgdiez/data/bean/vo/tweet/StringVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#262#263#0" expanded="true" />
+            <element signature="e#303#304#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/java/util/UUID.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="65" column="11" selection-start-line="65" selection-start-column="11" selection-end-line="65" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/repository/StatisticsRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/interactor/GetHomeTimelineStatisticsUseCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/src/main/java/com/mgdiez/domain/interactor/UseCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/src/main/java/repository/StatisticsRepositoryImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="1" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -5100,34 +5285,67 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/activity/FullGraphActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="199" column="28" selection-start-line="199" selection-start-column="28" selection-end-line="199" selection-end-column="28" />
+          <caret line="98" column="47" selection-start-line="98" selection-start-column="47" selection-end-line="98" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1988#2138#0" expanded="true" />
-            <element signature="e#2137#2138#0" expanded="true" />
-            <element signature="e#2182#2183#0" expanded="true" />
-            <element signature="e#2244#2245#0" expanded="true" />
-            <element signature="e#2539#2584#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/FullGraphPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6907895">
-          <caret line="83" column="13" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="182" column="49" selection-start-line="182" selection-start-column="49" selection-end-line="182" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1680#1681#0" expanded="true" />
-            <element signature="e#1708#1709#0" expanded="true" />
-            <element signature="e#2008#2052#0" expanded="true" />
-            <element signature="e#2086#2119#0" expanded="true" />
-            <element signature="e#3172#3173#0" expanded="true" />
-            <element signature="e#3225#3226#0" expanded="true" />
-            <element signature="e#5222#5223#0" expanded="true" />
-            <element signature="e#5260#5261#0" expanded="true" />
-            <element signature="e#5322#5323#0" expanded="true" />
-            <element signature="e#5372#5373#0" expanded="true" />
+            <element signature="e#3265#3266#0" expanded="true" />
+            <element signature="e#3318#3319#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/src/main/java/repository/datasource/LocalStatisticDatastore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/presenter/HomeTimelineStatisticsPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1820#1821#0" expanded="true" />
+            <element signature="e#1857#1858#0" expanded="true" />
+            <element signature="e#1905#1906#0" expanded="true" />
+            <element signature="e#1946#1947#0" expanded="true" />
+            <element signature="e#2096#2097#0" expanded="true" />
+            <element signature="e#2131#2132#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/model/mapper/StatisticModelMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mgdiez/tweetstat/view/fragment/HomeTimelineStatisticsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42307693">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1407#1408#0" expanded="true" />
+            <element signature="e#1466#1467#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -25,7 +25,7 @@ import com.mgdiez.domain.repository.TweetsRepository;
 import com.mgdiez.tweetstat.UIThread;
 import com.mgdiez.tweetstat.model.TweetModel;
 import com.mgdiez.tweetstat.model.mapper.TweetModelMapper;
-import com.mgdiez.tweetstat.view.fragment.SearchFragment;
+import com.mgdiez.tweetstat.view.fragment.SearchTweetsFragment;
 
 import java.util.List;
 
@@ -37,21 +37,21 @@ public class SearchPresenter implements Presenter {
 
     private static final String TAG = HomeTimelinePresenter.class.getName();
 
-    private SearchFragment view;
+    private SearchTweetsFragment view;
     private GetSearchUseCase getSearchUseCase;
     private List<TweetModel> models;
 
 
-    public SearchPresenter(SearchFragment searchFragment) {
-        view = searchFragment;
+    public SearchPresenter(SearchTweetsFragment searchTweetsFragment) {
+        view = searchTweetsFragment;
         JobExecutor jobExecutor = JobExecutor.getInstance();
         PostExecutionThread postExecutionThread = UIThread.getInstance();
         TweetsRepository tweetsRepository = new TweetsRepositoryImpl(view.getContext());
         getSearchUseCase = new GetSearchUseCase(jobExecutor, postExecutionThread, tweetsRepository);
     }
 
-    public void setView(@NonNull SearchFragment searchFragment) {
-        this.view = searchFragment;
+    public void setView(@NonNull SearchTweetsFragment searchTweetsFragment) {
+        this.view = searchTweetsFragment;
     }
 
     private void setModels() {

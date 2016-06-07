@@ -34,6 +34,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,8 +49,8 @@ import com.mgdiez.tweetstat.model.UserModel;
 import com.mgdiez.tweetstat.presenter.MainPresenter;
 import com.mgdiez.tweetstat.view.CircleTransformation;
 import com.mgdiez.tweetstat.view.adapter.TweetStatPagerAdapter;
-import com.mgdiez.tweetstat.view.fragment.HashtagsFragment;
-import com.mgdiez.tweetstat.view.fragment.SearchFragment;
+import com.mgdiez.tweetstat.view.fragment.HashtagsTweetsFragment;
+import com.mgdiez.tweetstat.view.fragment.SearchTweetsFragment;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -64,6 +65,7 @@ import repository.NetworkUtil;
 public class MainActivity extends BaseActivity implements
         NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
     private TextView username;
     private ImageView userProfilePicture;
     private TextView userPublicName;
@@ -83,7 +85,6 @@ public class MainActivity extends BaseActivity implements
         super.onCreate(savedInstanceState);
         this.registerReceiver(this.mConnReceiver,
                 new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-
         setContentView(R.layout.activity_main);
         findViews();
         ButterKnife.bind(this);
@@ -96,7 +97,7 @@ public class MainActivity extends BaseActivity implements
     }
 
     private void checkIfSnackbarNeeded() {
-        if(NetworkUtil.isNetworkAvailable(this)){
+        if(!NetworkUtil.isNetworkAvailable(this)){
             rxBus.send(new NoConnectionEvent());
         }
     }
@@ -112,7 +113,11 @@ public class MainActivity extends BaseActivity implements
     @Override
     protected void onStop() {
         super.onStop();
-        this.unregisterReceiver(this.mConnReceiver);
+        try {
+            this.unregisterReceiver(this.mConnReceiver);
+        } catch (IllegalArgumentException e) {
+            Log.e(TAG, e.toString());
+        }
     }
 
 
@@ -203,7 +208,7 @@ public class MainActivity extends BaseActivity implements
 
                     case 2:
                         Fragment searchFragment = getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.viewpager + ":" + viewPager.getCurrentItem());
-                        String query = ((SearchFragment) searchFragment).getQuery();
+                        String query = ((SearchTweetsFragment) searchFragment).getQuery();
                         if (!query.isEmpty()) {
                             intent.putExtra(TweetStatConstants.SEARCH, query);
                             startActivity(intent);
@@ -212,7 +217,7 @@ public class MainActivity extends BaseActivity implements
 
                     case 3:
                         Fragment hashtagFragment = getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.viewpager + ":" + viewPager.getCurrentItem());
-                        intent.putExtra(TweetStatConstants.HASHTAGS, ((HashtagsFragment) hashtagFragment).getHashtagQuery());
+                        intent.putExtra(TweetStatConstants.HASHTAGS, ((HashtagsTweetsFragment) hashtagFragment).getHashtagQuery());
                         startActivity(intent);
 
                         break;
@@ -231,6 +236,7 @@ public class MainActivity extends BaseActivity implements
     }
 
     private BroadcastReceiver mConnReceiver = new BroadcastReceiver() {
+
         public void onReceive(Context context, Intent intent) {
             boolean noConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
             String reason = intent.getStringExtra(ConnectivityManager.EXTRA_REASON);

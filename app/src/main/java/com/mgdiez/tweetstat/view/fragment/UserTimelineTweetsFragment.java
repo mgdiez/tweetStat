@@ -15,6 +15,7 @@
  */
 package com.mgdiez.tweetstat.view.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -23,21 +24,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.mgdiez.tweetstat.R;
-import com.mgdiez.tweetstat.model.HashtagModel;
-import com.mgdiez.tweetstat.presenter.HashtagsPresenter;
-import com.mgdiez.tweetstat.view.adapter.HashtagAdapter;
+import com.mgdiez.tweetstat.model.TweetModel;
+import com.mgdiez.tweetstat.presenter.UsertimeLinePresenter;
+import com.mgdiez.tweetstat.view.adapter.TweetsAdapter;
 
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import executor.events.StatisticsRequestEvent;
-import rx.functions.Action1;
 
-public class HashtagsFragment extends BaseFragment {
+public class UserTimelineTweetsFragment extends BaseFragment {
 
     @Bind(R.id.swipe_layout)
     SwipeRefreshLayout swipeRefreshLayout;
@@ -45,36 +43,35 @@ public class HashtagsFragment extends BaseFragment {
     @Bind(R.id.my_recycler_view)
     RecyclerView recyclerView;
 
-    private HashtagsPresenter hashtagsPresenter;
+    private UsertimeLinePresenter usertimeLinePresenter;
 
-    private HashtagAdapter hashtagAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.hashtag_fragment, container, false);
+        View v = inflater.inflate(R.layout.usertimeline_fragment, container, false);
         ButterKnife.bind(this, v);
-        hashtagsPresenter = new HashtagsPresenter(this);
+        final String userName = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString(getString(R.string.username), "");
+        usertimeLinePresenter = new UsertimeLinePresenter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         swipeRefreshLayout.setColorSchemeColors(R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                hashtagsPresenter.getHashtags();
-
+                usertimeLinePresenter.getTimeline(userName, true);
             }
         });
-        hashtagsPresenter.getHashtags();
+        usertimeLinePresenter.getTimeline(userName, true);
         return v;
     }
 
-    public static HashtagsFragment newInstance() {
-        return new HashtagsFragment();
+    public static UserTimelineTweetsFragment newInstance() {
+        return new UserTimelineTweetsFragment();
     }
 
 
-    public void setItems(List<HashtagModel> models) {
-        hashtagAdapter = new HashtagAdapter(models);
-        recyclerView.setAdapter(hashtagAdapter);
+    public void setItems(List<TweetModel> models) {
+        TweetsAdapter tweetsAdapter = new TweetsAdapter(getContext(), models);
+        recyclerView.setAdapter(tweetsAdapter);
     }
 
     public void stopRefresh() {
@@ -91,8 +88,8 @@ public class HashtagsFragment extends BaseFragment {
         }
     }
 
-    public String getHashtagQuery() {
-        return hashtagAdapter.getHashtagSelectedQuery();
+    public void showMessage(String message) {
+        Snackbar.make(recyclerView, message, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

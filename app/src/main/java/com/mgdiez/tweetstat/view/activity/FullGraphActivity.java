@@ -11,9 +11,9 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.RadioGroup;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -42,7 +42,7 @@ public class FullGraphActivity extends BaseActivity {
     PieChart pieChart;
 
     @Bind(R.id.btnStartStatistic)
-    Button btnStartStatistic;
+    ImageButton btnStartStatistic;
 
     @Bind(R.id.optionLayout)
     LinearLayout optionLayout;
@@ -50,9 +50,16 @@ public class FullGraphActivity extends BaseActivity {
     @Bind(R.id.chartLayout)
     LinearLayout chartLayout;
 
+    @Bind(R.id.optionSelected)
+    RadioGroup optionSelected;
+
+    @Bind(R.id.btnSave)
+    ImageButton btnSave;
+
     private String TYPE = "";
     private String EXTRA_TYPE = "";
     private HashMap<String, Integer> statisticsData;
+    private FullGraphPresenter fullGraphPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +72,38 @@ public class FullGraphActivity extends BaseActivity {
         btnStartStatistic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startPresenter();
+                int optionId = optionSelected.getCheckedRadioButtonId();
+                if (optionId == 0) {
+
+                } else {
+                    String selectedOption = "";
+                    switch (optionId) {
+                        case R.id.countryOption:
+                            selectedOption = "COUNTRY";
+                            break;
+                        case R.id.dayOption:
+                            selectedOption = "DAY";
+                            break;
+                        case R.id.cityOption:
+                            selectedOption = "CITY";
+                            break;
+                    }
+                    startPresenter(selectedOption);
+                }
+            }
+        });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fullGraphPresenter.persistStatistic();
+                finish();
             }
         });
     }
 
-    private void startPresenter() {
-        new FullGraphPresenter(this, TYPE, EXTRA_TYPE);
+    private void startPresenter(String selectedOption) {
+        fullGraphPresenter = new FullGraphPresenter(this, TYPE, EXTRA_TYPE, selectedOption);
     }
 
     private void initToolbar() {
@@ -183,8 +215,6 @@ public class FullGraphActivity extends BaseActivity {
                 EXTRA_TYPE = extras.getString(TweetStatConstants.HASHTAGS);
             }
         }
-
-        Toast.makeText(FullGraphActivity.this, TYPE + " " + EXTRA_TYPE, Toast.LENGTH_SHORT).show();
     }
 
 

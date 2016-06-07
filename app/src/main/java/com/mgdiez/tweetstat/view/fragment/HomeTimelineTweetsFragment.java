@@ -35,7 +35,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class HomeTimelineFragment extends BaseFragment {
+public class HomeTimelineTweetsFragment extends BaseFragment {
 
     @Bind(R.id.swipe_layout)
     SwipeRefreshLayout swipeRefreshLayout;
@@ -70,8 +70,8 @@ public class HomeTimelineFragment extends BaseFragment {
         userName = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString(getString(R.string.username), "");
     }
 
-    public static HomeTimelineFragment newInstance() {
-        return new HomeTimelineFragment();
+    public static HomeTimelineTweetsFragment newInstance() {
+        return new HomeTimelineTweetsFragment();
     }
 
 
