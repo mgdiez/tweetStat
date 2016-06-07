@@ -16,7 +16,9 @@
 package repository.datasource;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
+import com.mgdiez.data.R;
 import com.mgdiez.data.bean.dto.TrendsList;
 import com.mgdiez.data.bean.dto.tweet.mapper.HashtagDtoMapper;
 import com.mgdiez.data.bean.dto.tweet.mapper.TweetsDtoMapper;
@@ -37,6 +39,7 @@ import io.realm.Realm;
 import okhttp3.logging.HttpLoggingInterceptor;
 import repository.RealmHelper;
 import rx.Observable;
+import rx.Subscriber;
 import rx.functions.Action1;
 
 /**

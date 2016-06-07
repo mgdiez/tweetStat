@@ -28,7 +28,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -42,7 +41,6 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mgdiez.tweetstat.R;
 import com.mgdiez.tweetstat.TweetStatConstants;
@@ -52,14 +50,9 @@ import com.mgdiez.tweetstat.view.CircleTransformation;
 import com.mgdiez.tweetstat.view.adapter.TweetStatPagerAdapter;
 import com.mgdiez.tweetstat.view.fragment.HashtagsFragment;
 import com.mgdiez.tweetstat.view.fragment.SearchFragment;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-import com.twitter.sdk.android.Twitter;
-import com.twitter.sdk.android.core.Callback;
-import com.twitter.sdk.android.core.Result;
-import com.twitter.sdk.android.core.TwitterException;
-import com.twitter.sdk.android.core.TwitterSession;
-import com.twitter.sdk.android.core.models.User;
 
 import butterknife.ButterKnife;
 import executor.RxBus;
@@ -77,13 +70,12 @@ public class MainActivity extends BaseActivity implements
     private TextView txtTweets;
     private TextView txtFollowing;
     private TextView txtFollowers;
+
     private LinearLayout relativeLayout;
     public String usernameTxt;
     private ViewPager viewPager;
 
     private RxBus rxBus;
-
-    private MainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,8 +89,30 @@ public class MainActivity extends BaseActivity implements
         ButterKnife.bind(this);
         initializeDrawerLayout();
         rxBus = RxBus.getInstance();
+        MainPresenter mainPresenter;
         mainPresenter = new MainPresenter(this);
         mainPresenter.getUserData(NetworkUtil.isNetworkAvailable(this));
+        checkIfSnackbarNeeded();
+    }
+
+    private void checkIfSnackbarNeeded() {
+        if(NetworkUtil.isNetworkAvailable(this)){
+            rxBus.send(new NoConnectionEvent());
+        }
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.registerReceiver(this.mConnReceiver,
+                new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        this.unregisterReceiver(this.mConnReceiver);
     }
 
 
@@ -216,10 +230,6 @@ public class MainActivity extends BaseActivity implements
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    public String getUsernameTxt(){
-        return usernameTxt;
-    }
-
     private BroadcastReceiver mConnReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             boolean noConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
@@ -276,7 +286,7 @@ public class MainActivity extends BaseActivity implements
 
         String twitterImage = userModel.getTwitterImage();
         String userpublicName = userModel.getUserPublicName();
-        String backgroundImage = userModel.getBackgroundImage();
+        final String backgroundImage = userModel.getBackgroundImage();
         int followers = userModel.getFollowers();
         int following = userModel.getFollowing();
         int ntweets = userModel.getNTweets();
@@ -297,21 +307,43 @@ public class MainActivity extends BaseActivity implements
         txtTweets.setText(String.valueOf(ntweets));
 
         // Background Image
-        Picasso.with(getApplicationContext()).load(backgroundImage).resizeDimen(R.dimen.nav_header_width_picasso, R.dimen.nav_header_height).centerCrop().into(new Target() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                relativeLayout.setBackground(new BitmapDrawable(getApplicationContext().getResources(), bitmap));
-            }
+        Picasso.with(getApplicationContext()).load(backgroundImage)
+                .resizeDimen(R.dimen.nav_header_width_picasso, R.dimen.nav_header_height)
+                .centerCrop()
+                .networkPolicy(NetworkPolicy.OFFLINE)
+                .into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        relativeLayout.setBackground(new BitmapDrawable(getApplicationContext().getResources(), bitmap));
+                    }
 
-            @Override
-            public void onBitmapFailed(Drawable errorDrawable) {
+                    @Override
+                    public void onBitmapFailed(Drawable errorDrawable) {
+                        Picasso.with(getApplicationContext()).load(backgroundImage)
+                                .resizeDimen(R.dimen.nav_header_width_picasso, R.dimen.nav_header_height)
+                                .centerCrop()
+                                .into(new Target() {
+                                    @Override
+                                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                                        relativeLayout.setBackground(new BitmapDrawable(getApplicationContext().getResources(), bitmap));
+                                    }
 
-            }
+                                    @Override
+                                    public void onBitmapFailed(Drawable errorDrawable) {
 
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
+                                    }
 
-            }
-        });
+                                    @Override
+                                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                                    }
+                                });
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                    }
+                });
     }
 }

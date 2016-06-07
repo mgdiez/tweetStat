@@ -15,6 +15,7 @@
  */
 package com.mgdiez.tweetstat.view.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -52,7 +53,7 @@ public class UsertimeLineFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.usertimeline_fragment, container, false);
         ButterKnife.bind(this, v);
-        final String userName = ((MainActivity) getActivity()).usernameTxt;
+        final String userName = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString(getString(R.string.username), "");
         usertimeLinePresenter = new UsertimeLinePresenter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         swipeRefreshLayout.setColorSchemeColors(R.color.colorAccent);

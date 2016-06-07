@@ -23,7 +23,7 @@
         android:background="@color/colorPrimary"
         android:textAppearance="?attr/textAppearanceListItem"
         android:textColor="@color/colorAccent"
-        android:text="Comic title"/>
+        android:text="tweet title"/>
 
 
 </RelativeLayout>

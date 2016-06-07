@@ -24,7 +24,7 @@ import rx.Observable;
 import rx.Subscriber;
 
 /**
- * Interface for retrieving comics data.
+ * Interface for retrieving tweets data.
  */
 public interface TweetsRepository {
 

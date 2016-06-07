@@ -30,7 +30,7 @@ import rx.Observable;
 
 
 /**
- * Implementation of {@link com.mgdiez.domain.repository.TweetsRepository} interface for retrieving comics data.
+ * Implementation of {@link com.mgdiez.domain.repository.TweetsRepository} interface for retrieving tweets data.
  */
 public class TweetsRepositoryImpl implements TweetsRepository {
 

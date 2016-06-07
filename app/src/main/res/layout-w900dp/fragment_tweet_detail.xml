@@ -3,7 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/comic_image"
+        android:id="@+id/tweet_image"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         android:layout_marginBottom="10dp"
@@ -12,21 +12,21 @@
         android:background="@color/colorAccent"/>
 
     <TextView
-        android:id="@+id/comic_title"
+        android:id="@+id/tweet_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:background="@color/colorPrimary"
         android:textAppearance="?attr/textAppearanceListItem"
         android:textColor="@color/colorAccent"
-        android:text="Comic title"/>
+        android:text="Tweet title"/>
 
     <TextView
-        android:id="@+id/comic_description"
+        android:id="@+id/tweet_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textColor="@android:color/black"
-        android:text="Comic Description"/>
+        android:text="Tweet Description"/>
 
 </LinearLayout>

@@ -13,7 +13,7 @@ public class WelcomeActivity extends com.stephentuso.welcome.ui.WelcomeActivity 
                 .theme(R.style.WelcomeScreenTheme_Light_SolidNavigation_UnderStatusBar)
                 .defaultBackgroundColor(R.color.primary)
                 .titlePage(R.drawable.logo, "Welcome to tweetStat",  R.color.primary_light)
-                .basicPage(R.drawable.logo, "Retrieve the data", "From your timeline, hashtags, search...", R.color.primary_dark)
+                .basicPage(R.drawable.statistics_icon, "Retrieve the data", "From your timeline, hashtags, search...", R.color.primary_dark)
                 .basicPage(R.drawable.logo, "Generate statistics", "Save it",  R.color.primary)
                 .swipeToDismiss(true)
                 .build();
