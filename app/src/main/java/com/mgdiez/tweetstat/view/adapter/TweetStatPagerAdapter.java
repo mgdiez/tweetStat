@@ -21,10 +21,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.mgdiez.tweetstat.R;
-import com.mgdiez.tweetstat.view.fragment.HashtagsTweetsFragment;
-import com.mgdiez.tweetstat.view.fragment.HomeTimelineTweetsFragment;
-import com.mgdiez.tweetstat.view.fragment.SearchTweetsFragment;
-import com.mgdiez.tweetstat.view.fragment.UserTimelineTweetsFragment;
+import com.mgdiez.tweetstat.view.fragment.tweets.HashtagsTweetsFragment;
+import com.mgdiez.tweetstat.view.fragment.tweets.HomeTimelineTweetsFragment;
+import com.mgdiez.tweetstat.view.fragment.tweets.SearchTweetsFragment;
+import com.mgdiez.tweetstat.view.fragment.tweets.UserTimelineTweetsFragment;
 
 public class TweetStatPagerAdapter extends FragmentPagerAdapter {
 

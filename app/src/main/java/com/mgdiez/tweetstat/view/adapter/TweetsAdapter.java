@@ -25,8 +25,7 @@ import android.widget.TextView;
 
 import com.mgdiez.tweetstat.R;
 import com.mgdiez.tweetstat.model.TweetModel;
-import com.mgdiez.tweetstat.view.CircleTransformation;
-import com.mgdiez.tweetstat.view.RoundedTransformation;
+import com.mgdiez.tweetstat.view.fragment.util.CircleTransformation;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

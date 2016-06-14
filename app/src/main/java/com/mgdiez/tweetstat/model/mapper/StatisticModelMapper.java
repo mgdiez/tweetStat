@@ -4,6 +4,8 @@ package com.mgdiez.tweetstat.model.mapper;
 import com.mgdiez.domain.bean.StatisticBo;
 import com.mgdiez.tweetstat.model.StatisticModel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +21,10 @@ public class StatisticModelMapper {
                 model.setId(bo.getId());
                 model.setType(bo.getType());
                 model.setSubType(bo.getSubType());
+
                 model.setDateGenerated(bo.getDateGenerated());
                 model.setNTweets(String.valueOf(bo.getNTweets()));
+                model.setSelectedOption(bo.getSelectedOption());
 
                 statisticModels.add(model);
             }

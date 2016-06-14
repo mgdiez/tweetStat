@@ -5,13 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mgdiez.tweetstat.R;
 import com.mgdiez.tweetstat.model.StatisticModel;
-import com.mgdiez.tweetstat.view.CircleTransformation;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -23,6 +20,9 @@ public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.Stat
     private Context context;
 
     private List<StatisticModel> items;
+
+    private OnStatisticClickedListener onStatisticClickedListener;
+
 
     public StatisticAdapter(Context context, List<StatisticModel> items) {
         this.context = context;
@@ -39,21 +39,26 @@ public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.Stat
     @Override
     public void onBindViewHolder(StatisticViewHolder holder, int position) {
         final StatisticModel model = items.get(position);
+
         holder.item = model;
-        holder.type.setText(model.getType());
-        holder.subType.setText(model.getSubType());
+        if (model.getSubType() == null || model.getSubType().isEmpty()) {
+            holder.query.setVisibility(View.INVISIBLE);
+            holder.subType.setVisibility(View.INVISIBLE);
+        } else {
+            holder.subType.setText(model.getSubType().replace("%23", "#"));
+        }
         holder.dateGenerated.setText(model.getDateGenerated());
         holder.nTweets.setText(model.getNTweets());
+        holder.dataSource.setText(model.getSelectedOption());
 
-        // Profile Image
-        Picasso.with(context)
-                .load(R.drawable.ic_pie_chart_outlined_white_24dp)
-                .error(R.drawable.logo)
-                .placeholder(R.drawable.logo)
-                .transform(new CircleTransformation())
-                .centerCrop()
-                .fit()
-                .into(holder.icon);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onStatisticClickedListener != null) {
+                    onStatisticClickedListener.onStatisticClicked(model);
+                }
+            }
+        });
     }
 
     @Override
@@ -66,11 +71,8 @@ public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.Stat
 
     public class StatisticViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.icon)
-        ImageView icon;
-
-        @Bind(R.id.type)
-        TextView type;
+        @Bind(R.id.dataSource)
+        TextView dataSource;
 
         @Bind(R.id.subType)
         TextView subType;
@@ -80,6 +82,9 @@ public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.Stat
 
         @Bind(R.id.dateGenerated)
         TextView dateGenerated;
+
+        @Bind(R.id.txtQuery)
+        TextView query;
 
         public StatisticModel item;
 
@@ -91,5 +96,13 @@ public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.Stat
             ButterKnife.bind(this, itemView);
             this.itemView = itemView;
         }
+    }
+
+    public interface OnStatisticClickedListener {
+        void onStatisticClicked(StatisticModel statisticModel);
+    }
+
+    public void setOnStatisticClickedListener(OnStatisticClickedListener onStatisticClickedListener) {
+        this.onStatisticClickedListener = onStatisticClickedListener;
     }
 }

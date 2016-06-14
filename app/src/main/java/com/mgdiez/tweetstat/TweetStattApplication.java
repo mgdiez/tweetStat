@@ -17,6 +17,9 @@ package com.mgdiez.tweetstat;
 
 import android.app.Application;
 
+import com.mgdiez.tweetstat.injector.component.ApplicationComponent;
+import com.mgdiez.tweetstat.injector.component.DaggerApplicationComponent;
+import com.mgdiez.tweetstat.injector.module.ApplicationModule;
 import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
 import com.twitter.sdk.android.Twitter;
@@ -28,6 +31,8 @@ import io.fabric.sdk.android.Fabric;
 
 public class TweetStattApplication extends Application {
 
+    private ApplicationComponent component;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -36,7 +41,17 @@ public class TweetStattApplication extends Application {
         Picasso built = builder.build();
         Picasso.setSingletonInstance(built);
         initTwitterSDK();
+        initializeInjector();
     }
+
+    private void initializeInjector() {
+        component = DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this)).build();
+    }
+
+    public ApplicationComponent getComponent() {
+        return component;
+    }
+
     private void initTwitterSDK() {
         TwitterAuthConfig authConfig =  new TwitterAuthConfig(ApiConstants.CONSUMER_KEY, ApiConstants.CONSUMER_SECRET);
         Fabric.with(this, new Twitter(authConfig));

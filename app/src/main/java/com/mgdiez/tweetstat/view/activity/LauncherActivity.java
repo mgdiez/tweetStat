@@ -7,15 +7,9 @@ import android.os.Bundle;
 
 import com.mgdiez.tweetstat.R;
 import com.stephentuso.welcome.WelcomeScreenHelper;
-import com.twitter.sdk.android.Twitter;
-import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterCore;
 
-import net.ApiConstants;
-
-import io.fabric.sdk.android.Fabric;
-
-public class LauncherActivity extends BaseActivity{
+public class LauncherActivity extends TweetStattBaseActivity {
 
     private WelcomeScreenHelper welcomeScreen;
 

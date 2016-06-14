@@ -6,7 +6,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.mgdiez.tweetstat.R;
-import com.mgdiez.tweetstat.view.fragment.HomeTimelineStatisticsFragment;
+import com.mgdiez.tweetstat.view.fragment.statistics.HashtagsStatisticsFragment;
+import com.mgdiez.tweetstat.view.fragment.statistics.HomeTimelineStatisticsFragment;
+import com.mgdiez.tweetstat.view.fragment.statistics.SearchStatisticsFragment;
+import com.mgdiez.tweetstat.view.fragment.statistics.UserTimelineStatisticsFragment;
 
 public class HistoryStatisticsPagerAdapter extends FragmentPagerAdapter {
 
@@ -30,13 +33,13 @@ public class HistoryStatisticsPagerAdapter extends FragmentPagerAdapter {
             case 0: // Fragment # 0 - This will show FirstFragment
                 return HomeTimelineStatisticsFragment.newInstance();
             case 1: // Fragment # 0 - This will show FirstFragment different title
-                return HomeTimelineStatisticsFragment.newInstance();
+                return UserTimelineStatisticsFragment.newInstance();
                 //return HomeTimelineTweetsFragment.newInstance();
             case 2: // Fragment # 1 - This will show SecondFragment
-                return HomeTimelineStatisticsFragment.newInstance();
+                return SearchStatisticsFragment.newInstance();
                 //return SearchTweetsFragment.newInstance();
             case 3:
-                return HomeTimelineStatisticsFragment.newInstance();
+                return HashtagsStatisticsFragment.newInstance();
                 //return HashtagsTweetsFragment.newInstance();
 
             default:

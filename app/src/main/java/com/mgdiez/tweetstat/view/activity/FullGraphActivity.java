@@ -24,8 +24,8 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.mgdiez.tweetstat.R;
-import com.mgdiez.tweetstat.TweetStatConstants;
-import com.mgdiez.tweetstat.presenter.FullGraphPresenter;
+import com.mgdiez.tweetstat.presenter.FullGraphStatisticsPresenter;
+import com.mgdiez.tweetstat.view.fragment.util.TweetStatConstants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +36,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class FullGraphActivity extends BaseActivity {
+public class FullGraphActivity extends TweetStattBaseActivity {
 
     @Bind(R.id.chart)
     PieChart pieChart;
@@ -59,7 +59,9 @@ public class FullGraphActivity extends BaseActivity {
     private String TYPE = "";
     private String EXTRA_TYPE = "";
     private HashMap<String, Integer> statisticsData;
-    private FullGraphPresenter fullGraphPresenter;
+    private FullGraphStatisticsPresenter fullGraphPresenter;
+    private boolean fromStatisticsList = false;
+    private int id = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,29 +71,31 @@ public class FullGraphActivity extends BaseActivity {
         initToolbar();
         ButterKnife.bind(this);
         initChart();
-        btnStartStatistic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int optionId = optionSelected.getCheckedRadioButtonId();
-                if (optionId == 0) {
-
-                } else {
-                    String selectedOption = "";
-                    switch (optionId) {
-                        case R.id.countryOption:
-                            selectedOption = "COUNTRY";
-                            break;
-                        case R.id.dayOption:
-                            selectedOption = "DAY";
-                            break;
-                        case R.id.cityOption:
-                            selectedOption = "CITY";
-                            break;
+        if (fromStatisticsList) {
+            startPresenter(id);
+        } else {
+            btnStartStatistic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int optionId = optionSelected.getCheckedRadioButtonId();
+                    if (optionId != -1) {
+                        String selectedOption = "";
+                        switch (optionId) {
+                            case R.id.countryOption:
+                                selectedOption = "COUNTRY";
+                                break;
+                            case R.id.dayOption:
+                                selectedOption = "DAY";
+                                break;
+                            case R.id.cityOption:
+                                selectedOption = "CITY";
+                                break;
+                        }
+                        startPresenter(selectedOption);
                     }
-                    startPresenter(selectedOption);
                 }
-            }
-        });
+            });
+        }
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +107,11 @@ public class FullGraphActivity extends BaseActivity {
     }
 
     private void startPresenter(String selectedOption) {
-        fullGraphPresenter = new FullGraphPresenter(this, TYPE, EXTRA_TYPE, selectedOption);
+        fullGraphPresenter = new FullGraphStatisticsPresenter(this, TYPE, EXTRA_TYPE, selectedOption);
+    }
+
+    private void startPresenter(int id) {
+        fullGraphPresenter = new FullGraphStatisticsPresenter(this, TYPE, EXTRA_TYPE, id);
     }
 
     private void initToolbar() {
@@ -129,7 +137,6 @@ public class FullGraphActivity extends BaseActivity {
         pieChart.setTransparentCircleRadius(61f);
         pieChart.setDrawCenterText(true);
         pieChart.setRotationAngle(0);
-        // enable rotation of the chart by touch
         pieChart.setRotationEnabled(true);
         pieChart.setHighlightPerTapEnabled(true);
     }
@@ -214,6 +221,11 @@ public class FullGraphActivity extends BaseActivity {
                 TYPE = TweetStatConstants.HASHTAGS;
                 EXTRA_TYPE = extras.getString(TweetStatConstants.HASHTAGS);
             }
+
+            if (extras.containsKey("id")){
+                id = extras.getInt("id");
+                fromStatisticsList = true;
+            }
         }
     }
 
@@ -233,6 +245,9 @@ public class FullGraphActivity extends BaseActivity {
         setData();
         optionLayout.setVisibility(View.INVISIBLE);
         chartLayout.setVisibility(View.VISIBLE);
+        if (id != -1) {
+            btnSave.setVisibility(View.INVISIBLE);
+        }
         pieChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
         Legend l = pieChart.getLegend();
         l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);

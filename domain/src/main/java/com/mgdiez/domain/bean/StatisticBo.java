@@ -19,4 +19,6 @@ public class StatisticBo {
 
     private String dateGenerated;
 
+    private String selectedOption;
+
 }

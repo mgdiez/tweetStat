@@ -30,13 +30,9 @@ import rx.Subscriber;
 public interface TweetsRepository {
 
     Observable<List<TweetBo>> getTweetsBySearch(String query, boolean refresh);
-
     Observable<List<TweetBo>> getTweetsByHashtag(String hashtag, boolean refresh);
-
     Observable<List<HashtagBo>> getHashtags(boolean refresh);
-
     Observable<List<TweetBo>> getTweetsHometimeline(String userName, boolean refresh);
-
     Observable<List<TweetBo>> getTweetsTimeline(boolean refresh, String userName);
 
 }

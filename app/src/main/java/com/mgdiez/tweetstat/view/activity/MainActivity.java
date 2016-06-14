@@ -42,18 +42,20 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mgdiez.tweetstat.R;
-import com.mgdiez.tweetstat.TweetStatConstants;
+import com.mgdiez.tweetstat.view.fragment.util.TweetStatConstants;
 import com.mgdiez.tweetstat.model.UserModel;
-import com.mgdiez.tweetstat.presenter.MainPresenter;
-import com.mgdiez.tweetstat.view.CircleTransformation;
+import com.mgdiez.tweetstat.presenter.MainUserPresenter;
+import com.mgdiez.tweetstat.view.fragment.util.CircleTransformation;
 import com.mgdiez.tweetstat.view.adapter.TweetStatPagerAdapter;
-import com.mgdiez.tweetstat.view.fragment.HashtagsTweetsFragment;
-import com.mgdiez.tweetstat.view.fragment.SearchTweetsFragment;
+import com.mgdiez.tweetstat.view.fragment.tweets.HashtagsTweetsFragment;
+import com.mgdiez.tweetstat.view.fragment.tweets.SearchTweetsFragment;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+import com.twitter.sdk.android.core.TwitterCore;
 
 import butterknife.ButterKnife;
 import executor.RxBus;
@@ -62,7 +64,7 @@ import executor.events.NoConnectionEvent;
 import executor.events.StatisticsRequestEvent;
 import repository.NetworkUtil;
 
-public class MainActivity extends BaseActivity implements
+public class MainActivity extends TweetStattBaseActivity implements
         NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -90,8 +92,8 @@ public class MainActivity extends BaseActivity implements
         ButterKnife.bind(this);
         initializeDrawerLayout();
         rxBus = RxBus.getInstance();
-        MainPresenter mainPresenter;
-        mainPresenter = new MainPresenter(this);
+        MainUserPresenter mainPresenter;
+        mainPresenter = new MainUserPresenter(this);
         mainPresenter.getUserData(NetworkUtil.isNetworkAvailable(this));
         checkIfSnackbarNeeded();
     }
@@ -127,20 +129,16 @@ public class MainActivity extends BaseActivity implements
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.statsActivity) {
             // Handle the camera action
             Intent intent = new Intent(this, HistoryStatisticsActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.share) {
+            Toast.makeText(MainActivity.this, "TODO: Share", Toast.LENGTH_SHORT).show();
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.logout) {
+            TwitterCore.getInstance().getSessionManager().clearActiveSession();
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -37,6 +37,7 @@ public class StatisticVoMapper {
             vo.setSubType(bo.getSubType());
             vo.setType(bo.getType());
             vo.setDateGenerated(bo.getDateGenerated());
+            vo.setSelectedOption(bo.getSelectedOption());
         }
 
         return vo;
@@ -59,6 +60,7 @@ public class StatisticVoMapper {
             bo.setType(vo.getType());
             bo.setSubType(vo.getSubType());
             bo.setDateGenerated(vo.getDateGenerated());
+            bo.setSelectedOption(vo.getSelectedOption());
         }
         return bo;
     }

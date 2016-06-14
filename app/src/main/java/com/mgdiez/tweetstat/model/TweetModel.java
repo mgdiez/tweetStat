@@ -17,6 +17,9 @@ package com.mgdiez.tweetstat.model;
 
 import lombok.Data;
 
+/**
+ * Model Object that represents a Tweet in the presentation layer.
+ */
 @Data
 public class TweetModel {
     

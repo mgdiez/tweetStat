@@ -22,7 +22,7 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
 
     @Override
     public Observable<List<StatisticBo>> getStatisticsTimeline() {
-        return null;
+        return new LocalStatisticDatastore(context).getStatisticsTimeline();
     }
 
     @Override
@@ -32,17 +32,17 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
 
     @Override
     public Observable<List<StatisticBo>> getStatisticsSearch() {
-        return null;
+        return new LocalStatisticDatastore(context).getStatisticsSearch();
     }
 
     @Override
     public Observable<List<StatisticBo>> getStatisticsHashtags() {
-        return null;
+        return new LocalStatisticDatastore(context).getStatisticsHashtags();
     }
 
     @Override
-    public Observable<List<StatisticBo>> getStatisticById(long id) {
-        return null;
+    public Observable<StatisticBo> getStatisticById(long id) {
+        return new LocalStatisticDatastore(context).getStatisticById(id);
     }
 
     @Override

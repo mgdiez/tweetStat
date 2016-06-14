@@ -4,12 +4,12 @@ import android.util.Log;
 
 import com.mgdiez.domain.bean.StatisticBo;
 import com.mgdiez.domain.executor.PostExecutionThread;
-import com.mgdiez.domain.interactor.GetHomeTimelineStatisticsUseCase;
+import com.mgdiez.domain.interactor.statistics.GetHomeTimelineStatisticsUseCase;
 import com.mgdiez.domain.repository.StatisticsRepository;
 import com.mgdiez.tweetstat.UIThread;
 import com.mgdiez.tweetstat.model.StatisticModel;
 import com.mgdiez.tweetstat.model.mapper.StatisticModelMapper;
-import com.mgdiez.tweetstat.view.fragment.HomeTimelineStatisticsFragment;
+import com.mgdiez.tweetstat.view.fragment.statistics.HomeTimelineStatisticsFragment;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import executor.JobExecutor;
 import repository.StatisticsRepositoryImpl;
 import rx.Subscriber;
 
-public class HomeTimelineStatisticsPresenter implements Presenter{
+public class HomeTimelineStatisticsPresenter implements TweetsPresenter {
 
     private static final String TAG = StatisticsRepositoryImpl.class.getName();
 
@@ -28,7 +28,8 @@ public class HomeTimelineStatisticsPresenter implements Presenter{
     private List<StatisticModel> models;
 
 
-    public HomeTimelineStatisticsPresenter(HomeTimelineStatisticsFragment homeTimelineStatisticsFragment) {
+    public HomeTimelineStatisticsPresenter(HomeTimelineStatisticsFragment
+                                                   homeTimelineStatisticsFragment) {
         view = homeTimelineStatisticsFragment;
         JobExecutor jobExecutor = JobExecutor.getInstance();
         PostExecutionThread postExecutionThread = UIThread.getInstance();

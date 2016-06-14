@@ -25,7 +25,7 @@ import android.view.MenuItem;
 import com.mgdiez.tweetstat.R;
 import com.mgdiez.tweetstat.view.adapter.HistoryStatisticsPagerAdapter;
 
-public class HistoryStatisticsActivity extends BaseActivity {
+public class HistoryStatisticsActivity extends TweetStattBaseActivity {
 
 
 
@@ -61,6 +61,4 @@ public class HistoryStatisticsActivity extends BaseActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

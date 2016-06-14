@@ -23,7 +23,10 @@ public class StatisticVo extends RealmObject {
     private String type;
 
     private String subType;
+
     private String dateGenerated;
+
+    private String selectedOption;
 
     public RealmList<StringVo> getStringValues() {
         return stringValues;
@@ -79,5 +82,13 @@ public class StatisticVo extends RealmObject {
 
     public void setDateGenerated(String dateGenerated) {
         this.dateGenerated = dateGenerated;
+    }
+
+    public String getSelectedOption() {
+        return selectedOption;
+    }
+
+    public void setSelectedOption(String selectedOption) {
+        this.selectedOption = selectedOption;
     }
 }

@@ -15,4 +15,5 @@ public class StatisticModel {
 
     String nTweets;
 
+    String selectedOption;
 }

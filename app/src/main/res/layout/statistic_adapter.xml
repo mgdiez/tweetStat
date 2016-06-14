@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,56 +14,103 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"
-            android:layout_gravity="center" />
-
-        <TextView
-            android:id="@+id/type"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+        <LinearLayout
             android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_height="wrap_content"
-            android:layout_weight="5"
-            />
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtQuery"
+                    android:text="Query: "
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/subType"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    tools:text="SubType"
+                    />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/subType"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Generated: "/>
+                <TextView
+                    android:id="@+id/dateGenerated"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="date"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tweets used: "
+                    tools:text="Tweets used: "
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/nTweets"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="1992"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Data source: "
+                    tools:text="Data source: "
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/dataSource"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Day"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/dateGenerated"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
-        <TextView
-        android:id="@+id/nTweets"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
 
     <View
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#ff9e9e9e"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
         />
 
 </LinearLayout>

@@ -17,24 +17,20 @@ package com.mgdiez.tweetstat.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.mgdiez.tweetstat.R;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
-import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import io.fabric.sdk.android.Fabric;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends TweetStattBaseActivity {
 
 
     @Bind(R.id.twitter_login_button)
