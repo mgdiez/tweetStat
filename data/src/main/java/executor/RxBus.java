@@ -25,8 +25,8 @@ public class
 
     private static RxBus RXBUS_INSTANCE;
 
-    public static RxBus getInstance(){
-        if (RXBUS_INSTANCE == null){
+    public static RxBus getInstance() {
+        if (RXBUS_INSTANCE == null) {
             RXBUS_INSTANCE = new RxBus();
         }
         return RXBUS_INSTANCE;
@@ -38,11 +38,11 @@ public class
         bus.onNext(o);
     }
 
-    public Observable<Object> toObservable(){
+    public Observable<Object> toObservable() {
         return bus;
     }
 
-    public boolean hasObservers(){
+    public boolean hasObservers() {
         return bus.hasObservers();
     }
 }

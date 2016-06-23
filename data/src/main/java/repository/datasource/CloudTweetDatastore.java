@@ -61,17 +61,23 @@ public class CloudTweetDatastore implements TweetDatastore {
 
     @Override
     public Observable<List<TweetBo>> getTweetsUsertimeline(String username){
-        return twitterApiService.getTweetsUsertimeline(username).doOnNext(new TweetsActionPersist()).map(TweetsDtoMapper::toBo);
+        return twitterApiService.getTweetsUsertimeline(username)
+                .doOnNext(new TweetsActionPersist())
+                .map(TweetsDtoMapper::toBo);
     }
 
     @Override
     public Observable<List<TweetBo>> getTweetsHometimeline(String userName) {
-        return twitterApiService.getTweetsHometimeline().doOnNext(new TweetsActionPersist()).map(TweetsDtoMapper::toBo);
+        return twitterApiService.getTweetsHometimeline()
+                .doOnNext(new TweetsActionPersist())
+                .map(TweetsDtoMapper::toBo);
     }
 
     @Override
     public Observable<List<HashtagBo>> getHashtags() {
-        return twitterApiService.getHashtags().doOnNext(new HashtagActionPersist()).map(HashtagDtoMapper::toBo);
+        return twitterApiService.getHashtags()
+                .doOnNext(new HashtagActionPersist())
+                .map(HashtagDtoMapper::toBo);
     }
 
     @Override

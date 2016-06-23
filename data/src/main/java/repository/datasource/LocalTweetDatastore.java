@@ -86,7 +86,6 @@ public class LocalTweetDatastore implements TweetDatastore {
         if (tweetBos != null && !tweetBos.isEmpty()) {
             return Observable.just(tweetBos);
         }
-
         return Observable.empty();
     }
 }
