@@ -15,7 +15,6 @@
  */
 package executor;
 
-
 import com.mgdiez.domain.executor.ThreadExecutor;
 
 import java.util.concurrent.BlockingQueue;

@@ -16,7 +16,7 @@
 package com.mgdiez.tweetstat.presenter;
 
 /**
- * Interface representing a TweetsPresenter in a model view presenter (MVP) pattern.
+ * Interface representing a StatisticsPresenter in a model view presenter (MVP) pattern.
  */
 public interface StatisticsPresenter {
     /**

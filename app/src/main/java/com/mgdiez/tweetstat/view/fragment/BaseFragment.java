@@ -15,11 +15,6 @@
  */
 package com.mgdiez.tweetstat.view.fragment;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -29,10 +24,8 @@ import com.mgdiez.tweetstat.R;
 import executor.RxBus;
 import executor.events.ConnectionEvent;
 import executor.events.NoConnectionEvent;
-import executor.events.StatisticsRequestEvent;
 import rx.functions.Action1;
 import rx.subscriptions.CompositeSubscription;
-
 
 /**
  * Base {@link Fragment} class for every fragment in this application.

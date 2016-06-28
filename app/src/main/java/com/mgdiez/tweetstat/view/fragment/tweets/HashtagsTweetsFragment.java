@@ -65,6 +65,12 @@ public class HashtagsTweetsFragment extends BaseFragment {
         return v;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hashtagsPresenter.destroy();
+    }
+
     public static HashtagsTweetsFragment newInstance() {
         return new HashtagsTweetsFragment();
     }

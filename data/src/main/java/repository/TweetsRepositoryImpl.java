@@ -40,7 +40,12 @@ public class TweetsRepositoryImpl implements TweetsRepository {
         this.context = context;
     }
 
-
+    /**
+     *
+     * @param query the search introduced by the user
+     * @param refresh true if force go to server or false if go to local first.
+     * @return Observable Tweets List with the results of the query.
+     */
     @Override
     public Observable<List<TweetBo>> getTweetsBySearch(String query, boolean refresh) {
         CloudTweetDatastore cloudTweetDatastore = new CloudTweetDatastore(context);
@@ -49,12 +54,18 @@ public class TweetsRepositoryImpl implements TweetsRepository {
             return cloudTweetDatastore.getTweetsBySearch(query);
         } else {
             return Observable.concat(new LocalTweetDatastore(context).getTweetsBySearch(query),
-                    cloudTweetDatastore.getTweetsBySearch(query)
-                    ).first();
+                    cloudTweetDatastore.getTweetsBySearch(query))
+                    .first();
         }
 
     }
 
+    /**
+     *
+     * @param hashtag to get the tweets related with.
+     * @param refresh true if force go to server or false if go to local first.
+     * @return Observable Tweets List with the results of the query.
+     */
     @Override
     public Observable<List<TweetBo>> getTweetsByHashtag(String hashtag, boolean refresh) {
         CloudTweetDatastore cloudTweetDatastore = new CloudTweetDatastore(context);
@@ -63,11 +74,16 @@ public class TweetsRepositoryImpl implements TweetsRepository {
             return cloudTweetDatastore.getTweetsBySearch(hashtag);
         } else {
             return Observable.concat(new LocalTweetDatastore(context).getTweetsBySearch(hashtag),
-                    cloudTweetDatastore.getTweetsBySearch(hashtag)
-                    ).first();
+                    cloudTweetDatastore.getTweetsBySearch(hashtag))
+                    .first();
         }
     }
 
+    /**
+     *
+     * @param refresh true if force go to server or false if go to local first.
+     * @return Observable Tweets List with the results of the query.
+     */
     @Override
     public Observable<List<HashtagBo>> getHashtags(boolean refresh) {
         CloudTweetDatastore cloudTweetDatastore = new CloudTweetDatastore(context);
@@ -75,29 +91,49 @@ public class TweetsRepositoryImpl implements TweetsRepository {
         if (NetworkUtil.isNetworkAvailable(context) && refresh) {
             return cloudTweetDatastore.getHashtags();
         } else {
-            return Observable.concat(new LocalTweetDatastore(context).getHashtags(), cloudTweetDatastore.getHashtags()
-                    ).first();
+            return Observable.concat(new LocalTweetDatastore(context).getHashtags(),
+                    cloudTweetDatastore.getHashtags())
+                    .first();
         }
     }
 
+    /**
+     *
+     * @param userName name of the user.
+     * @param refresh true if force go to server or false if go to local first.
+     * @return Observable Tweets List with the results of the query.
+     */
     @Override
     public Observable<List<TweetBo>> getTweetsHometimeline(String userName, boolean refresh) {
         CloudTweetDatastore cloudTweetDatastore = new CloudTweetDatastore(context);
+        LocalTweetDatastore localTweetDatastore = new LocalTweetDatastore(context);
+
         if (NetworkUtil.isNetworkAvailable(context) && refresh) {
-            return cloudTweetDatastore.getTweetsHometimeline(userName);
+            return Observable.concat(localTweetDatastore.getTweetsHometimeline(userName),
+                    cloudTweetDatastore.getTweetsHometimeline(userName));
         } else {
-            return Observable.concat(new LocalTweetDatastore(context).getTweetsHometimeline(userName), cloudTweetDatastore.getTweetsHometimeline(userName)
-                    ).first();
+            return Observable.concat(localTweetDatastore.getTweetsHometimeline(userName),
+                    cloudTweetDatastore.getTweetsHometimeline(userName))
+                    .first();
         }
     }
 
+    /**
+     *
+     * @param refresh true if force go to server or false if go to local first.
+     * @param userName name of the user.
+     * @return Observable Tweets List with the results of the query.
+     */
     @Override
     public Observable<List<TweetBo>> getTweetsTimeline(boolean refresh, String userName) {
         CloudTweetDatastore cloudTweetDatastore = new CloudTweetDatastore(context);
+        LocalTweetDatastore localTweetDatastore = new LocalTweetDatastore(context);
+
         if (NetworkUtil.isNetworkAvailable(context) && refresh) {
-            return cloudTweetDatastore.getTweetsUsertimeline(userName);
+            return Observable.concat(cloudTweetDatastore.getTweetsUsertimeline(userName),
+                    localTweetDatastore.getTweetsUsertimeline(userName));
         } else {
-            return Observable.concat(new LocalTweetDatastore(context).getTweetsUsertimeline(userName),
+            return Observable.concat(localTweetDatastore.getTweetsUsertimeline(userName),
                     cloudTweetDatastore.getTweetsUsertimeline(userName)).first();
         }
     }

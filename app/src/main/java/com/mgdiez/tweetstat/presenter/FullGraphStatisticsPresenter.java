@@ -1,3 +1,18 @@
+/**
+ * Copyright (C) 2016 Marc Gonzalez Diez Open Source Project
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.mgdiez.tweetstat.presenter;
 
 import android.content.Context;
@@ -52,7 +67,6 @@ public class FullGraphStatisticsPresenter implements StatisticsPresenter {
         extra_type = EXTRA_TYPE;
         retrieveData();
         this.selectedOption = selectedOption;
-        //ge = new GetHashtagsUseCase(jobExecutor, postExecutionThread, tweetsRepository);
     }
 
     public FullGraphStatisticsPresenter(FullGraphActivity fullGraphActivity, String TYPE, String
@@ -62,7 +76,6 @@ public class FullGraphStatisticsPresenter implements StatisticsPresenter {
         extra_type = EXTRA_TYPE;
         this.id = id;
         retrieveData();
-        //ge = new GetHashtagsUseCase(jobExecutor, postExecutionThread, tweetsRepository);
     }
 
     private void retrieveData() {
@@ -180,12 +193,10 @@ public class FullGraphStatisticsPresenter implements StatisticsPresenter {
         persistStatisticUseCase.execute(bo, new Subscriber() {
             @Override
             public void onCompleted() {
-                //TODO
             }
 
             @Override
             public void onError(Throwable e) {
-                //TODO
             }
 
             @Override
@@ -223,19 +234,16 @@ public class FullGraphStatisticsPresenter implements StatisticsPresenter {
         @Override
         public void onNext(List<TweetBo> tweetBos) {
             boList = tweetBos;
-            onCompleted();
         }
     }
 
     private class GetStatisticByIdSubscriber extends Subscriber<StatisticBo> {
         @Override
         public void onCompleted() {
-
         }
 
         @Override
         public void onError(Throwable e) {
-
         }
 
         @Override

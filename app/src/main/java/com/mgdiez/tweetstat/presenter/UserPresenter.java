@@ -16,7 +16,7 @@
 package com.mgdiez.tweetstat.presenter;
 
 /**
- * Interface representing a TweetsPresenter in a model view presenter (MVP) pattern.
+ * Interface representing a UserPresener in a model view presenter (MVP) pattern.
  */
 public interface UserPresenter {
     /**
@@ -36,4 +36,10 @@ public interface UserPresenter {
      * (Activity or Fragment) onDestroy() method.
      */
     void destroy();
+
+    /**
+     * Method that retrieve the user data. Boolean parameter depends on the network connection
+     */
+    void getUserData(boolean hasConnection);
 }
+

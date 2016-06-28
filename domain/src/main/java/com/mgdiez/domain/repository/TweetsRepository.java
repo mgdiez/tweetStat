@@ -24,13 +24,41 @@ import rx.Observable;
 import rx.Subscriber;
 
 /**
- * Interface for retrieving tweets data.
+ * Class that represents the Repository Pattern for Tweets Data
  */
-
 public interface TweetsRepository {
+    /**
+     *
+     * @param query the search introduced by the user
+     * @param refresh true if force go to server or false if go to local first.
+     * @return Observable Tweets List with the results of the query.
+     */
     Observable<List<TweetBo>> getTweetsBySearch(String query, boolean refresh);
+    /**
+     *
+     * @param hashtag to get the tweets related with.
+     * @param refresh true if force go to server or false if go to local first.
+     * @return Observable Tweets List with the results of the query.
+     */
     Observable<List<TweetBo>> getTweetsByHashtag(String hashtag, boolean refresh);
+    /**
+     *
+     * @param refresh true if force go to server or false if go to local first.
+     * @return Observable Tweets List with the results of the query.
+     */
     Observable<List<HashtagBo>> getHashtags(boolean refresh);
+    /**
+     *
+     * @param userName name of the user.
+     * @param refresh true if force go to server or false if go to local first.
+     * @return Observable Tweets List with the results of the query.
+     */
     Observable<List<TweetBo>> getTweetsHometimeline(String userName, boolean refresh);
+    /**
+     *
+     * @param refresh true if force go to server or false if go to local first.
+     * @param userName name of the user.
+     * @return Observable Tweets List with the results of the query.
+     */
     Observable<List<TweetBo>> getTweetsTimeline(boolean refresh, String userName);
 }

@@ -72,10 +72,11 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.TweetViewH
 
     @Override
     public int getItemCount() {
+        int itemSize = 0;
         if (items != null) {
-            return items.size();
+            itemSize = items.size();
         }
-        return 0;
+        return itemSize;
     }
 
 

@@ -27,12 +27,29 @@ import rx.Observable;
  */
 public interface TweetDatastore {
 
+    /**
+     * @param userName name of the user
+     * @return Observable List of Tweets of UserTimeline
+     */
     Observable<List<TweetBo>> getTweetsUsertimeline(String userName);
 
+    /**
+     * @param userName name of the user
+     * @return Observable List of Tweets of Home Timeline
+     */
     Observable<List<TweetBo>> getTweetsHometimeline(String userName);
 
+    /**
+     *
+     * @return Observable List of Trending Topics atm.
+     */
     Observable<List<HashtagBo>> getHashtags();
 
+    /**
+     *
+     * @param search query introduced by the user
+     * @return Observable List of Tweets related with the query
+     */
     Observable<List<TweetBo>> getTweetsBySearch(String search);
 
 }

@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * DtoMapper class for Hashtags (Trending topics). Dto to Bo.
+ */
 public class HashtagDtoMapper {
 
     public static List<HashtagBo> toBo(Collection<TrendsList> trendsLists){

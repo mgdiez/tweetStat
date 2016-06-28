@@ -27,6 +27,9 @@ import com.mgdiez.tweetstat.model.TweetModel;
 import com.mgdiez.tweetstat.model.mapper.TweetModelMapper;
 import com.mgdiez.tweetstat.view.fragment.tweets.HomeTimelineTweetsFragment;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import executor.JobExecutor;
@@ -39,7 +42,7 @@ public class HomeTimelineTweetsPresenter implements TweetsPresenter {
 
     private HomeTimelineTweetsFragment view;
     private GetHomeTimelineUseCase getHomeTimelineUseCase;
-    private List<TweetModel> models;
+    private List<TweetModel> models = new ArrayList<>();
 
 
     public HomeTimelineTweetsPresenter(HomeTimelineTweetsFragment homeTimelineTweetsFragment) {
@@ -63,6 +66,7 @@ public class HomeTimelineTweetsPresenter implements TweetsPresenter {
     }
 
     private void startRefresh() {
+        models.clear();
         view.startRefresh();
     }
 
@@ -107,6 +111,7 @@ public class HomeTimelineTweetsPresenter implements TweetsPresenter {
         @Override
         public void onCompleted() {
             setModels();
+            setModels();
             stopRefresh();
         }
 
@@ -119,7 +124,19 @@ public class HomeTimelineTweetsPresenter implements TweetsPresenter {
 
         @Override
         public void onNext(List<TweetBo> tweetBos) {
-            models = TweetModelMapper.toModel(tweetBos);
+            if (models.isEmpty()) {
+                models = TweetModelMapper.toModel(tweetBos);
+            }
+
+            Collections.sort(models, new Comparator<TweetModel>() {
+                @Override
+                public int compare(TweetModel lhs, TweetModel rhs) {
+                    if (lhs.getId() < rhs.getId()) return 1;
+                    else if (lhs.getId() == rhs.getId()) return 0;
+                    else return -1;
+                }
+            });
+            onCompleted();
         }
     }
 }

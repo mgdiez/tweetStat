@@ -25,6 +25,9 @@ import javax.inject.Inject;
 import rx.Observable;
 import rx.Subscriber;
 
+/**
+ * UseCase that retrieves the Tweets related with a Search
+ */
 public class GetSearchUseCase extends UseCase {
     private final TweetsRepository tweetsRepository;
 

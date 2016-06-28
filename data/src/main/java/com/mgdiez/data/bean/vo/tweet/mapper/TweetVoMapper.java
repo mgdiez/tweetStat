@@ -26,6 +26,9 @@ import java.util.List;
 import io.realm.RealmList;
 import io.realm.RealmResults;
 
+/**
+ * VoMapper used for Tweets. Bo to Vo, Vo to Bo and Dto to Vo.
+ */
 public final class TweetVoMapper {
 
     public static TweetBo toBo(TweetVo vo) {

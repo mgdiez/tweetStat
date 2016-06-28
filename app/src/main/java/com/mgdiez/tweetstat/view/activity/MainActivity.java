@@ -45,13 +45,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mgdiez.tweetstat.R;
-import com.mgdiez.tweetstat.view.fragment.util.TweetStatConstants;
 import com.mgdiez.tweetstat.model.UserModel;
 import com.mgdiez.tweetstat.presenter.MainUserPresenter;
-import com.mgdiez.tweetstat.view.fragment.util.CircleTransformation;
 import com.mgdiez.tweetstat.view.adapter.TweetStatPagerAdapter;
 import com.mgdiez.tweetstat.view.fragment.tweets.HashtagsTweetsFragment;
 import com.mgdiez.tweetstat.view.fragment.tweets.SearchTweetsFragment;
+import com.mgdiez.tweetstat.view.fragment.util.CircleTransformation;
+import com.mgdiez.tweetstat.view.fragment.util.TweetStatConstants;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -61,7 +61,6 @@ import butterknife.ButterKnife;
 import executor.RxBus;
 import executor.events.ConnectionEvent;
 import executor.events.NoConnectionEvent;
-import executor.events.StatisticsRequestEvent;
 import repository.NetworkUtil;
 
 public class MainActivity extends TweetStattBaseActivity implements
@@ -187,7 +186,6 @@ public class MainActivity extends TweetStattBaseActivity implements
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rxBus.send(new StatisticsRequestEvent());
                 int currentItem =  viewPager.getCurrentItem();
                 Intent intent = new Intent(MainActivity.this, FullGraphActivity.class);
                 switch (currentItem) {
@@ -273,7 +271,7 @@ public class MainActivity extends TweetStattBaseActivity implements
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new TweetStatPagerAdapter(getApplicationContext(), getSupportFragmentManager()));
-        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOffscreenPageLimit(1);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);

@@ -67,8 +67,15 @@ public class HomeTimelineTweetsFragment extends BaseFragment {
         return v;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        homeTimelinePresenter.destroy();
+    }
+
     private void getUserName() {
-        userName = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString(getString(R.string.username), "");
+        userName = getActivity().getSharedPreferences(getString(R.string.preference_file_key),
+                Context.MODE_PRIVATE).getString(getString(R.string.username), "");
     }
 
     public static HomeTimelineTweetsFragment newInstance() {

@@ -15,11 +15,13 @@
  */
 package com.mgdiez.data.bean.vo.tweet.hashtag;
 
-
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.RealmClass;
 
+/**
+ * Value Object that represents a Hashtag in Database.
+ */
 @RealmClass
 public class HashtagVo extends RealmObject{
 

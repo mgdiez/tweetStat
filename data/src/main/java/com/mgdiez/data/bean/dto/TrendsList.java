@@ -17,6 +17,9 @@ package com.mgdiez.data.bean.dto;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Object that represents a trending topic in Twitter API.
+ */
 public class TrendsList {
     @SerializedName("tweet_volume")
     public final Integer nTweets;

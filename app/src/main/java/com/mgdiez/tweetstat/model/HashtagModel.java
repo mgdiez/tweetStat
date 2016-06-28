@@ -17,9 +17,15 @@ package com.mgdiez.tweetstat.model;
 
 import lombok.Data;
 
+/**
+ * Model Object that represents a Hashtag in the presentation layer.
+ */
 @Data
 public class HashtagModel {
+
     private int nTweets;
+
     private String name;
+
     private String queryName;
 }

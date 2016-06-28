@@ -96,6 +96,12 @@ public class SearchTweetsFragment extends BaseFragment {
         return v;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        searchPresenter.destroy();
+    }
+
     public static SearchTweetsFragment newInstance() {
         return new SearchTweetsFragment();
     }

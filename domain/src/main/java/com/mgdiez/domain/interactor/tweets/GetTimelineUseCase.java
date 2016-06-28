@@ -26,7 +26,9 @@ import javax.inject.Inject;
 import rx.Observable;
 import rx.Subscriber;
 
-
+/**
+ * UseCase that retrieves the User Timeline Tweets
+ */
 public class GetTimelineUseCase extends UseCase {
 
     private final TweetsRepository tweetsRepository;

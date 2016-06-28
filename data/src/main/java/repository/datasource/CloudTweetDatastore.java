@@ -36,10 +36,8 @@ import java.util.Collection;
 import java.util.List;
 
 import io.realm.Realm;
-import okhttp3.logging.HttpLoggingInterceptor;
 import repository.RealmHelper;
 import rx.Observable;
-import rx.Subscriber;
 import rx.functions.Action1;
 
 /**
@@ -47,61 +45,97 @@ import rx.functions.Action1;
  */
 public class CloudTweetDatastore implements TweetDatastore {
 
+    private String USER_TIMELINE = "user_timeline_sp";
+
+    private String HOME_TIMELINE = "home_timeline_sp";
+
     private Context context;
+
     private TwitterApiService twitterApiService;
 
     public CloudTweetDatastore(Context context) {
         this.context = context;
-
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
         twitterApiService = new TwitterApiService();
     }
 
+    /**
+     *
+     * @param username name of the user
+     * @return Observable List of Tweets
+     */
     @Override
     public Observable<List<TweetBo>> getTweetsUsertimeline(String username){
-        return twitterApiService.getTweetsUsertimeline(username)
-                .doOnNext(new TweetsActionPersist())
-                .map(TweetsDtoMapper::toBo);
+        return twitterApiService.getTweetsUsertimeline(username,
+                getLastModificationTweet(USER_TIMELINE)) //ask for the tweets
+                .doOnNext(new TweetsActionPersist(USER_TIMELINE)) //save to database
+                .map(TweetsDtoMapper::toBo); //map from Dto to Bo
     }
 
+    /**
+     *
+     * @param userName name of the user
+     * @return Observable List of Tweets
+     */
     @Override
     public Observable<List<TweetBo>> getTweetsHometimeline(String userName) {
-        return twitterApiService.getTweetsHometimeline()
-                .doOnNext(new TweetsActionPersist())
-                .map(TweetsDtoMapper::toBo);
+        return twitterApiService.getTweetsHometimeline(getLastModificationTweet(HOME_TIMELINE)) //ask for the tweets
+                .doOnNext(new TweetsActionPersist(HOME_TIMELINE)) //save to database
+                .map(TweetsDtoMapper::toBo); //map from Dto to Bo
     }
 
+    /**
+     *
+     * @return Observable List of Hashtags with Treding topics atm.
+     */
     @Override
     public Observable<List<HashtagBo>> getHashtags() {
-        return twitterApiService.getHashtags()
-                .doOnNext(new HashtagActionPersist())
-                .map(HashtagDtoMapper::toBo);
+        return twitterApiService.getHashtags() //ask for the trending topics
+                .doOnNext(new HashtagActionPersist()) //save to database
+                .map(HashtagDtoMapper::toBo); //map from Dto to Bo
     }
 
+    /**
+     *
+     * @param search query to search
+     * @return Observable List of Tweets with the results.
+     */
     @Override
     public Observable<List<TweetBo>> getTweetsBySearch(String search) {
-        return twitterApiService.getTweetsBySearch(search).doOnNext(new TweetsSearchActionPersist(search)).map(TweetsDtoMapper::toBo);
+        return twitterApiService.getTweetsBySearch(search) //ask for the tweets
+                .doOnNext(new TweetsSearchActionPersist(search)) //save to database
+                .map(TweetsDtoMapper::toBo); //map from Dto to Bo.
     }
 
-
-    /** Persist actions **/
+    /**
+     * Action1 to persist a List of Tweets in Database
+     */
     private class TweetsActionPersist implements Action1<List<Tweet>> {
+        private String type;
+
+        public TweetsActionPersist(String type) {
+            this.type = type;
+        }
 
         @Override
         public void call(List<Tweet> tweets) {
-            Realm realm = RealmHelper.getInstance(context);
-            List<TweetVo> tweetVos = TweetVoMapper.toVo(tweets);
+            if (tweets != null && !tweets.isEmpty()) {
+                saveLastModificationTweet(type, tweets.get(0).getId()); //Save the last tweet ID.
+                Realm realm = RealmHelper.getInstance(context); //Get the Realm instance.
+                List<TweetVo> tweetVos = TweetVoMapper.toVo(tweets); //Map from Dto to Vo.
 
-            realm.beginTransaction();
-            realm.copyToRealmOrUpdate(tweetVos);
-            realm.commitTransaction();
+                realm.beginTransaction();
+                realm.copyToRealmOrUpdate(tweetVos); //save
+                realm.commitTransaction();
 
-            realm.close();
+                realm.close();
+            }
         }
     }
 
+    /**
+     * Same as TweetsActionPersist but needs the query introduced by the user to save the tweets from
+     * a search.
+     */
     private class TweetsSearchActionPersist implements Action1<List<Tweet>> {
         private String query;
 
@@ -122,6 +156,9 @@ public class CloudTweetDatastore implements TweetDatastore {
         }
     }
 
+    /**
+     * Action1 used to save a list of hasthags to database
+     */
     private class HashtagActionPersist implements Action1<Collection<TrendsList>> {
 
         @Override
@@ -135,5 +172,33 @@ public class CloudTweetDatastore implements TweetDatastore {
 
             realm.close();
         }
+    }
+
+    /**
+     *
+     * @param type of the tweet (timeline or own tweets)
+     * @return id that representes the last tweet we have in database.
+     */
+    private Long getLastModificationTweet(String type) {
+        Long lastId;
+        lastId = context.getSharedPreferences(context.getString(R.string.preference_file_key),
+                Context.MODE_PRIVATE).getLong(type, -1);
+        if (lastId == -1){
+            lastId = null;
+        }
+
+        return lastId;
+    }
+
+    /**
+     *
+     * @param type of the tweet (timeline or own tweets)
+     * @param id to be saved
+     */
+    private void saveLastModificationTweet(String type, Long id) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(
+                context.getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit();
+        editor.putLong(type, id);
+        editor.apply();
     }
 }

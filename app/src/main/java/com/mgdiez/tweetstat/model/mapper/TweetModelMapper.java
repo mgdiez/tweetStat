@@ -21,10 +21,13 @@ import com.mgdiez.tweetstat.model.TweetModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ModelMapper class for Tweets. Bo to Model
+ */
 public class TweetModelMapper {
 
     public static TweetModel toModel(TweetBo bo) {
-        TweetModel model = null;
+        TweetModel model = new TweetModel();
 
         if (bo != null) {
             model = new TweetModel();
@@ -39,7 +42,7 @@ public class TweetModelMapper {
     }
 
     public static List<TweetModel> toModel(List<TweetBo> bos) {
-        List<TweetModel> models = null;
+        List<TweetModel> models = new ArrayList<>();
 
         if (bos != null && !bos.isEmpty()) {
             models = new ArrayList<>(bos.size());

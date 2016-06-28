@@ -49,6 +49,7 @@ public class HashtagsTweetsPresenter implements TweetsPresenter {
         PostExecutionThread postExecutionThread = UIThread.getInstance();
         TweetsRepository tweetsRepository = new TweetsRepositoryImpl(view.getContext());
         getHashtagsUseCase = new GetHashtagsUseCase(jobExecutor, postExecutionThread, tweetsRepository);
+        startRefresh();
     }
 
     public void setView(@NonNull HashtagsTweetsFragment hashtagsTweetsFragment) {
@@ -67,33 +68,20 @@ public class HashtagsTweetsPresenter implements TweetsPresenter {
         view.startRefresh();
     }
 
-
     public void getHashtags(){
         getHashtagsUseCase.execute(true, new GetHashtagsSubscriber());
     }
 
-    /**
-     * Method that control the lifecycle of the view. It should be called in the view's
-     * (Activity or Fragment) onResume() method.
-     */
     @Override
     public void resume() {
 
     }
 
-    /**
-     * Method that control the lifecycle of the view. It should be called in the view's
-     * (Activity or Fragment) onPause() method.
-     */
     @Override
     public void pause() {
 
     }
 
-    /**
-     * Method that control the lifecycle of the view. It should be called in the view's
-     * (Activity or Fragment) onDestroy() method.
-     */
     @Override
     public void destroy() {
         getHashtagsUseCase.unsubscribe();

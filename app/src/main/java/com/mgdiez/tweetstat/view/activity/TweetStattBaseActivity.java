@@ -15,19 +15,12 @@
  */
 package com.mgdiez.tweetstat.view.activity;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.mgdiez.tweetstat.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.Bind;
 
@@ -51,66 +44,6 @@ public abstract class TweetStattBaseActivity extends AppCompatActivity {
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(showUpButton);
             }
-        }
-    }
-
-    /**
-     * Adds a {@link Fragment} to this activity's layout.
-     *
-     * @param containerViewId The container view to where replace the fragment.
-     * @param fragment        The fragment to be added.
-     */
-    protected void addFragment(int containerViewId, Fragment fragment) {
-        FragmentTransaction fragmentTransaction = this.getFragmentManager().beginTransaction();
-        fragmentTransaction.commit();
-        fragmentTransaction.replace(R.id.content_layout, fragment);
-        //fragmentTransaction.setTransition(transition);
-        fragmentTransaction.commit();
-    }
-
-    /**
-     * Replaces a {@link Fragment} to this activity's layout.
-     *
-     * @param containerViewId The container view to where replace the fragment.
-     * @param fragment        The fragment to be added.
-     */
-    protected void replaceFragment(int containerViewId, Fragment fragment, String tag) {
-        FragmentTransaction fragmentTransaction = this.getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(containerViewId, fragment, tag);
-        fragmentTransaction.commit();
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public android.support.v4.app.Fragment getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return super.getItemId(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
         }
     }
 }

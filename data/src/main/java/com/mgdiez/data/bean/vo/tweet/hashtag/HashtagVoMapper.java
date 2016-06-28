@@ -25,6 +25,9 @@ import java.util.List;
 
 import io.realm.RealmResults;
 
+/**
+ * VoMapper used for Hashtags. Dto to Vo, Vo to Bo.
+ */
 public class HashtagVoMapper {
 
     public static List<HashtagVo> toVo(Collection<TrendsList> dtos) {

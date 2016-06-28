@@ -1,10 +1,3 @@
-package executor;
-
-import rx.Observable;
-import rx.subjects.PublishSubject;
-import rx.subjects.SerializedSubject;
-import rx.subjects.Subject;
-
 /**
  * Copyright (C) 2016 Marc Gonzalez Diez Open Source Project
  * <p>
@@ -20,9 +13,21 @@ import rx.subjects.Subject;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-public class
-        RxBus {
+package executor;
 
+import rx.Observable;
+import rx.subjects.PublishSubject;
+import rx.subjects.SerializedSubject;
+import rx.subjects.Subject;
+
+/**
+ * Implementation of an Event Bus with ReactiveX Java
+ */
+public class RxBus {
+
+    /**
+     * Singleton Pattern
+     */
     private static RxBus RXBUS_INSTANCE;
 
     public static RxBus getInstance() {
@@ -32,16 +37,31 @@ public class
         return RXBUS_INSTANCE;
     }
 
+    /**
+     * Create SerializedSubject
+     */
     private final Subject<Object, Object> bus = new SerializedSubject<>(PublishSubject.create());
 
+    /**
+     *
+     * @param o Object to be send as an event.
+     */
     public void send(Object o) {
         bus.onNext(o);
     }
 
+    /**
+     *
+     * @return the Observable form of the Bus to be used as a receptor.
+     */
     public Observable<Object> toObservable() {
         return bus;
     }
 
+    /**
+     *
+     * @return true if some Observer is subscribed to the bus.
+     */
     public boolean hasObservers() {
         return bus.hasObservers();
     }

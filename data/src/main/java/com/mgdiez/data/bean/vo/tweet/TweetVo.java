@@ -20,14 +20,13 @@ import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.RealmClass;
 
 /**
- * Value Object that represents the Tweet data in the database.
+ * Value Object that represents a Tweet in Database.
  */
-
 @RealmClass
 public class TweetVo extends RealmObject {
 
-    public static final String PRIMARY_KEY = "id";
     public static final String USERNAME = "userName";
+
     public static final String QUERY = "query";
 
     @PrimaryKey
@@ -40,12 +39,19 @@ public class TweetVo extends RealmObject {
     private String thumbnailUrl;
 
     private String userName;
+
     private String createdAt;
+
     private String city;
+
     private String country;
+
     private String location;
+
     private Double latitude;
+
     private Double longitude;
+
     private String query;
 
     public long getId() {

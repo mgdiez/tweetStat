@@ -25,7 +25,9 @@ import javax.inject.Inject;
 import rx.Observable;
 import rx.Subscriber;
 
-
+/**
+ * UseCase that retrieves the Hashtags
+ */
 public class GetHashtagsUseCase extends UseCase {
     private final TweetsRepository tweetsRepository;
 

@@ -25,6 +25,9 @@ import javax.inject.Inject;
 import rx.Observable;
 import rx.Subscriber;
 
+/**
+ * UseCase that retrieves the Home Timeline Tweets
+ */
 public class GetHomeTimelineUseCase extends UseCase {
 
     private final TweetsRepository tweetsRepository;

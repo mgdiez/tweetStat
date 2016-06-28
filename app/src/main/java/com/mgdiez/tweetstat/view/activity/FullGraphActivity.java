@@ -1,3 +1,18 @@
+/**
+ * Copyright (C) 2016 Marc Gonzalez Diez Open Source Project
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.mgdiez.tweetstat.view.activity;
 
 import android.graphics.Color;
@@ -34,7 +49,6 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
 
 public class FullGraphActivity extends TweetStattBaseActivity {
 
@@ -159,8 +173,6 @@ public class FullGraphActivity extends TweetStattBaseActivity {
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
 
-        // add a lot of colors
-
         ArrayList<Integer> colors = new ArrayList<>();
 
         for (int c : ColorTemplate.VORDIPLOM_COLORS)
@@ -181,15 +193,12 @@ public class FullGraphActivity extends TweetStattBaseActivity {
         colors.add(ColorTemplate.getHoloBlue());
 
         dataSet.setColors(colors);
-        //dataSet.setSelectionShift(0f);
 
         PieData data = new PieData(xVals, dataSet);
         data.setValueFormatter(new PercentFormatter());
         data.setValueTextSize(11f);
         data.setValueTextColor(Color.WHITE);
         pieChart.setData(data);
-
-        // undo all highlights
         pieChart.highlightValues(null);
 
         pieChart.invalidate();

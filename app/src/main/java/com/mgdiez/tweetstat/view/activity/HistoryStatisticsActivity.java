@@ -28,7 +28,6 @@ import com.mgdiez.tweetstat.view.adapter.HistoryStatisticsPagerAdapter;
 public class HistoryStatisticsActivity extends TweetStattBaseActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +44,8 @@ public class HistoryStatisticsActivity extends TweetStattBaseActivity {
         }
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setAdapter(new HistoryStatisticsPagerAdapter(getApplicationContext(), getSupportFragmentManager()));
+        viewPager.setAdapter(new HistoryStatisticsPagerAdapter(getApplicationContext(),
+                getSupportFragmentManager()));
         viewPager.setOffscreenPageLimit(3);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);

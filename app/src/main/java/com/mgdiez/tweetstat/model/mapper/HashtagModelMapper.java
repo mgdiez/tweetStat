@@ -21,6 +21,10 @@ import com.mgdiez.tweetstat.model.HashtagModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ModelMapper class for Hashtags (Trending Topics). Bo to Model
+ */
+
 public class HashtagModelMapper {
     public static HashtagModel toModel(HashtagBo bo) {
         HashtagModel model = null;

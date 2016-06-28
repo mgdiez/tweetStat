@@ -22,6 +22,11 @@ import io.realm.RealmConfiguration;
 
 public class RealmHelper {
 
+    /**
+     *
+     * @param context needed by Realm Builder.
+     * @return the instance of Realm ready to be used.
+     */
     public static Realm getInstance(Context context){
         RealmConfiguration config = new RealmConfiguration
                 .Builder(context)

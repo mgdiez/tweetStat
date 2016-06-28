@@ -17,9 +17,17 @@ package com.mgdiez.domain.bean;
 
 import lombok.Data;
 
+/**
+ * Business Object that represents a Hashtag in the domain layer.
+ */
 @Data
 public class HashtagBo {
+
     private int nTweets;
+
     private String name;
+
     private String queryName;
+
 }
+

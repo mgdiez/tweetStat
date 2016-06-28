@@ -46,12 +46,12 @@ public class UserTimelineTweetsFragment extends BaseFragment {
 
     private UsertimeLineTweetsPresenter usertimeLinePresenter;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.usertimeline_fragment, container, false);
         ButterKnife.bind(this, v);
-        final String userName = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString(getString(R.string.username), "");
+        final String userName = getActivity().getSharedPreferences(getString(R.string.preference_file_key),
+                Context.MODE_PRIVATE).getString(getString(R.string.username), "");
         usertimeLinePresenter = new UsertimeLineTweetsPresenter(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         swipeRefreshLayout.setColorSchemeColors(R.color.colorAccent);
@@ -63,6 +63,12 @@ public class UserTimelineTweetsFragment extends BaseFragment {
         });
         usertimeLinePresenter.getTimeline(userName, true);
         return v;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        usertimeLinePresenter.destroy();
     }
 
     public static UserTimelineTweetsFragment newInstance() {

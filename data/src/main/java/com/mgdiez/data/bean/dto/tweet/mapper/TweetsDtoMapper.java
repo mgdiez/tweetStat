@@ -21,6 +21,9 @@ import com.twitter.sdk.android.core.models.Tweet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DtoMapper class for Tweets. Dto to Bo.
+ */
 public class TweetsDtoMapper {
 
     public static ArrayList<TweetBo> toBo (List<Tweet> tweets){
