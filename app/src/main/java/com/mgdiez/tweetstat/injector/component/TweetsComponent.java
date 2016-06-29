@@ -18,6 +18,7 @@ package com.mgdiez.tweetstat.injector.component;
 import com.mgdiez.tweetstat.injector.PerActivity;
 import com.mgdiez.tweetstat.injector.module.ActivityModule;
 import com.mgdiez.tweetstat.injector.module.TweetsModule;
+import com.mgdiez.tweetstat.view.activity.FullGraphActivity;
 import com.mgdiez.tweetstat.view.activity.MainActivity;
 import com.mgdiez.tweetstat.view.fragment.tweets.HashtagsTweetsFragment;
 import com.mgdiez.tweetstat.view.fragment.tweets.HomeTimelineTweetsFragment;
@@ -29,6 +30,8 @@ import dagger.Component;
 @PerActivity
 @Component(dependencies = ApplicationComponent.class, modules = {ActivityModule.class, TweetsModule.class})
 public interface TweetsComponent extends ActivityComponent {
+
+    void inject(FullGraphActivity fullGraphActivity);
 
     void inject(MainActivity homeActivity);
 

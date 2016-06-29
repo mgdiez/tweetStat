@@ -41,4 +41,5 @@ public class ActivityModule {
     Activity provideActivity() {
         return this.activity;
     }
+
 }

@@ -45,9 +45,7 @@ public class LauncherActivity extends TweetStattBaseActivity {
         if (showWelcomeScreen) {
             welcomeScreen = new WelcomeScreenHelper(this, WelcomeActivity.class);
             welcomeScreen.show(savedInstanceState);
-        }
-
-        else if (TwitterCore.getInstance().getSessionManager().getActiveSession() == null) {
+        } else if (TwitterCore.getInstance().getSessionManager().getActiveSession() == null) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
@@ -60,7 +58,7 @@ public class LauncherActivity extends TweetStattBaseActivity {
     }
 
     private void initShared() {
-          sharedPref = getSharedPreferences(
+        sharedPref = getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         showWelcomeScreen = sharedPref.getBoolean(getString(R.string.welcome_screen_flag), true);
     }
@@ -79,7 +77,6 @@ public class LauncherActivity extends TweetStattBaseActivity {
 
 
         if (requestCode == WelcomeScreenHelper.DEFAULT_WELCOME_SCREEN_REQUEST) {
-            String welcomeKey = data.getStringExtra(WelcomeActivity.WELCOME_SCREEN_KEY);
             if (resultCode == RESULT_OK) {
                 // Code here will run if the welcome screen was completed
                 Intent intent = new Intent(this, LoginActivity.class);
@@ -94,6 +91,7 @@ public class LauncherActivity extends TweetStattBaseActivity {
         }
 
     }
+
     private void saveWelcomeDone() {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean(getString(R.string.welcome_screen_flag), false);

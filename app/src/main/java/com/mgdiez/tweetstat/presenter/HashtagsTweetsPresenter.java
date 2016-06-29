@@ -20,36 +20,34 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.mgdiez.domain.bean.HashtagBo;
-import com.mgdiez.domain.executor.PostExecutionThread;
+import com.mgdiez.domain.interactor.UseCase;
 import com.mgdiez.domain.interactor.tweets.GetHashtagsUseCase;
-import com.mgdiez.domain.repository.TweetsRepository;
-import com.mgdiez.tweetstat.UIThread;
+import com.mgdiez.tweetstat.injector.PerActivity;
 import com.mgdiez.tweetstat.model.HashtagModel;
 import com.mgdiez.tweetstat.model.mapper.HashtagModelMapper;
 import com.mgdiez.tweetstat.view.fragment.tweets.HashtagsTweetsFragment;
 
 import java.util.List;
 
-import executor.JobExecutor;
-import repository.TweetsRepositoryImpl;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import rx.Subscriber;
 
+@PerActivity
 public class HashtagsTweetsPresenter implements TweetsPresenter {
 
     private static final String TAG = HomeTimelineTweetsPresenter.class.getName();
 
     private HashtagsTweetsFragment view;
+
     private GetHashtagsUseCase getHashtagsUseCase;
+
     private List<HashtagModel> models;
 
-
-    public HashtagsTweetsPresenter(HashtagsTweetsFragment hashtagsTweetsFragment) {
-        view = hashtagsTweetsFragment;
-        JobExecutor jobExecutor = JobExecutor.getInstance();
-        PostExecutionThread postExecutionThread = UIThread.getInstance();
-        TweetsRepository tweetsRepository = new TweetsRepositoryImpl(view.getContext());
-        getHashtagsUseCase = new GetHashtagsUseCase(jobExecutor, postExecutionThread, tweetsRepository);
-        startRefresh();
+    @Inject
+    public HashtagsTweetsPresenter(@Named("getHashtagsUseCase") UseCase getHashtagsUseCase) {
+        this.getHashtagsUseCase = (GetHashtagsUseCase) getHashtagsUseCase;
     }
 
     public void setView(@NonNull HashtagsTweetsFragment hashtagsTweetsFragment) {
@@ -69,6 +67,7 @@ public class HashtagsTweetsPresenter implements TweetsPresenter {
     }
 
     public void getHashtags(){
+        startRefresh();
         getHashtagsUseCase.execute(true, new GetHashtagsSubscriber());
     }
 

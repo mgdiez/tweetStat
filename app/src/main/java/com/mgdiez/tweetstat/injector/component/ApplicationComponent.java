@@ -15,10 +15,14 @@
  */
 package com.mgdiez.tweetstat.injector.component;
 
+import android.content.Context;
+
 import com.mgdiez.domain.executor.PostExecutionThread;
 import com.mgdiez.domain.executor.ThreadExecutor;
+import com.mgdiez.domain.repository.StatisticsRepository;
+import com.mgdiez.domain.repository.TweetsRepository;
+import com.mgdiez.domain.repository.UserRepository;
 import com.mgdiez.tweetstat.injector.module.ApplicationModule;
-import com.mgdiez.tweetstat.view.activity.TweetStattBaseActivity;
 
 import javax.inject.Singleton;
 
@@ -29,8 +33,7 @@ import executor.RxBus;
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
 
-    // where should I inject the dependencies?
-    void inject(TweetStattBaseActivity tweetStattBaseActivity);
+    Context context();
 
     ThreadExecutor getThreadExecutor();
 
@@ -38,5 +41,10 @@ public interface ApplicationComponent {
 
     RxBus getRxBus();
 
+    TweetsRepository tweetsRepository();
+
+    StatisticsRepository statisticsRepository();
+
+    UserRepository userRepository();
 
 }

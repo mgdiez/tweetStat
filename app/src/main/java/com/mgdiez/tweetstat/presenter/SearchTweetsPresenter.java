@@ -19,35 +19,34 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.mgdiez.domain.bean.TweetBo;
-import com.mgdiez.domain.executor.PostExecutionThread;
+import com.mgdiez.domain.interactor.UseCase;
 import com.mgdiez.domain.interactor.tweets.GetSearchUseCase;
-import com.mgdiez.domain.repository.TweetsRepository;
-import com.mgdiez.tweetstat.UIThread;
+import com.mgdiez.tweetstat.injector.PerActivity;
 import com.mgdiez.tweetstat.model.TweetModel;
 import com.mgdiez.tweetstat.model.mapper.TweetModelMapper;
 import com.mgdiez.tweetstat.view.fragment.tweets.SearchTweetsFragment;
 
 import java.util.List;
 
-import executor.JobExecutor;
-import repository.TweetsRepositoryImpl;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import rx.Subscriber;
 
+@PerActivity
 public class SearchTweetsPresenter implements TweetsPresenter {
 
     private static final String TAG = HomeTimelineTweetsPresenter.class.getName();
 
     private SearchTweetsFragment view;
+
     private GetSearchUseCase getSearchUseCase;
+
     private List<TweetModel> models;
 
-
-    public SearchTweetsPresenter(SearchTweetsFragment searchTweetsFragment) {
-        view = searchTweetsFragment;
-        JobExecutor jobExecutor = JobExecutor.getInstance();
-        PostExecutionThread postExecutionThread = UIThread.getInstance();
-        TweetsRepository tweetsRepository = new TweetsRepositoryImpl(view.getContext());
-        getSearchUseCase = new GetSearchUseCase(jobExecutor, postExecutionThread, tweetsRepository);
+    @Inject
+    public SearchTweetsPresenter(@Named("getSearchUseCase") UseCase getSearchUseCase) {
+        this.getSearchUseCase = (GetSearchUseCase) getSearchUseCase;
     }
 
     public void setView(@NonNull SearchTweetsFragment searchTweetsFragment) {

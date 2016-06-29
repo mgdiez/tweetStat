@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.mgdiez.tweetstat.R;
+import com.mgdiez.tweetstat.injector.component.TweetsComponent;
 import com.mgdiez.tweetstat.model.TweetModel;
 import com.mgdiez.tweetstat.presenter.SearchTweetsPresenter;
 import com.mgdiez.tweetstat.view.adapter.TweetsAdapter;
@@ -34,6 +35,8 @@ import com.mgdiez.tweetstat.view.fragment.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -52,17 +55,20 @@ public class SearchTweetsFragment extends BaseFragment {
     @Bind(R.id.btnSearch)
     ImageButton btnSearch;
 
-    private SearchTweetsPresenter searchPresenter;
+    @Inject
+    public SearchTweetsPresenter searchPresenter;
 
     private String query = "";
 
     private boolean toggle = false;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
         View v = inflater.inflate(R.layout.search_fragment, container, false);
         ButterKnife.bind(this, v);
-        searchPresenter = new SearchTweetsPresenter(this);
+        initialize();
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         swipeRefreshLayout.setColorSchemeColors(R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -79,13 +85,15 @@ public class SearchTweetsFragment extends BaseFragment {
             public void onClick(View v) {
                 if (toggle) {
                     editText.setText("");
-                    btnSearch.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_black_24dp));
+                    btnSearch.setImageDrawable(getResources().getDrawable(R.drawable
+                            .ic_search_black_24dp));
                     toggle = false;
                     setItems(new ArrayList<TweetModel>());
                 } else {
                     query = editText.getText().toString();
                     if (!query.isEmpty()) {
-                        btnSearch.setImageDrawable(getResources().getDrawable(R.drawable.ic_clear_black_24dp));
+                        btnSearch.setImageDrawable(getResources().getDrawable(R.drawable
+                                .ic_clear_black_24dp));
                         searchPresenter.getTweetsBySearch(query, true);
                         toggle = true;
                     }
@@ -94,6 +102,11 @@ public class SearchTweetsFragment extends BaseFragment {
             }
         });
         return v;
+    }
+
+    private void initialize() {
+        this.getComponent(TweetsComponent.class).inject(this);
+        searchPresenter.setView(this);
     }
 
     @Override
@@ -108,9 +121,9 @@ public class SearchTweetsFragment extends BaseFragment {
 
 
     public void setItems(List<TweetModel> models) {
-            TweetsAdapter tweetsAdapter = new TweetsAdapter(getContext(), models);
-            recyclerView.setAdapter(tweetsAdapter);
-            recyclerView.setVisibility(View.VISIBLE);
+        TweetsAdapter tweetsAdapter = new TweetsAdapter(getContext(), models);
+        recyclerView.setAdapter(tweetsAdapter);
+        recyclerView.setVisibility(View.VISIBLE);
     }
 
     public void stopRefresh() {
@@ -133,13 +146,14 @@ public class SearchTweetsFragment extends BaseFragment {
 
     public String getQuery() {
         if (query.isEmpty()) {
-            showMessage("Can not perform statistic without a query");
+            showMessage(getContext().getString(R.string.no_query_message));
         }
         return query;
     }
+
     @Override
     protected void dismissSnackbar() {
-        if (snackbar != null){
+        if (snackbar != null) {
             snackbar.dismiss();
         }
     }
@@ -147,7 +161,8 @@ public class SearchTweetsFragment extends BaseFragment {
     @Override
     protected void showMessageConnection() {
         snackbar = Snackbar.make(recyclerView, message, Snackbar.LENGTH_INDEFINITE);
-        snackbar.getView().setBackgroundColor(getContext().getResources().getColor(R.color.md_red_900));
+        snackbar.getView().setBackgroundColor(getContext().getResources().getColor(R.color
+                .md_red_900));
         snackbar.show();
     }
 

@@ -20,6 +20,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 
 import com.mgdiez.tweetstat.R;
+import com.mgdiez.tweetstat.injector.HasComponent;
+
+import javax.inject.Inject;
 
 import executor.RxBus;
 import executor.events.ConnectionEvent;
@@ -34,8 +37,6 @@ public abstract class BaseFragment extends Fragment {
 
     protected CompositeSubscription subscriptions;
 
-    protected RxBus rxBus;
-
     protected String message;
 
     protected Snackbar snackbar;
@@ -46,12 +47,11 @@ public abstract class BaseFragment extends Fragment {
         setRetainInstance(true);
         message = getString(R.string.no_connection);
         subscriptions = new CompositeSubscription();
-        rxBus = RxBus.getInstance();
         initSubscriptions();
     }
 
     private void initSubscriptions() {
-        subscriptions.add(rxBus.toObservable().subscribe(new Action1<Object>() {
+        subscriptions.add(RxBus.getInstance().toObservable().subscribe(new Action1<Object>() {
             @Override
             public void call(Object o) {
                 if (o instanceof ConnectionEvent) {
@@ -68,5 +68,13 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void dismissSnackbar();
 
     abstract protected void showMessageConnection();
+
+    /**
+     * Gets a component for dependency injection by its type.
+     */
+    @SuppressWarnings("unchecked")
+    protected <C> C getComponent(Class<C> componentType) {
+        return componentType.cast(((HasComponent<C>) getActivity()).getComponent());
+    }
 
 }

@@ -26,12 +26,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mgdiez.tweetstat.R;
+import com.mgdiez.tweetstat.injector.component.TweetsComponent;
 import com.mgdiez.tweetstat.model.TweetModel;
 import com.mgdiez.tweetstat.presenter.UsertimeLineTweetsPresenter;
 import com.mgdiez.tweetstat.view.adapter.TweetsAdapter;
 import com.mgdiez.tweetstat.view.fragment.BaseFragment;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -44,15 +47,19 @@ public class UserTimelineTweetsFragment extends BaseFragment {
     @Bind(R.id.my_recycler_view)
     RecyclerView recyclerView;
 
-    private UsertimeLineTweetsPresenter usertimeLinePresenter;
+    @Inject
+    public UsertimeLineTweetsPresenter usertimeLinePresenter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
         View v = inflater.inflate(R.layout.usertimeline_fragment, container, false);
         ButterKnife.bind(this, v);
-        final String userName = getActivity().getSharedPreferences(getString(R.string.preference_file_key),
+        final String userName = getActivity().getSharedPreferences(getString(R.string
+                        .preference_file_key),
                 Context.MODE_PRIVATE).getString(getString(R.string.username), "");
-        usertimeLinePresenter = new UsertimeLineTweetsPresenter(this);
+        initialize();
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         swipeRefreshLayout.setColorSchemeColors(R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -63,6 +70,11 @@ public class UserTimelineTweetsFragment extends BaseFragment {
         });
         usertimeLinePresenter.getTimeline(userName, true);
         return v;
+    }
+
+    private void initialize() {
+        this.getComponent(TweetsComponent.class).inject(this);
+        usertimeLinePresenter.setView(this);
     }
 
     @Override
@@ -101,7 +113,7 @@ public class UserTimelineTweetsFragment extends BaseFragment {
 
     @Override
     protected void dismissSnackbar() {
-        if (snackbar != null){
+        if (snackbar != null) {
             snackbar.dismiss();
         }
     }
@@ -109,7 +121,8 @@ public class UserTimelineTweetsFragment extends BaseFragment {
     @Override
     protected void showMessageConnection() {
         snackbar = Snackbar.make(recyclerView, message, Snackbar.LENGTH_INDEFINITE);
-        snackbar.getView().setBackgroundColor(getContext().getResources().getColor(R.color.md_red_900));
+        snackbar.getView().setBackgroundColor(getContext().getResources().getColor(R.color
+                .md_red_900));
         snackbar.show();
     }
 }

@@ -25,12 +25,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mgdiez.tweetstat.R;
+import com.mgdiez.tweetstat.injector.component.TweetsComponent;
 import com.mgdiez.tweetstat.model.HashtagModel;
 import com.mgdiez.tweetstat.presenter.HashtagsTweetsPresenter;
 import com.mgdiez.tweetstat.view.adapter.HashtagAdapter;
 import com.mgdiez.tweetstat.view.fragment.BaseFragment;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -43,15 +46,18 @@ public class HashtagsTweetsFragment extends BaseFragment {
     @Bind(R.id.my_recycler_view)
     RecyclerView recyclerView;
 
-    private HashtagsTweetsPresenter hashtagsPresenter;
+    @Inject
+    public HashtagsTweetsPresenter hashtagsPresenter;
 
     private HashtagAdapter hashtagAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
         View v = inflater.inflate(R.layout.hashtag_fragment, container, false);
         ButterKnife.bind(this, v);
-        hashtagsPresenter = new HashtagsTweetsPresenter(this);
+        initialize();
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         swipeRefreshLayout.setColorSchemeColors(R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -63,6 +69,11 @@ public class HashtagsTweetsFragment extends BaseFragment {
         });
         hashtagsPresenter.getHashtags();
         return v;
+    }
+
+    private void initialize() {
+        this.getComponent(TweetsComponent.class).inject(this);
+        hashtagsPresenter.setView(this);
     }
 
     @Override
@@ -101,7 +112,7 @@ public class HashtagsTweetsFragment extends BaseFragment {
 
     @Override
     protected void dismissSnackbar() {
-        if (snackbar != null){
+        if (snackbar != null) {
             snackbar.dismiss();
         }
     }
@@ -109,7 +120,8 @@ public class HashtagsTweetsFragment extends BaseFragment {
     @Override
     protected void showMessageConnection() {
         snackbar = Snackbar.make(recyclerView, message, Snackbar.LENGTH_INDEFINITE);
-        snackbar.getView().setBackgroundColor(getContext().getResources().getColor(R.color.md_red_900));
+        snackbar.getView().setBackgroundColor(getContext().getResources().getColor(R.color
+                .md_red_900));
         snackbar.show();
     }
 }

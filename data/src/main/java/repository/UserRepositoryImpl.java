@@ -20,16 +20,19 @@ import android.content.Context;
 import com.mgdiez.domain.bean.UserBo;
 import com.mgdiez.domain.repository.UserRepository;
 
+import javax.inject.Inject;
+
 import repository.datasource.CloudUserDatastore;
 import repository.datasource.LocalUserDatastore;
 import rx.Observable;
 
 public class UserRepositoryImpl implements UserRepository {
 
-    private final Context context;
+    @Inject
+    public Context context;
 
-    public UserRepositoryImpl(Context context) {
-        this.context = context;
+    @Inject
+    public UserRepositoryImpl() {
     }
 
     /**

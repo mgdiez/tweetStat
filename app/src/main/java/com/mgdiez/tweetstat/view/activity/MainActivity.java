@@ -1,12 +1,12 @@
 /**
  * Copyright (C) 2016 Marc Gonzalez Diez Open Source Project
- * <p/>
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p/>
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p/>
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -45,6 +45,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mgdiez.tweetstat.R;
+import com.mgdiez.tweetstat.injector.HasComponent;
+import com.mgdiez.tweetstat.injector.component.DaggerTweetsComponent;
+import com.mgdiez.tweetstat.injector.component.TweetsComponent;
+import com.mgdiez.tweetstat.injector.module.TweetsModule;
 import com.mgdiez.tweetstat.model.UserModel;
 import com.mgdiez.tweetstat.presenter.MainUserPresenter;
 import com.mgdiez.tweetstat.view.adapter.TweetStatPagerAdapter;
@@ -57,28 +61,46 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.twitter.sdk.android.core.TwitterCore;
 
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 import executor.RxBus;
 import executor.events.ConnectionEvent;
 import executor.events.NoConnectionEvent;
 import repository.NetworkUtil;
 
-public class MainActivity extends TweetStattBaseActivity implements
+public class MainActivity extends TweetStattBaseActivity implements HasComponent<TweetsComponent>,
         NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    /**
+     * Dont use ButterKnife here because this views are inside navigation header drawer
+     */
     private TextView username;
+
     private ImageView userProfilePicture;
+
     private TextView userPublicName;
+
     private TextView txtTweets;
+
     private TextView txtFollowing;
+
     private TextView txtFollowers;
 
     private LinearLayout relativeLayout;
+
     public String usernameTxt;
+
     private ViewPager viewPager;
 
-    private RxBus rxBus;
+    @Inject
+    public RxBus rxBus;
+
+    private TweetsComponent tweetComponent;
+
+    @Inject
+    MainUserPresenter mainUserPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,19 +108,31 @@ public class MainActivity extends TweetStattBaseActivity implements
         super.onCreate(savedInstanceState);
         this.registerReceiver(this.mConnReceiver,
                 new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
         setContentView(R.layout.activity_main);
         findViews();
         ButterKnife.bind(this);
         initializeDrawerLayout();
-        rxBus = RxBus.getInstance();
-        MainUserPresenter mainPresenter;
-        mainPresenter = new MainUserPresenter(this);
-        mainPresenter.getUserData(NetworkUtil.isNetworkAvailable(this));
         checkIfSnackbarNeeded();
+        initializeInjector();
+
+        mainUserPresenter.setView(this);
+        mainUserPresenter.getUserData(NetworkUtil.isNetworkAvailable(this));
+
     }
 
+    private void initializeInjector() {
+        this.tweetComponent = DaggerTweetsComponent.builder()
+                .applicationComponent((this).getApplicationComponent())
+                .activityModule((this).getActivityModule())
+                .tweetsModule(new TweetsModule())
+                .build();
+        this.getComponent().inject(this);
+    }
+
+
     private void checkIfSnackbarNeeded() {
-        if(!NetworkUtil.isNetworkAvailable(this)){
+        if (!NetworkUtil.isNetworkAvailable(this)) {
             rxBus.send(new NoConnectionEvent());
         }
     }
@@ -107,18 +141,18 @@ public class MainActivity extends TweetStattBaseActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-        this.registerReceiver(this.mConnReceiver,
-                new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        /*this.registerReceiver(this.mConnReceiver,
+                new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));*/
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        try {
+        /*try {
             this.unregisterReceiver(this.mConnReceiver);
         } catch (IllegalArgumentException e) {
             Log.e(TAG, e.toString());
-        }
+        }*/
     }
 
 
@@ -186,7 +220,7 @@ public class MainActivity extends TweetStattBaseActivity implements
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentItem =  viewPager.getCurrentItem();
+                int currentItem = viewPager.getCurrentItem();
                 Intent intent = new Intent(MainActivity.this, FullGraphActivity.class);
                 switch (currentItem) {
 
@@ -203,7 +237,9 @@ public class MainActivity extends TweetStattBaseActivity implements
                         break;
 
                     case 2:
-                        Fragment searchFragment = getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.viewpager + ":" + viewPager.getCurrentItem());
+                        Fragment searchFragment = getSupportFragmentManager().findFragmentByTag
+                                ("android:switcher:" + R.id.viewpager + ":" + viewPager
+                                        .getCurrentItem());
                         String query = ((SearchTweetsFragment) searchFragment).getQuery();
                         if (!query.isEmpty()) {
                             intent.putExtra(TweetStatConstants.SEARCH, query);
@@ -212,8 +248,11 @@ public class MainActivity extends TweetStattBaseActivity implements
                         break;
 
                     case 3:
-                        Fragment hashtagFragment = getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.viewpager + ":" + viewPager.getCurrentItem());
-                        intent.putExtra(TweetStatConstants.HASHTAGS, ((HashtagsTweetsFragment) hashtagFragment).getHashtagQuery());
+                        Fragment hashtagFragment = getSupportFragmentManager().findFragmentByTag
+                                ("android:switcher:" + R.id.viewpager + ":" + viewPager
+                                        .getCurrentItem());
+                        intent.putExtra(TweetStatConstants.HASHTAGS, ((HashtagsTweetsFragment)
+                                hashtagFragment).getHashtagQuery());
                         startActivity(intent);
 
                         break;
@@ -222,8 +261,10 @@ public class MainActivity extends TweetStattBaseActivity implements
         });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        android.support.v7.app.ActionBarDrawerToggle toggle = new android.support.v7.app.ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        android.support.v7.app.ActionBarDrawerToggle toggle = new android.support.v7.app
+                .ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string
+                .navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -234,16 +275,11 @@ public class MainActivity extends TweetStattBaseActivity implements
     private BroadcastReceiver mConnReceiver = new BroadcastReceiver() {
 
         public void onReceive(Context context, Intent intent) {
-            boolean noConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
-            String reason = intent.getStringExtra(ConnectivityManager.EXTRA_REASON);
-            boolean isFailover = intent.getBooleanExtra(ConnectivityManager.EXTRA_IS_FAILOVER, false);
-
-            NetworkInfo currentNetworkInfo = (NetworkInfo) intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
-            NetworkInfo otherNetworkInfo = (NetworkInfo) intent.getParcelableExtra(ConnectivityManager.EXTRA_OTHER_NETWORK_INFO);
-
-            if(currentNetworkInfo.isConnected()){
+            NetworkInfo currentNetworkInfo = (NetworkInfo) intent.getParcelableExtra
+                    (ConnectivityManager.EXTRA_NETWORK_INFO);
+            if (currentNetworkInfo.isConnected()) {
                 rxBus.send(new ConnectionEvent());
-            }else{
+            } else {
                 rxBus.send(new NoConnectionEvent());
             }
         }
@@ -255,7 +291,7 @@ public class MainActivity extends TweetStattBaseActivity implements
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        View headerView =  navigationView.getHeaderView(0);
+        View headerView = navigationView.getHeaderView(0);
         relativeLayout = (LinearLayout) headerView.findViewById(R.id.parentLayout_header);
         userProfilePicture = (ImageView) headerView.findViewById(R.id.imageView_userProfile);
         username = (TextView) headerView.findViewById(R.id.textView_userName);
@@ -270,8 +306,9 @@ public class MainActivity extends TweetStattBaseActivity implements
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setAdapter(new TweetStatPagerAdapter(getApplicationContext(), getSupportFragmentManager()));
-        viewPager.setOffscreenPageLimit(1);
+        viewPager.setAdapter(new TweetStatPagerAdapter(getApplicationContext(),
+                getSupportFragmentManager()));
+        viewPager.setOffscreenPageLimit(3);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -316,18 +353,22 @@ public class MainActivity extends TweetStattBaseActivity implements
                 .into(new Target() {
                     @Override
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                        relativeLayout.setBackground(new BitmapDrawable(getApplicationContext().getResources(), bitmap));
+                        relativeLayout.setBackground(new BitmapDrawable(getApplicationContext()
+                                .getResources(), bitmap));
                     }
 
                     @Override
                     public void onBitmapFailed(Drawable errorDrawable) {
                         Picasso.with(getApplicationContext()).load(backgroundImage)
-                                .resizeDimen(R.dimen.nav_header_width_picasso, R.dimen.nav_header_height)
+                                .resizeDimen(R.dimen.nav_header_width_picasso, R.dimen
+                                        .nav_header_height)
                                 .centerCrop()
                                 .into(new Target() {
                                     @Override
-                                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                                        relativeLayout.setBackground(new BitmapDrawable(getApplicationContext().getResources(), bitmap));
+                                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom
+                                            from) {
+                                        relativeLayout.setBackground(new BitmapDrawable
+                                                (getApplicationContext().getResources(), bitmap));
                                     }
 
                                     @Override
@@ -347,5 +388,10 @@ public class MainActivity extends TweetStattBaseActivity implements
 
                     }
                 });
+    }
+
+    @Override
+    public TweetsComponent getComponent() {
+        return tweetComponent;
     }
 }

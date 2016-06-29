@@ -16,34 +16,50 @@
 package com.mgdiez.tweetstat.view.activity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
-import com.mgdiez.tweetstat.R;
-
-import butterknife.Bind;
+import com.mgdiez.tweetstat.TweetStattApplication;
+import com.mgdiez.tweetstat.injector.component.ActivityComponent;
+import com.mgdiez.tweetstat.injector.component.ApplicationComponent;
+import com.mgdiez.tweetstat.injector.component.DaggerActivityComponent;
+import com.mgdiez.tweetstat.injector.module.ActivityModule;
 
 /**
  * Base {@link android.app.Activity} class for every Activity in this application.
  */
 public abstract class TweetStattBaseActivity extends AppCompatActivity {
 
-    @Nullable
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
+    private ActivityComponent activityComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initializeInjector();
+        activityComponent.inject(this);
     }
 
-    protected void setUpToolbar(boolean showUpButton) {
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setDisplayHomeAsUpEnabled(showUpButton);
-            }
-        }
+    /**
+     * Get the Main Application component for dependency injection.
+     *
+     * @return {@link ApplicationComponent}
+     */
+    public ApplicationComponent getApplicationComponent() {
+        return ((TweetStattApplication) getApplication()).getApplicationComponent();
+    }
+
+    /**
+     * Get an Activity module for dependency injection.
+     *
+     * @return {@link ActivityModule}
+     */
+    public ActivityModule getActivityModule() {
+        return new ActivityModule(this);
+    }
+
+    private void initializeInjector() {
+        this.activityComponent = DaggerActivityComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .activityModule(getActivityModule())
+                .build();
     }
 }

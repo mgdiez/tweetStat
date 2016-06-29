@@ -18,11 +18,17 @@ package com.mgdiez.tweetstat.injector.module;
 import com.mgdiez.domain.executor.PostExecutionThread;
 import com.mgdiez.domain.executor.ThreadExecutor;
 import com.mgdiez.domain.interactor.UseCase;
+import com.mgdiez.domain.interactor.statistics.GetStatisticByIdUseCase;
+import com.mgdiez.domain.interactor.statistics.PersistStatisticUseCase;
 import com.mgdiez.domain.interactor.tweets.GetHashtagsUseCase;
 import com.mgdiez.domain.interactor.tweets.GetHomeTimelineUseCase;
 import com.mgdiez.domain.interactor.tweets.GetSearchUseCase;
 import com.mgdiez.domain.interactor.tweets.GetTimelineUseCase;
+import com.mgdiez.domain.interactor.tweets.GetTweetsByHashtagUseCase;
+import com.mgdiez.domain.interactor.user.GetUserDataUseCase;
+import com.mgdiez.domain.repository.StatisticsRepository;
 import com.mgdiez.domain.repository.TweetsRepository;
+import com.mgdiez.domain.repository.UserRepository;
 import com.mgdiez.tweetstat.injector.PerActivity;
 
 import javax.inject.Named;
@@ -68,5 +74,37 @@ public class TweetsModule {
     UseCase provideGetTimelineUseCase(TweetsRepository tweetsRepository, ThreadExecutor threadExecutor,
                                       PostExecutionThread postExecutionThread) {
         return new GetTimelineUseCase(threadExecutor, postExecutionThread, tweetsRepository);
+    }
+
+    @Provides
+    @PerActivity
+    @Named("getTweetsByHashtagUseCase")
+    UseCase provideGetTweetsByHashtagUseCase(TweetsRepository tweetsRepository, ThreadExecutor threadExecutor,
+                                             PostExecutionThread postExecutionThread) {
+        return new GetTweetsByHashtagUseCase(threadExecutor, postExecutionThread, tweetsRepository);
+    }
+
+    @Provides
+    @PerActivity
+    @Named("getStatisticsByIdUseCase")
+    UseCase provideGetStatisticsByIdUseCase(StatisticsRepository statisticsRepository, ThreadExecutor threadExecutor,
+                                            PostExecutionThread postExecutionThread) {
+        return new GetStatisticByIdUseCase(threadExecutor, postExecutionThread, statisticsRepository);
+    }
+
+    @Provides
+    @PerActivity
+    @Named("getPersistStatisticsUseCase")
+    UseCase providePersistStatisticUseCase(StatisticsRepository statisticsRepository, ThreadExecutor threadExecutor,
+                                           PostExecutionThread postExecutionThread) {
+        return new PersistStatisticUseCase(threadExecutor, postExecutionThread, statisticsRepository);
+    }
+
+    @Provides
+    @PerActivity
+    @Named("getUserDataUseCase")
+    UseCase provideGetUserDataUseCase(UserRepository userRepository, ThreadExecutor threadExecutor,
+                                           PostExecutionThread postExecutionThread) {
+        return new GetUserDataUseCase(threadExecutor, postExecutionThread, userRepository);
     }
 }

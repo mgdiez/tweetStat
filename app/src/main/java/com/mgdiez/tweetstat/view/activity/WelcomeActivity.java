@@ -26,10 +26,13 @@ public class WelcomeActivity extends com.stephentuso.welcome.ui.WelcomeActivity 
         return new WelcomeScreenBuilder(this)
                 .theme(R.style.WelcomeScreenTheme_Light_SolidNavigation_UnderStatusBar)
                 .defaultBackgroundColor(R.color.primary)
-                .titlePage(R.drawable.logo, "Welcome to tweetStat", R.color.primary_light)
-                .basicPage(R.drawable.statistics_icon, "Retrieve the data", "From your timeline, " +
-                        "hashtags, search...", R.color.primary_dark)
-                .basicPage(R.drawable.logo, "Generate statistics", "Save it", R.color.primary)
+                .titlePage(R.drawable.logo, getString(R.string.welcome_to_twettstat), R.color
+                        .primary_light)
+                .basicPage(R.drawable.statistics_icon, getString(R.string.retrieve_data),
+                        getString(R.string.from_your_timeline) +
+                        getString(R.string.hashtags_and_search), R.color.primary_dark)
+                .basicPage(R.drawable.logo, getString(R.string.generate_statistics), getString(R
+                        .string.save_it), R.color.primary)
                 .swipeToDismiss(true)
                 .build();
     }

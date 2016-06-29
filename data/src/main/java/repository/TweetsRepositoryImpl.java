@@ -24,6 +24,8 @@ import com.mgdiez.domain.repository.TweetsRepository;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import repository.datasource.CloudTweetDatastore;
 import repository.datasource.LocalTweetDatastore;
 import rx.Observable;
@@ -34,10 +36,12 @@ import rx.Observable;
  */
 public class TweetsRepositoryImpl implements TweetsRepository {
 
-    private final Context context;
+    @Inject
+    public Context context;
 
-    public TweetsRepositoryImpl(Context context) {
-        this.context = context;
+    @Inject
+    public TweetsRepositoryImpl(/*Context context*/) {
+        //this.context = context;
     }
 
     /**

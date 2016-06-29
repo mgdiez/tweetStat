@@ -26,12 +26,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mgdiez.tweetstat.R;
+import com.mgdiez.tweetstat.injector.component.TweetsComponent;
 import com.mgdiez.tweetstat.model.TweetModel;
 import com.mgdiez.tweetstat.presenter.HomeTimelineTweetsPresenter;
 import com.mgdiez.tweetstat.view.adapter.TweetsAdapter;
 import com.mgdiez.tweetstat.view.fragment.BaseFragment;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -46,14 +49,17 @@ public class HomeTimelineTweetsFragment extends BaseFragment {
 
     private String userName;
 
-    private HomeTimelineTweetsPresenter homeTimelinePresenter;
+    @Inject
+    public HomeTimelineTweetsPresenter homeTimelinePresenter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
         View v = inflater.inflate(R.layout.hometimeline_fragment, container, false);
         ButterKnife.bind(this, v);
         getUserName();
-        homeTimelinePresenter = new HomeTimelineTweetsPresenter(this);
+        initialize();
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         swipeRefreshLayout.setColorSchemeColors(R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -65,6 +71,11 @@ public class HomeTimelineTweetsFragment extends BaseFragment {
         });
         homeTimelinePresenter.getHometimeline(userName, true);
         return v;
+    }
+
+    private void initialize() {
+        this.getComponent(TweetsComponent.class).inject(this);
+        homeTimelinePresenter.setView(this);
     }
 
     @Override
@@ -104,7 +115,7 @@ public class HomeTimelineTweetsFragment extends BaseFragment {
 
     @Override
     protected void dismissSnackbar() {
-        if (snackbar != null){
+        if (snackbar != null) {
             snackbar.dismiss();
         }
     }
@@ -112,7 +123,8 @@ public class HomeTimelineTweetsFragment extends BaseFragment {
     @Override
     protected void showMessageConnection() {
         snackbar = Snackbar.make(recyclerView, message, Snackbar.LENGTH_INDEFINITE);
-        snackbar.getView().setBackgroundColor(getContext().getResources().getColor(R.color.md_red_900));
+        snackbar.getView().setBackgroundColor(getContext().getResources().getColor(R.color
+                .md_red_900));
         snackbar.show();
     }
 

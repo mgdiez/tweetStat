@@ -18,42 +18,39 @@ package com.mgdiez.tweetstat.presenter;
 import android.util.Log;
 
 import com.mgdiez.domain.bean.StatisticBo;
-import com.mgdiez.domain.executor.PostExecutionThread;
+import com.mgdiez.domain.interactor.UseCase;
 import com.mgdiez.domain.interactor.statistics.GetHashtagsStatisticsUseCase;
-import com.mgdiez.domain.repository.StatisticsRepository;
-import com.mgdiez.tweetstat.UIThread;
+import com.mgdiez.tweetstat.injector.PerActivity;
 import com.mgdiez.tweetstat.model.StatisticModel;
 import com.mgdiez.tweetstat.model.mapper.StatisticModelMapper;
 import com.mgdiez.tweetstat.view.fragment.statistics.HashtagsStatisticsFragment;
 
 import java.util.List;
 
-import executor.JobExecutor;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import repository.StatisticsRepositoryImpl;
 import rx.Subscriber;
 
+@PerActivity
 public class HashtagsStatisticsPresenter implements StatisticsPresenter {
 
     private static final String TAG = StatisticsRepositoryImpl.class.getName();
 
     private HashtagsStatisticsFragment view;
 
-    private GetHashtagsStatisticsUseCase getHashtagsStatisticsUseCase;
+    private GetHashtagsStatisticsUseCase getHashtagsStatisticUseCase;
 
     private List<StatisticModel> models;
 
-
-    public HashtagsStatisticsPresenter(HashtagsStatisticsFragment hashtagsStatisticsFragment) {
-        view = hashtagsStatisticsFragment;
-        JobExecutor jobExecutor = JobExecutor.getInstance();
-        PostExecutionThread postExecutionThread = UIThread.getInstance();
-        StatisticsRepository statisticsRepository = new StatisticsRepositoryImpl(view.getContext());
-        getHashtagsStatisticsUseCase = new GetHashtagsStatisticsUseCase(jobExecutor, postExecutionThread, statisticsRepository);
-
+    @Inject
+    public HashtagsStatisticsPresenter(@Named("getHashtagsStatisticUseCase") UseCase getHashtagsStatisticUseCase) {
+        this.getHashtagsStatisticUseCase = (GetHashtagsStatisticsUseCase) getHashtagsStatisticUseCase;
     }
 
     public void getHashtags() {
-        getHashtagsStatisticsUseCase.execute(new GetHashtagsStatisticsSubscriber());
+        getHashtagsStatisticUseCase.execute(new GetHashtagsStatisticsSubscriber());
     }
 
     @Override
@@ -68,7 +65,7 @@ public class HashtagsStatisticsPresenter implements StatisticsPresenter {
 
     @Override
     public void destroy() {
-        getHashtagsStatisticsUseCase.unsubscribe();
+        getHashtagsStatisticUseCase.unsubscribe();
     }
 
     private void setModels() {
@@ -77,6 +74,10 @@ public class HashtagsStatisticsPresenter implements StatisticsPresenter {
 
     private void showMessage(String message) {
         view.showMessage(message);
+    }
+
+    public void setView(HashtagsStatisticsFragment hashtagsStatisticsFragment) {
+        this.view = hashtagsStatisticsFragment;
     }
 
     private class GetHashtagsStatisticsSubscriber extends Subscriber<List<StatisticBo>> {

@@ -32,9 +32,9 @@ import butterknife.ButterKnife;
 
 public class LoginActivity extends TweetStattBaseActivity {
 
-
     @Bind(R.id.twitter_login_button)
     TwitterLoginButton loginButton;
+
     String serializedSession;
 
     @Override
@@ -64,8 +64,8 @@ public class LoginActivity extends TweetStattBaseActivity {
 
         TwitterSession session =
                 Twitter.getSessionManager().getActiveSession();
-        if (session!=null){
-            Intent intent = new Intent(this,MainActivity.class);
+        if (session != null) {
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
         }
@@ -79,8 +79,8 @@ public class LoginActivity extends TweetStattBaseActivity {
         // Activity that it triggered.
         if (data != null) {
             loginButton.onActivityResult(requestCode, resultCode, data);
-            Intent intent = new Intent(this,MainActivity.class);
-            intent.putExtra("SERIALIZED_SESSION",serializedSession);
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("SERIALIZED_SESSION", serializedSession);
             startActivity(intent);
             finish();
         } else {

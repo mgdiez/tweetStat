@@ -15,5 +15,29 @@
  */
 package com.mgdiez.tweetstat.injector.component;
 
-public class StatisticsComponent {
+import com.mgdiez.tweetstat.injector.PerActivity;
+import com.mgdiez.tweetstat.injector.module.ActivityModule;
+import com.mgdiez.tweetstat.injector.module.StatisticsModule;
+import com.mgdiez.tweetstat.view.activity.HistoryStatisticsActivity;
+import com.mgdiez.tweetstat.view.fragment.statistics.HashtagsStatisticsFragment;
+import com.mgdiez.tweetstat.view.fragment.statistics.HomeTimelineStatisticsFragment;
+import com.mgdiez.tweetstat.view.fragment.statistics.SearchStatisticsFragment;
+import com.mgdiez.tweetstat.view.fragment.statistics.UserTimelineStatisticsFragment;
+
+import dagger.Component;
+
+@PerActivity
+@Component(dependencies = ApplicationComponent.class, modules = {ActivityModule.class, StatisticsModule.class})
+public interface StatisticsComponent extends ActivityComponent {
+
+    void inject(HistoryStatisticsActivity historyStatisticsActivity);
+
+    void inject(HomeTimelineStatisticsFragment homeTimelineStatisticsFragment);
+
+    void inject(SearchStatisticsFragment searchStatisticsFragment);
+
+    void inject(UserTimelineStatisticsFragment userTimelineStatisticsFragment);
+
+    void inject(HashtagsStatisticsFragment hashtagsStatisticsFragment);
+
 }

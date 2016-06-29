@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mgdiez.tweetstat.R;
+import com.mgdiez.tweetstat.injector.component.StatisticsComponent;
 import com.mgdiez.tweetstat.model.StatisticModel;
 import com.mgdiez.tweetstat.presenter.SearchStatisticsPresenter;
 import com.mgdiez.tweetstat.view.activity.FullGraphActivity;
@@ -34,24 +35,34 @@ import com.mgdiez.tweetstat.view.fragment.BaseFragment;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class SearchStatisticsFragment extends BaseFragment implements StatisticAdapter.OnStatisticClickedListener{
+public class SearchStatisticsFragment extends BaseFragment implements StatisticAdapter
+        .OnStatisticClickedListener {
 
     @Bind(R.id.my_recycler_view)
     RecyclerView recyclerView;
 
-    private SearchStatisticsPresenter searchStatisticsPresenter;
+    @Inject
+    public SearchStatisticsPresenter searchStatisticsPresenter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
         View v = inflater.inflate(R.layout.hometimeline_statistics_fragment, container, false);
         ButterKnife.bind(this, v);
-        searchStatisticsPresenter = new SearchStatisticsPresenter(this);
+        initialize();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         searchStatisticsPresenter.getSearchStatistics();
         return v;
+    }
+
+    private void initialize() {
+        this.getComponent(StatisticsComponent.class).inject(this);
+        searchStatisticsPresenter.setView(this);
     }
 
     @Override
@@ -66,7 +77,7 @@ public class SearchStatisticsFragment extends BaseFragment implements StatisticA
 
     @Override
     protected void dismissSnackbar() {
-        if (snackbar != null){
+        if (snackbar != null) {
             snackbar.dismiss();
         }
     }
@@ -75,7 +86,8 @@ public class SearchStatisticsFragment extends BaseFragment implements StatisticA
     protected void showMessageConnection() {
         if (recyclerView != null) {
             snackbar = Snackbar.make(recyclerView, message, Snackbar.LENGTH_INDEFINITE);
-            snackbar.getView().setBackgroundColor(getContext().getResources().getColor(R.color.md_red_900));
+            snackbar.getView().setBackgroundColor(getContext().getResources().getColor(R.color
+                    .md_red_900));
             snackbar.show();
         }
     }

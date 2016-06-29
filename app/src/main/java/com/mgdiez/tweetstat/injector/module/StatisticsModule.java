@@ -15,5 +15,60 @@
  */
 package com.mgdiez.tweetstat.injector.module;
 
+import com.mgdiez.domain.executor.PostExecutionThread;
+import com.mgdiez.domain.executor.ThreadExecutor;
+import com.mgdiez.domain.interactor.UseCase;
+import com.mgdiez.domain.interactor.statistics.GetHashtagsStatisticsUseCase;
+import com.mgdiez.domain.interactor.statistics.GetHomeTimelineStatisticsUseCase;
+import com.mgdiez.domain.interactor.statistics.GetSearchStatisticsUseCase;
+import com.mgdiez.domain.interactor.statistics.GetTimelineStatisticsUseCase;
+import com.mgdiez.domain.repository.StatisticsRepository;
+import com.mgdiez.tweetstat.injector.PerActivity;
+
+import javax.inject.Named;
+
+import dagger.Module;
+import dagger.Provides;
+
+@Module
 public class StatisticsModule {
+
+    public StatisticsModule() {
+    }
+
+    @Provides
+    @PerActivity
+    @Named("getHashtagsStatisticUseCase")
+    UseCase provideGetHashtagsStatisticsUseCase(StatisticsRepository statisticsRepository, ThreadExecutor threadExecutor,
+
+                                                PostExecutionThread postExecutionThread) {
+        return new GetHashtagsStatisticsUseCase(threadExecutor, postExecutionThread, statisticsRepository);
+    }
+
+    @Provides
+    @PerActivity
+    @Named("getHomeTimelineStatisticsUseCase")
+    UseCase provideGetHomeTimelineStatisticsUseCase(StatisticsRepository statisticsRepository,
+                                                    ThreadExecutor threadExecutor,
+                                                    PostExecutionThread postExecutionThread) {
+        return new GetHomeTimelineStatisticsUseCase(threadExecutor, postExecutionThread, statisticsRepository);
+    }
+
+
+    @Provides
+    @PerActivity
+    @Named("getSearchStatisticsUseCase")
+    UseCase provideGetSearchStatisticsUseCase(StatisticsRepository statisticsRepository, ThreadExecutor threadExecutor,
+                                              PostExecutionThread postExecutionThread) {
+        return new GetSearchStatisticsUseCase(threadExecutor, postExecutionThread, statisticsRepository);
+    }
+
+
+    @Provides
+         @PerActivity
+         @Named("getTimelineUseStatisticsUseCase")
+         UseCase provideGetTimelineStatisticsUseCase(StatisticsRepository statisticsRepository, ThreadExecutor threadExecutor,
+                                                     PostExecutionThread postExecutionThread) {
+        return new GetTimelineStatisticsUseCase(threadExecutor, postExecutionThread, statisticsRepository);
+    }
 }

@@ -22,15 +22,21 @@ import com.mgdiez.domain.repository.StatisticsRepository;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import repository.datasource.LocalStatisticDatastore;
 import rx.Observable;
 
 public class StatisticsRepositoryImpl implements StatisticsRepository {
 
-    private LocalStatisticDatastore localStatisticDatastore;
+    @Inject
+    public Context context;
 
-    public StatisticsRepositoryImpl(Context context) {
-        localStatisticDatastore = new LocalStatisticDatastore(context);
+    //private LocalStatisticDatastore localStatisticDatastore;
+
+    @Inject
+    public StatisticsRepositoryImpl(/*Context context*/) {
+        //localStatisticDatastore = new LocalStatisticDatastore(context);
     }
 
     /**
@@ -39,7 +45,7 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
      */
     @Override
     public Observable<List<StatisticBo>> getStatisticsTimeline() {
-        return localStatisticDatastore.getStatisticsTimeline();
+        return new LocalStatisticDatastore(context).getStatisticsTimeline();
     }
 
     /**
@@ -48,7 +54,7 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
      */
     @Override
     public Observable<List<StatisticBo>> getStatisticsHomeTimeline() {
-        return localStatisticDatastore.getStatisticsHomeTimeline();
+        return new LocalStatisticDatastore(context).getStatisticsHomeTimeline();
     }
 
     /**
@@ -57,7 +63,7 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
      */
     @Override
     public Observable<List<StatisticBo>> getStatisticsSearch() {
-        return localStatisticDatastore.getStatisticsSearch();
+        return new LocalStatisticDatastore(context).getStatisticsSearch();
     }
 
     /**
@@ -66,7 +72,7 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
      */
     @Override
     public Observable<List<StatisticBo>> getStatisticsHashtags() {
-        return localStatisticDatastore.getStatisticsHashtags();
+        return new LocalStatisticDatastore(context).getStatisticsHashtags();
     }
 
     /**
@@ -76,7 +82,7 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
      */
     @Override
     public Observable<StatisticBo> getStatisticById(long id) {
-        return localStatisticDatastore.getStatisticById(id);
+        return new LocalStatisticDatastore(context).getStatisticById(id);
     }
 
     /**
@@ -86,6 +92,6 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
      */
     @Override
     public Observable<Void> persistStatistic(StatisticBo bo) {
-        return localStatisticDatastore.persistStatistic(bo);
+        return new LocalStatisticDatastore(context).persistStatistic(bo);
     }
 }

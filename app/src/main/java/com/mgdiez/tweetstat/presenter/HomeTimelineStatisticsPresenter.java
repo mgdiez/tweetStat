@@ -18,20 +18,22 @@ package com.mgdiez.tweetstat.presenter;
 import android.util.Log;
 
 import com.mgdiez.domain.bean.StatisticBo;
-import com.mgdiez.domain.executor.PostExecutionThread;
+import com.mgdiez.domain.interactor.UseCase;
 import com.mgdiez.domain.interactor.statistics.GetHomeTimelineStatisticsUseCase;
-import com.mgdiez.domain.repository.StatisticsRepository;
-import com.mgdiez.tweetstat.UIThread;
+import com.mgdiez.tweetstat.injector.PerActivity;
 import com.mgdiez.tweetstat.model.StatisticModel;
 import com.mgdiez.tweetstat.model.mapper.StatisticModelMapper;
 import com.mgdiez.tweetstat.view.fragment.statistics.HomeTimelineStatisticsFragment;
 
 import java.util.List;
 
-import executor.JobExecutor;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import repository.StatisticsRepositoryImpl;
 import rx.Subscriber;
 
+@PerActivity
 public class HomeTimelineStatisticsPresenter implements TweetsPresenter {
 
     private static final String TAG = StatisticsRepositoryImpl.class.getName();
@@ -42,15 +44,11 @@ public class HomeTimelineStatisticsPresenter implements TweetsPresenter {
 
     private List<StatisticModel> models;
 
-
-    public HomeTimelineStatisticsPresenter(HomeTimelineStatisticsFragment
-                                                   homeTimelineStatisticsFragment) {
-        view = homeTimelineStatisticsFragment;
-        JobExecutor jobExecutor = JobExecutor.getInstance();
-        PostExecutionThread postExecutionThread = UIThread.getInstance();
-        StatisticsRepository statisticsRepository = new StatisticsRepositoryImpl(view.getContext());
-        getHomeTimelineStatisticsUseCase = new GetHomeTimelineStatisticsUseCase(jobExecutor, postExecutionThread, statisticsRepository);
-
+    @Inject
+    public HomeTimelineStatisticsPresenter(@Named("getHomeTimelineStatisticsUseCase") UseCase
+                                                       getHomeTimelineStatisticsUseCase) {
+        this.getHomeTimelineStatisticsUseCase = (GetHomeTimelineStatisticsUseCase)
+                getHomeTimelineStatisticsUseCase;
     }
 
 
@@ -70,7 +68,7 @@ public class HomeTimelineStatisticsPresenter implements TweetsPresenter {
 
     @Override
     public void destroy() {
-
+        getHomeTimelineStatisticsUseCase.unsubscribe();
     }
 
     private void setModels() {
@@ -79,6 +77,10 @@ public class HomeTimelineStatisticsPresenter implements TweetsPresenter {
 
     private void showMessage(String message) {
         view.showMessage(message);
+    }
+
+    public void setView(HomeTimelineStatisticsFragment homeTimelineStatisticsFragment) {
+        this.view = homeTimelineStatisticsFragment;
     }
 
     private class GetHomeTimelineStatisticsSubscriber extends Subscriber<List<StatisticBo>> {

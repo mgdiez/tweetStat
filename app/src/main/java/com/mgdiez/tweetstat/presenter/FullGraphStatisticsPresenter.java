@@ -22,17 +22,15 @@ import android.widget.Toast;
 
 import com.mgdiez.domain.bean.StatisticBo;
 import com.mgdiez.domain.bean.TweetBo;
-import com.mgdiez.domain.executor.PostExecutionThread;
+import com.mgdiez.domain.interactor.UseCase;
 import com.mgdiez.domain.interactor.statistics.GetStatisticByIdUseCase;
+import com.mgdiez.domain.interactor.statistics.PersistStatisticUseCase;
 import com.mgdiez.domain.interactor.tweets.GetHomeTimelineUseCase;
 import com.mgdiez.domain.interactor.tweets.GetSearchUseCase;
 import com.mgdiez.domain.interactor.tweets.GetTimelineUseCase;
 import com.mgdiez.domain.interactor.tweets.GetTweetsByHashtagUseCase;
-import com.mgdiez.domain.interactor.statistics.PersistStatisticUseCase;
-import com.mgdiez.domain.repository.StatisticsRepository;
-import com.mgdiez.domain.repository.TweetsRepository;
 import com.mgdiez.tweetstat.R;
-import com.mgdiez.tweetstat.UIThread;
+import com.mgdiez.tweetstat.injector.PerActivity;
 import com.mgdiez.tweetstat.view.activity.FullGraphActivity;
 
 import java.text.DateFormat;
@@ -40,38 +38,72 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import executor.JobExecutor;
-import repository.StatisticsRepositoryImpl;
-import repository.TweetsRepositoryImpl;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import rx.Subscriber;
 
+@PerActivity
 public class FullGraphStatisticsPresenter implements StatisticsPresenter {
 
     private static final String TAG = FullGraphStatisticsPresenter.class.getName();
+
     private FullGraphActivity view;
-    private final String type;
-    private final String extra_type;
+
+    private String type;
+
+    private String extra_type;
 
     private HashMap<String, Integer> data;
+
     int nTweets = 0;
+
     private List<TweetBo> boList;
 
     private int id = -1;
 
     String selectedOption = "DAY";
 
-    public FullGraphStatisticsPresenter(FullGraphActivity fullGraphActivity, String TYPE, String
-            EXTRA_TYPE, String selectedOption) {
-        view = fullGraphActivity;
-        type = TYPE;
-        extra_type = EXTRA_TYPE;
-        retrieveData();
-        this.selectedOption = selectedOption;
+    private GetHomeTimelineUseCase getHomeTimelineUseCase;
+
+    private GetTimelineUseCase getTimelineUseCase;
+
+    private GetSearchUseCase getSearchUseCase;
+
+    private GetTweetsByHashtagUseCase getTweetsByHashtagUseCase;
+
+    private GetStatisticByIdUseCase getStatisticByIdUseCase;
+
+    private PersistStatisticUseCase persistStatisticUseCase;
+
+    @Inject
+    public FullGraphStatisticsPresenter(@Named("getHomeTimelineUseCase") UseCase
+                                                    getHomeTimelineUseCase,
+                                        @Named("getTimelineUseCase") UseCase getTimelineUseCase,
+                                        @Named("getSearchUseCase") UseCase getSearchUseCase,
+                                        @Named("getTweetsByHashtagUseCase") UseCase
+                                                    getTweetsByHashtagUseCase,
+                                        @Named("getStatisticsByIdUseCase") UseCase
+                                                    getStatisticByIdUseCase,
+                                        @Named("getPersistStatisticsUseCase") UseCase
+                                                    persistStatisticUseCase) {
+
+        this.getHomeTimelineUseCase = (GetHomeTimelineUseCase) getHomeTimelineUseCase;
+        this.getTimelineUseCase = (GetTimelineUseCase) getTimelineUseCase;
+        this.getSearchUseCase = (GetSearchUseCase) getSearchUseCase;
+        this.getTweetsByHashtagUseCase = (GetTweetsByHashtagUseCase) getTweetsByHashtagUseCase;
+        this.getStatisticByIdUseCase = (GetStatisticByIdUseCase) getStatisticByIdUseCase;
+        this.persistStatisticUseCase = (PersistStatisticUseCase) persistStatisticUseCase;
     }
 
-    public FullGraphStatisticsPresenter(FullGraphActivity fullGraphActivity, String TYPE, String
-            EXTRA_TYPE, int id) {
-        view = fullGraphActivity;
+    public void setInformationFromActivity(String TYPE, String EXTRA_TYPE, String selectedOption) {
+        type = TYPE;
+        extra_type = EXTRA_TYPE;
+        this.selectedOption = selectedOption;
+        retrieveData();
+    }
+
+    public void setInformationFromActivity(String TYPE, String EXTRA_TYPE, int id) {
         type = TYPE;
         extra_type = EXTRA_TYPE;
         this.id = id;
@@ -79,31 +111,33 @@ public class FullGraphStatisticsPresenter implements StatisticsPresenter {
     }
 
     private void retrieveData() {
-        JobExecutor jobExecutor = JobExecutor.getInstance();
-        PostExecutionThread postExecutionThread = UIThread.getInstance();
         if (id != -1) {
-            StatisticsRepository statisticsRepository = new StatisticsRepositoryImpl(view);
-            new GetStatisticByIdUseCase(jobExecutor, postExecutionThread,statisticsRepository).execute(id, new GetStatisticByIdSubscriber());
+            getStatisticByIdUseCase.execute(id, new GetStatisticByIdSubscriber());
 
         } else {
-            TweetsRepository tweetsRepository = new TweetsRepositoryImpl(view);
-            String userName = view.getSharedPreferences(view.getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString(view.getString(R.string.username), "");
+            String userName = view.getSharedPreferences(view.getString(R.string
+                    .preference_file_key), Context.MODE_PRIVATE).getString(view.getString(R
+                    .string.username), "");
 
             switch (type) {
                 case "MY_TWEETS":
-                    new GetTimelineUseCase(jobExecutor, postExecutionThread, tweetsRepository).execute(false, userName, new GetTweetsStatisticsSubscriber());
+                    getTimelineUseCase.execute(false, userName, new GetTweetsStatisticsSubscriber
+                            ());
                     break;
 
                 case "TIMELINE":
-                    new GetHomeTimelineUseCase(jobExecutor, postExecutionThread, tweetsRepository).execute(userName, false, new GetTweetsStatisticsSubscriber());
+                    getHomeTimelineUseCase.execute(userName, false, new
+                            GetTweetsStatisticsSubscriber());
                     break;
 
                 case "SEARCH":
-                    new GetSearchUseCase(jobExecutor, postExecutionThread, tweetsRepository).execute(extra_type, false, new GetTweetsStatisticsSubscriber());
+                    getSearchUseCase.execute(extra_type, false, new GetTweetsStatisticsSubscriber
+                            ());
                     break;
 
                 case "HASHTAGS":
-                    new GetTweetsByHashtagUseCase(jobExecutor, postExecutionThread, tweetsRepository).execute(extra_type, true, new GetTweetsStatisticsSubscriber());
+                    getTweetsByHashtagUseCase.execute(extra_type, true, new
+                            GetTweetsStatisticsSubscriber());
                     break;
 
             }
@@ -130,7 +164,12 @@ public class FullGraphStatisticsPresenter implements StatisticsPresenter {
 
     @Override
     public void destroy() {
-
+        getHomeTimelineUseCase.unsubscribe();
+        getTimelineUseCase.unsubscribe();
+        getSearchUseCase.unsubscribe();
+        getTweetsByHashtagUseCase.unsubscribe();
+        getStatisticByIdUseCase.unsubscribe();
+        persistStatisticUseCase.unsubscribe();
     }
 
 
@@ -183,13 +222,7 @@ public class FullGraphStatisticsPresenter implements StatisticsPresenter {
     }
 
     public void persistStatistic() {
-        JobExecutor jobExecutor = JobExecutor.getInstance();
-        PostExecutionThread postExecutionThread = UIThread.getInstance();
-        StatisticsRepository statisticsRepository = new StatisticsRepositoryImpl(view);
-
-        PersistStatisticUseCase persistStatisticUseCase = new PersistStatisticUseCase(jobExecutor, postExecutionThread, statisticsRepository);
         StatisticBo bo = generateBoFromData();
-
         persistStatisticUseCase.execute(bo, new Subscriber() {
             @Override
             public void onCompleted() {

@@ -29,7 +29,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class HashtagAdapter extends RecyclerView.Adapter<HashtagAdapter.HashtagViewHolder>{
+public class HashtagAdapter extends RecyclerView.Adapter<HashtagAdapter.HashtagViewHolder> {
 
     private int selectedItem = 0;
 
@@ -41,7 +41,8 @@ public class HashtagAdapter extends RecyclerView.Adapter<HashtagAdapter.HashtagV
 
     @Override
     public HashtagViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.hashtag_adapter, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.hashtag_adapter,
+                parent, false);
         return new HashtagViewHolder(view);
     }
 
@@ -51,10 +52,9 @@ public class HashtagAdapter extends RecyclerView.Adapter<HashtagAdapter.HashtagV
         holder.itemView.setSelected(selectedItem == position);
         holder.item = model;
         holder.hashtagName.setText(model.getName());
-        if (model.getNTweets() != -1){
+        if (model.getNTweets() != -1) {
             holder.nTweets.setText(String.valueOf(model.getNTweets()));
-        }
-        else {
+        } else {
             holder.nTweets.setText("--");
         }
 

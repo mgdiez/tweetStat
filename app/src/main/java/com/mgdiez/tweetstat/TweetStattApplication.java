@@ -31,7 +31,7 @@ import io.fabric.sdk.android.Fabric;
 
 public class TweetStattApplication extends Application {
 
-    private ApplicationComponent component;
+    private ApplicationComponent applicationComponent;
 
     @Override
     public void onCreate() {
@@ -45,15 +45,18 @@ public class TweetStattApplication extends Application {
     }
 
     private void initializeInjector() {
-        component = DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this)).build();
+        this.applicationComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this))
+                .build();
     }
 
-    public ApplicationComponent getComponent() {
-        return component;
+    public ApplicationComponent getApplicationComponent() {
+        return applicationComponent;
     }
 
     private void initTwitterSDK() {
-        TwitterAuthConfig authConfig =  new TwitterAuthConfig(ApiConstants.CONSUMER_KEY, ApiConstants.CONSUMER_SECRET);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(ApiConstants.CONSUMER_KEY,
+                ApiConstants.CONSUMER_SECRET);
         Fabric.with(this, new Twitter(authConfig));
     }
 }

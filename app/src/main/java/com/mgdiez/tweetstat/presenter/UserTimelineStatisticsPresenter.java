@@ -18,20 +18,22 @@ package com.mgdiez.tweetstat.presenter;
 import android.util.Log;
 
 import com.mgdiez.domain.bean.StatisticBo;
-import com.mgdiez.domain.executor.PostExecutionThread;
+import com.mgdiez.domain.interactor.UseCase;
 import com.mgdiez.domain.interactor.statistics.GetTimelineStatisticsUseCase;
-import com.mgdiez.domain.repository.StatisticsRepository;
-import com.mgdiez.tweetstat.UIThread;
+import com.mgdiez.tweetstat.injector.PerActivity;
 import com.mgdiez.tweetstat.model.StatisticModel;
 import com.mgdiez.tweetstat.model.mapper.StatisticModelMapper;
 import com.mgdiez.tweetstat.view.fragment.statistics.UserTimelineStatisticsFragment;
 
 import java.util.List;
 
-import executor.JobExecutor;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import repository.StatisticsRepositoryImpl;
 import rx.Subscriber;
 
+@PerActivity
 public class UserTimelineStatisticsPresenter implements StatisticsPresenter {
 
     private static final String TAG = StatisticsRepositoryImpl.class.getName();
@@ -42,15 +44,11 @@ public class UserTimelineStatisticsPresenter implements StatisticsPresenter {
 
     private List<StatisticModel> models;
 
-
-    public UserTimelineStatisticsPresenter(UserTimelineStatisticsFragment
-                                                   userTimelineStatisticsFragment) {
-        view = userTimelineStatisticsFragment;
-        JobExecutor jobExecutor = JobExecutor.getInstance();
-        PostExecutionThread postExecutionThread = UIThread.getInstance();
-        StatisticsRepository statisticsRepository = new StatisticsRepositoryImpl(view.getContext());
-        getTimelineStatisticsUseCase = new GetTimelineStatisticsUseCase(jobExecutor, postExecutionThread, statisticsRepository);
-
+    @Inject
+    public UserTimelineStatisticsPresenter(@Named("getTimelineUseStatisticsUseCase") UseCase
+                                                       getTimelineStatisticsUseCase) {
+        this.getTimelineStatisticsUseCase = (GetTimelineStatisticsUseCase)
+                getTimelineStatisticsUseCase;
     }
 
 
@@ -70,7 +68,7 @@ public class UserTimelineStatisticsPresenter implements StatisticsPresenter {
 
     @Override
     public void destroy() {
-
+        getTimelineStatisticsUseCase.unsubscribe();
     }
 
     private void setModels() {
@@ -79,6 +77,14 @@ public class UserTimelineStatisticsPresenter implements StatisticsPresenter {
 
     private void showMessage(String message) {
         view.showMessage(message);
+    }
+
+    public void setView(UserTimelineStatisticsFragment view) {
+        this.view = view;
+    }
+
+    public UserTimelineStatisticsFragment getView() {
+        return view;
     }
 
     private class GetTimelineStatisticsSubscriber extends Subscriber<List<StatisticBo>> {

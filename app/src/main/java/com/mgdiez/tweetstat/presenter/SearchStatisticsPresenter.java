@@ -18,20 +18,22 @@ package com.mgdiez.tweetstat.presenter;
 import android.util.Log;
 
 import com.mgdiez.domain.bean.StatisticBo;
-import com.mgdiez.domain.executor.PostExecutionThread;
+import com.mgdiez.domain.interactor.UseCase;
 import com.mgdiez.domain.interactor.statistics.GetSearchStatisticsUseCase;
-import com.mgdiez.domain.repository.StatisticsRepository;
-import com.mgdiez.tweetstat.UIThread;
+import com.mgdiez.tweetstat.injector.PerActivity;
 import com.mgdiez.tweetstat.model.StatisticModel;
 import com.mgdiez.tweetstat.model.mapper.StatisticModelMapper;
 import com.mgdiez.tweetstat.view.fragment.statistics.SearchStatisticsFragment;
 
 import java.util.List;
 
-import executor.JobExecutor;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import repository.StatisticsRepositoryImpl;
 import rx.Subscriber;
 
+@PerActivity
 public class SearchStatisticsPresenter implements StatisticsPresenter {
 
     private static final String TAG = StatisticsRepositoryImpl.class.getName();
@@ -42,14 +44,10 @@ public class SearchStatisticsPresenter implements StatisticsPresenter {
 
     private List<StatisticModel> models;
 
-
-    public SearchStatisticsPresenter(SearchStatisticsFragment searchStatisticsFragment) {
-        view = searchStatisticsFragment;
-        JobExecutor jobExecutor = JobExecutor.getInstance();
-        PostExecutionThread postExecutionThread = UIThread.getInstance();
-        StatisticsRepository statisticsRepository = new StatisticsRepositoryImpl(view.getContext());
-        getSearchStatisticsUseCase = new GetSearchStatisticsUseCase(jobExecutor, postExecutionThread, statisticsRepository);
-
+    @Inject
+    public SearchStatisticsPresenter(@Named("getSearchStatisticsUseCase") UseCase
+                                                 getSearchStatisticsUseCase) {
+        this.getSearchStatisticsUseCase = (GetSearchStatisticsUseCase) getSearchStatisticsUseCase;
     }
 
     public void getSearchStatistics() {
@@ -77,6 +75,10 @@ public class SearchStatisticsPresenter implements StatisticsPresenter {
 
     private void showMessage(String message) {
         view.showMessage(message);
+    }
+
+    public void setView(SearchStatisticsFragment searchStatisticsFragment) {
+        this.view = searchStatisticsFragment;
     }
 
     private class GetSearchStatisticsSubscriber extends Subscriber<List<StatisticBo>> {

@@ -23,35 +23,65 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.mgdiez.tweetstat.R;
+import com.mgdiez.tweetstat.injector.HasComponent;
+import com.mgdiez.tweetstat.injector.component.DaggerStatisticsComponent;
+import com.mgdiez.tweetstat.injector.component.StatisticsComponent;
+import com.mgdiez.tweetstat.injector.module.StatisticsModule;
 import com.mgdiez.tweetstat.view.adapter.HistoryStatisticsPagerAdapter;
 
-public class HistoryStatisticsActivity extends TweetStattBaseActivity {
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
+/**
+ * Activity used to contain all Fragments related with Statistics generated
+ */
+public class HistoryStatisticsActivity extends TweetStattBaseActivity implements
+        HasComponent<StatisticsComponent> {
+
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+
+    @Bind(R.id.viewpager)
+    ViewPager viewPager;
+
+    @Bind(R.id.tabs)
+    TabLayout tabLayout;
+
+    private StatisticsComponent statisticsComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history_statistics_activity);
+        ButterKnife.bind(this);
+        initToolbar();
+        initViewPagerAndToolbar();
+        initializeInjector();
+    }
 
-        TabLayout tabLayout;
-        ViewPager viewPager;
+    private void initializeInjector() {
+        this.statisticsComponent = DaggerStatisticsComponent.builder()
+                .applicationComponent((this).getApplicationComponent())
+                .activityModule((this).getActivityModule())
+                .statisticsModule(new StatisticsModule())
+                .build();
+        this.getComponent().inject(this);
+    }
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+    private void initViewPagerAndToolbar() {
+        viewPager.setAdapter(new HistoryStatisticsPagerAdapter(getApplicationContext(),
+                getSupportFragmentManager()));
+        viewPager.setOffscreenPageLimit(3);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    private void initToolbar() {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null && toolbar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             toolbar.setTitle(getString(R.string.statistics_history_activity_title));
         }
-
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setAdapter(new HistoryStatisticsPagerAdapter(getApplicationContext(),
-                getSupportFragmentManager()));
-        viewPager.setOffscreenPageLimit(3);
-
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -60,5 +90,10 @@ public class HistoryStatisticsActivity extends TweetStattBaseActivity {
                 finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public StatisticsComponent getComponent() {
+        return statisticsComponent;
     }
 }

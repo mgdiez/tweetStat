@@ -41,7 +41,8 @@ public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.Stat
 
     @Override
     public StatisticAdapter.StatisticViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.statistic_adapter, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.statistic_adapter,
+                parent, false);
         return new StatisticViewHolder(view);
     }
 
@@ -112,7 +113,8 @@ public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.Stat
         void onStatisticClicked(StatisticModel statisticModel);
     }
 
-    public void setOnStatisticClickedListener(OnStatisticClickedListener onStatisticClickedListener) {
+    public void setOnStatisticClickedListener(OnStatisticClickedListener
+                                                      onStatisticClickedListener) {
         this.onStatisticClickedListener = onStatisticClickedListener;
     }
 }

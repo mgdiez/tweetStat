@@ -19,20 +19,21 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.mgdiez.domain.bean.TweetBo;
-import com.mgdiez.domain.executor.PostExecutionThread;
+import com.mgdiez.domain.interactor.UseCase;
 import com.mgdiez.domain.interactor.tweets.GetTimelineUseCase;
-import com.mgdiez.domain.repository.TweetsRepository;
-import com.mgdiez.tweetstat.UIThread;
+import com.mgdiez.tweetstat.injector.PerActivity;
 import com.mgdiez.tweetstat.model.TweetModel;
 import com.mgdiez.tweetstat.model.mapper.TweetModelMapper;
 import com.mgdiez.tweetstat.view.fragment.tweets.UserTimelineTweetsFragment;
 
 import java.util.List;
 
-import executor.JobExecutor;
-import repository.TweetsRepositoryImpl;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import rx.Subscriber;
 
+@PerActivity
 public class UsertimeLineTweetsPresenter implements TweetsPresenter {
 
     private static final String TAG = HomeTimelineTweetsPresenter.class.getName();
@@ -41,13 +42,10 @@ public class UsertimeLineTweetsPresenter implements TweetsPresenter {
     private GetTimelineUseCase getTimelineUseCase;
     private List<TweetModel> models;
 
-
-    public UsertimeLineTweetsPresenter(UserTimelineTweetsFragment userTimelineTweetsFragment) {
-        view = userTimelineTweetsFragment;
-        JobExecutor jobExecutor = JobExecutor.getInstance();
-        PostExecutionThread postExecutionThread = UIThread.getInstance();
-        TweetsRepository tweetsRepository = new TweetsRepositoryImpl(view.getContext());
-        getTimelineUseCase = new GetTimelineUseCase(jobExecutor, postExecutionThread, tweetsRepository);
+    @Inject
+    public UsertimeLineTweetsPresenter(@Named("getTimelineUseCase") UseCase
+                                                   getUserTimelineUseCase) {
+        this.getTimelineUseCase = (GetTimelineUseCase) getUserTimelineUseCase;
     }
 
     public void setView(@NonNull UserTimelineTweetsFragment userTimelineTweetsFragment) {

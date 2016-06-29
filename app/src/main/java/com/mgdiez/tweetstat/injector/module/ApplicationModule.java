@@ -19,6 +19,9 @@ import android.content.Context;
 
 import com.mgdiez.domain.executor.PostExecutionThread;
 import com.mgdiez.domain.executor.ThreadExecutor;
+import com.mgdiez.domain.repository.StatisticsRepository;
+import com.mgdiez.domain.repository.TweetsRepository;
+import com.mgdiez.domain.repository.UserRepository;
 import com.mgdiez.tweetstat.TweetStattApplication;
 import com.mgdiez.tweetstat.UIThread;
 
@@ -28,6 +31,9 @@ import dagger.Module;
 import dagger.Provides;
 import executor.JobExecutor;
 import executor.RxBus;
+import repository.StatisticsRepositoryImpl;
+import repository.TweetsRepositoryImpl;
+import repository.UserRepositoryImpl;
 
 @Module
 public class ApplicationModule {
@@ -60,7 +66,24 @@ public class ApplicationModule {
     @Provides
     @Singleton
     RxBus provideRxBus(){
-        return new RxBus();
+        return RxBus.getInstance();
     }
 
+    @Provides
+    @Singleton
+    TweetsRepository provideTweetsRepository(TweetsRepositoryImpl tweetsRepository) {
+        return tweetsRepository;
+    }
+
+    @Provides
+    @Singleton
+    StatisticsRepository provideStatisticsRepository(StatisticsRepositoryImpl statisticsRepository){
+        return statisticsRepository;
+    }
+
+    @Provides
+    @Singleton
+    UserRepository provideUserRepository(UserRepositoryImpl userRepository){
+        return userRepository;
+    }
 }

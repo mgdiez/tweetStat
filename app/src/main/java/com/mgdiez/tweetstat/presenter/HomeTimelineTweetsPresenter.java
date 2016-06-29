@@ -19,10 +19,9 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.mgdiez.domain.bean.TweetBo;
-import com.mgdiez.domain.executor.PostExecutionThread;
+import com.mgdiez.domain.interactor.UseCase;
 import com.mgdiez.domain.interactor.tweets.GetHomeTimelineUseCase;
-import com.mgdiez.domain.repository.TweetsRepository;
-import com.mgdiez.tweetstat.UIThread;
+import com.mgdiez.tweetstat.injector.PerActivity;
 import com.mgdiez.tweetstat.model.TweetModel;
 import com.mgdiez.tweetstat.model.mapper.TweetModelMapper;
 import com.mgdiez.tweetstat.view.fragment.tweets.HomeTimelineTweetsFragment;
@@ -32,25 +31,26 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import executor.JobExecutor;
-import repository.TweetsRepositoryImpl;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import rx.Subscriber;
 
+@PerActivity
 public class HomeTimelineTweetsPresenter implements TweetsPresenter {
 
     private static final String TAG = HomeTimelineTweetsPresenter.class.getName();
 
     private HomeTimelineTweetsFragment view;
+
     private GetHomeTimelineUseCase getHomeTimelineUseCase;
+
     private List<TweetModel> models = new ArrayList<>();
 
-
-    public HomeTimelineTweetsPresenter(HomeTimelineTweetsFragment homeTimelineTweetsFragment) {
-        view = homeTimelineTweetsFragment;
-        JobExecutor jobExecutor = JobExecutor.getInstance();
-        PostExecutionThread postExecutionThread = UIThread.getInstance();
-        TweetsRepository tweetsRepository = new TweetsRepositoryImpl(view.getContext());
-        getHomeTimelineUseCase = new GetHomeTimelineUseCase(jobExecutor, postExecutionThread, tweetsRepository);
+    @Inject
+    public HomeTimelineTweetsPresenter(@Named("getHomeTimelineUseCase") UseCase
+                                               getHomeTimelineUseCase) {
+        this.getHomeTimelineUseCase = (GetHomeTimelineUseCase) getHomeTimelineUseCase;
     }
 
     public void setView(@NonNull HomeTimelineTweetsFragment homeTimelineTweetsFragment) {

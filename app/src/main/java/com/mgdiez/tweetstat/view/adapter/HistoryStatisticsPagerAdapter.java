@@ -45,18 +45,14 @@ public class HistoryStatisticsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0: // Fragment # 0 - This will show FirstFragment
+            case 0:
                 return HomeTimelineStatisticsFragment.newInstance();
-            case 1: // Fragment # 0 - This will show FirstFragment different title
+            case 1:
                 return UserTimelineStatisticsFragment.newInstance();
-                //return HomeTimelineTweetsFragment.newInstance();
-            case 2: // Fragment # 1 - This will show SecondFragment
+            case 2:
                 return SearchStatisticsFragment.newInstance();
-                //return SearchTweetsFragment.newInstance();
             case 3:
                 return HashtagsStatisticsFragment.newInstance();
-                //return HashtagsTweetsFragment.newInstance();
-
             default:
                 return null;
         }
@@ -76,6 +72,6 @@ public class HistoryStatisticsPagerAdapter extends FragmentPagerAdapter {
                 return context.getString(R.string.title_hashtags);
 
         }
-        return  "";
+        return "";
     }
 }

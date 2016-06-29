@@ -19,6 +19,7 @@ import android.app.Activity;
 
 import com.mgdiez.tweetstat.injector.PerActivity;
 import com.mgdiez.tweetstat.injector.module.ActivityModule;
+import com.mgdiez.tweetstat.view.activity.TweetStattBaseActivity;
 
 import dagger.Component;
 
@@ -30,6 +31,8 @@ import dagger.Component;
 @PerActivity
 @Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
 public interface ActivityComponent {
+
+    void inject(TweetStattBaseActivity activity);
 
     // Publicly available
     Activity getActivity();
