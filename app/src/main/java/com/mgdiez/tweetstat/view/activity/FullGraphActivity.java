@@ -29,6 +29,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -137,6 +138,7 @@ public class FullGraphActivity extends TweetStattBaseActivity implements
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), R.string.saved_succes, Toast.LENGTH_SHORT).show();
                 fullGraphStatisticsPresenter.persistStatistic();
                 finish();
             }

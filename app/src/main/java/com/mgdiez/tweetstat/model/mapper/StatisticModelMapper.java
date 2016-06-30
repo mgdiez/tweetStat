@@ -15,7 +15,10 @@
  */
 package com.mgdiez.tweetstat.model.mapper;
 
+import android.content.Context;
+
 import com.mgdiez.domain.bean.StatisticBo;
+import com.mgdiez.tweetstat.R;
 import com.mgdiez.tweetstat.model.StatisticModel;
 
 import java.util.ArrayList;
@@ -27,7 +30,7 @@ import java.util.List;
 public class StatisticModelMapper {
 
 
-    public static List<StatisticModel> toModel(List<StatisticBo> statisticBo) {
+    public static List<StatisticModel> toModel(List<StatisticBo> statisticBo, Context context) {
         List<StatisticModel> statisticModels = new ArrayList<>();
 
         if (statisticBo != null && !statisticBo.isEmpty()) {
@@ -39,11 +42,27 @@ public class StatisticModelMapper {
 
                 model.setDateGenerated(bo.getDateGenerated());
                 model.setNTweets(String.valueOf(bo.getNTweets()));
-                model.setSelectedOption(bo.getSelectedOption());
+                model.setSelectedOption(toLanguage(bo.getSelectedOption(), context));
 
                 statisticModels.add(model);
             }
         }
         return statisticModels;
+    }
+
+    private static String toLanguage(String selectedOption, Context context) {
+        String result = "";
+        switch (selectedOption){
+            case "DAY":
+                result = context.getString(R.string.day);
+                break;
+            case "CITY":
+                result = context.getString(R.string.city);
+                break;
+            case "COUNTRY":
+                result = context.getString(R.string.country);
+                break;
+        }
+        return result;
     }
 }

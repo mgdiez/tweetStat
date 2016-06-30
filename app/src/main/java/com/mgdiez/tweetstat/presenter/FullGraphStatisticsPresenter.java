@@ -209,7 +209,7 @@ public class FullGraphStatisticsPresenter implements StatisticsPresenter {
             for (TweetBo bo : boList) {
                 if (bo.getCreatedAt() != null && !bo.getCreatedAt().isEmpty()) {
                     nTweets++;
-                    String city = DateHelper.getDayToStatistics(bo.getCreatedAt());
+                    String city = DateHelper.getDayToStatistics(bo.getCreatedAt(), view);
                     if (data.containsKey(city)) {
                         data.put(city, data.get(city) + 1);
                     } else {

@@ -27,6 +27,11 @@ import com.mgdiez.tweetstat.view.fragment.tweets.UserTimelineTweetsFragment;
 
 import dagger.Component;
 
+/**
+ *
+ * Component of Dagger2 for MainActivity dependencies
+ *
+ */
 @PerActivity
 @Component(dependencies = ApplicationComponent.class, modules = {ActivityModule.class, TweetsModule.class})
 public interface TweetsComponent extends ActivityComponent {

@@ -24,8 +24,7 @@ import com.mgdiez.tweetstat.view.activity.TweetStattBaseActivity;
 import dagger.Component;
 
 /**
- * A base component upon which fragment's components may depend. Activity-level components should extend this component.
- * <p>
+ * A base component.
  * Subtypes of ActivityComponent should be decorated with annotation: {@link PerActivity}
  */
 @PerActivity

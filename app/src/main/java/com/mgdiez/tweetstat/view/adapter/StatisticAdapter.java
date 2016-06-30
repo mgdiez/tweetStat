@@ -52,8 +52,8 @@ public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.Stat
 
         holder.item = model;
         if (model.getSubType() == null || model.getSubType().isEmpty()) {
-            holder.query.setVisibility(View.INVISIBLE);
-            holder.subType.setVisibility(View.INVISIBLE);
+            holder.query.setVisibility(View.GONE);
+            holder.subType.setVisibility(View.GONE);
         } else {
             holder.subType.setText(model.getSubType().replace("%23", "#"));
         }

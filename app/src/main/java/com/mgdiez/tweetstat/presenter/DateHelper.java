@@ -15,35 +15,39 @@
  */
 package com.mgdiez.tweetstat.presenter;
 
+import android.content.Context;
+
+import com.mgdiez.tweetstat.R;
+
 /**
  * Helper class that transform days in MMM pattern to natural language.
  */
 public class DateHelper {
 
-    public static String getDayToStatistics(String date){
-        String day = date.substring(0,3);
+    public static String getDayToStatistics(String date, Context context) {
+        String day = date.substring(0, 3);
         String dayStatistics = "";
-        switch (day){
+        switch (day) {
             case "Mon":
-                dayStatistics =  "Monday";
+                dayStatistics = context.getString(R.string.monday);
                 break;
             case "Tue":
-                dayStatistics = "Tuesday";
+                dayStatistics = context.getString(R.string.tuesday);
                 break;
             case "Wed":
-                dayStatistics = "Wednesday";
+                dayStatistics = context.getString(R.string.wednesday);
                 break;
             case "Thu":
-                dayStatistics = "Thursday";
+                dayStatistics = context.getString(R.string.thursday);
                 break;
             case "Fri":
-                dayStatistics = "Friday";
+                dayStatistics = context.getString(R.string.friday);
                 break;
             case "Sat":
-                dayStatistics = "Saturday";
+                dayStatistics = context.getString(R.string.saturday);
                 break;
             case "Sun":
-                dayStatistics = "Sunday";
+                dayStatistics = context.getString(R.string.sunday);
                 break;
         }
         return dayStatistics;

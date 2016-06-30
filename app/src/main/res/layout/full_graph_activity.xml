@@ -53,7 +53,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select source of data"
+            android:text="@string/dimension_data"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             style="@style/Material.DrawerArrowStyle"/>
         <RadioGroup
@@ -64,17 +64,17 @@
                 android:id="@+id/dayOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Day"/>
+                android:text="@string/day"/>
             <RadioButton
                 android:id="@+id/cityOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="City"/>
+                android:text="@string/city"/>
             <RadioButton
                 android:id="@+id/countryOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Country"/>
+                android:text="@string/country"/>
         </RadioGroup>
 
     </LinearLayout>

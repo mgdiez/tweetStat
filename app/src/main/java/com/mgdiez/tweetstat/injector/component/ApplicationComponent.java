@@ -29,6 +29,11 @@ import javax.inject.Singleton;
 import dagger.Component;
 import executor.RxBus;
 
+/**
+ *
+ * Component of Dagger2 for Application dependencies
+ *
+ */
 @Singleton
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {

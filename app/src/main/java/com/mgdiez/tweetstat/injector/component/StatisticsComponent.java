@@ -26,6 +26,11 @@ import com.mgdiez.tweetstat.view.fragment.statistics.UserTimelineStatisticsFragm
 
 import dagger.Component;
 
+/**
+ *
+ * Component of Dagger2 for HistoryStatisticsActivity dependencies
+ *
+ */
 @PerActivity
 @Component(dependencies = ApplicationComponent.class, modules = {ActivityModule.class, StatisticsModule.class})
 public interface StatisticsComponent extends ActivityComponent {

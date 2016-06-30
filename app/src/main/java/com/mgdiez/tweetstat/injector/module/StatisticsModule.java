@@ -36,13 +36,16 @@ public class StatisticsModule {
     public StatisticsModule() {
     }
 
+    // provide dependencies
     @Provides
     @PerActivity
     @Named("getHashtagsStatisticUseCase")
-    UseCase provideGetHashtagsStatisticsUseCase(StatisticsRepository statisticsRepository, ThreadExecutor threadExecutor,
+    UseCase provideGetHashtagsStatisticsUseCase(StatisticsRepository statisticsRepository,
+                                                ThreadExecutor threadExecutor,
 
                                                 PostExecutionThread postExecutionThread) {
-        return new GetHashtagsStatisticsUseCase(threadExecutor, postExecutionThread, statisticsRepository);
+        return new GetHashtagsStatisticsUseCase(threadExecutor, postExecutionThread,
+                statisticsRepository);
     }
 
     @Provides
@@ -51,24 +54,29 @@ public class StatisticsModule {
     UseCase provideGetHomeTimelineStatisticsUseCase(StatisticsRepository statisticsRepository,
                                                     ThreadExecutor threadExecutor,
                                                     PostExecutionThread postExecutionThread) {
-        return new GetHomeTimelineStatisticsUseCase(threadExecutor, postExecutionThread, statisticsRepository);
+        return new GetHomeTimelineStatisticsUseCase(threadExecutor, postExecutionThread,
+                statisticsRepository);
     }
 
 
     @Provides
     @PerActivity
     @Named("getSearchStatisticsUseCase")
-    UseCase provideGetSearchStatisticsUseCase(StatisticsRepository statisticsRepository, ThreadExecutor threadExecutor,
+    UseCase provideGetSearchStatisticsUseCase(StatisticsRepository statisticsRepository,
+                                              ThreadExecutor threadExecutor,
                                               PostExecutionThread postExecutionThread) {
-        return new GetSearchStatisticsUseCase(threadExecutor, postExecutionThread, statisticsRepository);
+        return new GetSearchStatisticsUseCase(threadExecutor, postExecutionThread,
+                statisticsRepository);
     }
 
 
     @Provides
-         @PerActivity
-         @Named("getTimelineUseStatisticsUseCase")
-         UseCase provideGetTimelineStatisticsUseCase(StatisticsRepository statisticsRepository, ThreadExecutor threadExecutor,
-                                                     PostExecutionThread postExecutionThread) {
-        return new GetTimelineStatisticsUseCase(threadExecutor, postExecutionThread, statisticsRepository);
+    @PerActivity
+    @Named("getTimelineUseStatisticsUseCase")
+    UseCase provideGetTimelineStatisticsUseCase(StatisticsRepository statisticsRepository,
+                                                ThreadExecutor threadExecutor,
+                                                PostExecutionThread postExecutionThread) {
+        return new GetTimelineStatisticsUseCase(threadExecutor, postExecutionThread,
+                statisticsRepository);
     }
 }

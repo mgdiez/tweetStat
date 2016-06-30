@@ -5,19 +5,19 @@
         <item
             android:id="@+id/statsActivity"
             android:icon="@drawable/ic_pie_chart_outlined_white_24dp"
-            android:title="Statistics History" />
+            android:title="@string/statistics_history" />
     </group>
 
-    <item android:title="My Account">
+    <item android:title="@string/my_account">
         <menu>
             <item
                 android:id="@+id/share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/share" />
             <item
                 android:id="@+id/logout"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="Logout" />
+                android:icon="@drawable/ic_exit_to_app_white_24dp"
+                android:title="@string/logout" />
         </menu>
     </item>
 

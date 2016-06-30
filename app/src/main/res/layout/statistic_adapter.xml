@@ -29,7 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/txtQuery"
-                    android:text="Query: "
+                    android:text="@string/query"
                     android:textStyle="bold"/>
                 <TextView
                     android:id="@+id/subType"
@@ -49,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Generated: "/>
+                    android:text="@string/generated"/>
                 <TextView
                     android:id="@+id/dateGenerated"
                     android:layout_marginLeft="16dp"
@@ -68,7 +68,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tweets used: "
+                    android:text="@string/tweets_used_history"
                     tools:text="Tweets used: "
                     android:textStyle="bold"/>
                 <TextView
@@ -89,7 +89,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Data source: "
+                    android:text="@string/dimension_data_history"
                     tools:text="Data source: "
                     android:textStyle="bold"/>
                 <TextView

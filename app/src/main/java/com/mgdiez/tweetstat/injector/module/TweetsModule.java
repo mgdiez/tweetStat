@@ -42,10 +42,12 @@ public class TweetsModule {
     public TweetsModule() {
     }
 
+    // provide dependencies
     @Provides
     @PerActivity
     @Named("getHashtagsUseCase")
-    UseCase provideGetHashtagsUseCase(TweetsRepository tweetsRepository, ThreadExecutor threadExecutor,
+    UseCase provideGetHashtagsUseCase(TweetsRepository tweetsRepository, ThreadExecutor
+            threadExecutor,
                                       PostExecutionThread postExecutionThread) {
         return new GetHashtagsUseCase(threadExecutor, postExecutionThread, tweetsRepository);
     }
@@ -53,7 +55,8 @@ public class TweetsModule {
     @Provides
     @PerActivity
     @Named("getHomeTimelineUseCase")
-    UseCase provideGetHomeTimelineUseCase(TweetsRepository tweetsRepository, ThreadExecutor threadExecutor,
+    UseCase provideGetHomeTimelineUseCase(TweetsRepository tweetsRepository, ThreadExecutor
+            threadExecutor,
                                           PostExecutionThread postExecutionThread) {
         return new GetHomeTimelineUseCase(threadExecutor, postExecutionThread, tweetsRepository);
     }
@@ -62,7 +65,8 @@ public class TweetsModule {
     @Provides
     @PerActivity
     @Named("getSearchUseCase")
-    UseCase provideGetSearchUseCase(TweetsRepository tweetsRepository, ThreadExecutor threadExecutor,
+    UseCase provideGetSearchUseCase(TweetsRepository tweetsRepository, ThreadExecutor
+            threadExecutor,
                                     PostExecutionThread postExecutionThread) {
         return new GetSearchUseCase(threadExecutor, postExecutionThread, tweetsRepository);
     }
@@ -71,7 +75,8 @@ public class TweetsModule {
     @Provides
     @PerActivity
     @Named("getTimelineUseCase")
-    UseCase provideGetTimelineUseCase(TweetsRepository tweetsRepository, ThreadExecutor threadExecutor,
+    UseCase provideGetTimelineUseCase(TweetsRepository tweetsRepository, ThreadExecutor
+            threadExecutor,
                                       PostExecutionThread postExecutionThread) {
         return new GetTimelineUseCase(threadExecutor, postExecutionThread, tweetsRepository);
     }
@@ -79,7 +84,8 @@ public class TweetsModule {
     @Provides
     @PerActivity
     @Named("getTweetsByHashtagUseCase")
-    UseCase provideGetTweetsByHashtagUseCase(TweetsRepository tweetsRepository, ThreadExecutor threadExecutor,
+    UseCase provideGetTweetsByHashtagUseCase(TweetsRepository tweetsRepository, ThreadExecutor
+            threadExecutor,
                                              PostExecutionThread postExecutionThread) {
         return new GetTweetsByHashtagUseCase(threadExecutor, postExecutionThread, tweetsRepository);
     }
@@ -87,24 +93,28 @@ public class TweetsModule {
     @Provides
     @PerActivity
     @Named("getStatisticsByIdUseCase")
-    UseCase provideGetStatisticsByIdUseCase(StatisticsRepository statisticsRepository, ThreadExecutor threadExecutor,
+    UseCase provideGetStatisticsByIdUseCase(StatisticsRepository statisticsRepository,
+                                            ThreadExecutor threadExecutor,
                                             PostExecutionThread postExecutionThread) {
-        return new GetStatisticByIdUseCase(threadExecutor, postExecutionThread, statisticsRepository);
+        return new GetStatisticByIdUseCase(threadExecutor, postExecutionThread,
+                statisticsRepository);
     }
 
     @Provides
     @PerActivity
     @Named("getPersistStatisticsUseCase")
-    UseCase providePersistStatisticUseCase(StatisticsRepository statisticsRepository, ThreadExecutor threadExecutor,
+    UseCase providePersistStatisticUseCase(StatisticsRepository statisticsRepository,
+                                           ThreadExecutor threadExecutor,
                                            PostExecutionThread postExecutionThread) {
-        return new PersistStatisticUseCase(threadExecutor, postExecutionThread, statisticsRepository);
+        return new PersistStatisticUseCase(threadExecutor, postExecutionThread,
+                statisticsRepository);
     }
 
     @Provides
     @PerActivity
     @Named("getUserDataUseCase")
     UseCase provideGetUserDataUseCase(UserRepository userRepository, ThreadExecutor threadExecutor,
-                                           PostExecutionThread postExecutionThread) {
+                                      PostExecutionThread postExecutionThread) {
         return new GetUserDataUseCase(threadExecutor, postExecutionThread, userRepository);
     }
 }

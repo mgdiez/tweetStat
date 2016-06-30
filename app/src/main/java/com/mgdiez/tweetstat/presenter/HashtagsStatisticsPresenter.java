@@ -95,7 +95,7 @@ public class HashtagsStatisticsPresenter implements StatisticsPresenter {
 
         @Override
         public void onNext(List<StatisticBo> statisticBo) {
-            models = StatisticModelMapper.toModel(statisticBo);
+            models = StatisticModelMapper.toModel(statisticBo, view.getContext());
             onCompleted();
         }
     }

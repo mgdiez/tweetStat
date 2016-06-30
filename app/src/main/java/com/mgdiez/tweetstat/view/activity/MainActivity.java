@@ -113,8 +113,8 @@ public class MainActivity extends TweetStattBaseActivity implements HasComponent
         findViews();
         ButterKnife.bind(this);
         initializeDrawerLayout();
-        checkIfSnackbarNeeded();
         initializeInjector();
+        checkIfSnackbarNeeded();
 
         mainUserPresenter.setView(this);
         mainUserPresenter.getUserData(NetworkUtil.isNetworkAvailable(this));
